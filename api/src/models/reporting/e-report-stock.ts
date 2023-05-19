@@ -1,59 +1,61 @@
-import { Entity } from "../../@cores/entity";
+import { Entity } from '../../@cores/entity'
 
 export class EReportStock extends Entity {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super()
+	}
 
-  private _name: string = "";
-  private _stock: number = 0;
-  private _unit: string = "";
+	private _name: string = ''
 
-  /**
-   * Getter unit
-   * @return {string }
-   */
-  public get unit(): string {
-    return this._unit;
-  }
+	/**
+	 * Getter name
+	 * @return {string }
+	 */
+	public get name(): string {
+		return this._name
+	}
 
-  /**
-   * Setter unit
-   * @param {string } value
-   */
-  public set unit(value: string) {
-    this._unit = value;
-  }
+	/**
+	 * Setter name
+	 * @param {string } value
+	 */
+	public set name(value: string) {
+		this._name = value
+	}
 
-  /**
-   * Getter name
-   * @return {string }
-   */
-  public get name(): string {
-    return this._name;
-  }
+	private _stock: number = 0
 
-  /**
-   * Getter stock
-   * @return {number }
-   */
-  public get stock(): number {
-    return this._stock;
-  }
+	/**
+	 * Getter stock
+	 * @return {number }
+	 */
+	public get stock(): number {
+		return this._stock
+	}
 
-  /**
-   * Setter name
-   * @param {string } value
-   */
-  public set name(value: string) {
-    this._name = value;
-  }
+	/**
+	 * Setter stock
+	 * @param {number } value
+	 */
+	public set stock(value: number) {
+		this._stock = value
+	}
 
-  /**
-   * Setter stock
-   * @param {number } value
-   */
-  public set stock(value: number) {
-    this._stock = value;
-  }
+	private _unit: string = ''
+
+	/**
+	 * Getter unit
+	 * @return {string }
+	 */
+	public get unit(): string {
+		return this._unit
+	}
+
+	/**
+	 * Setter unit
+	 * @param {string } value
+	 */
+	public set unit(value: string) {
+		this._unit = value
+	}
 }

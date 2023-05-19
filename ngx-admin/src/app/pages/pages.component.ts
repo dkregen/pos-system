@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { AuthGuard } from '../services/auth-guard.service'
-import { MENU_ITEMS } from './pages-menu'
 
 @Component({
   selector: 'ngx-pages',

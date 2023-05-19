@@ -1,73 +1,76 @@
-import { Entity } from "../../@cores/entity";
+import { Entity } from '../../@cores/entity'
 
 export class ECustomItem extends Entity {
-  private _code: string = "";
-  private _name: string = "";
-  private _price: number = 0;
-  private _stock: number = 0;
+	private _code: string = ''
 
-  /**
-   * Getter code
-   * @return {string }
-   */
-  public get code(): string {
-    return this._code;
-  }
+	/**
+	 * Getter code
+	 * @return {string }
+	 */
+	public get code(): string {
+		return this._code
+	}
 
-  /**
-   * Getter name
-   * @return {string }
-   */
-  public get name(): string {
-    return this._name;
-  }
+	/**
+	 * Setter code
+	 * @param {string } value
+	 */
+	public set code(value: string) {
+		this._code = value
+	}
 
-  /**
-   * Getter price
-   * @return {number }
-   */
-  public get price(): number {
-    return this._price;
-  }
+	private _name: string = ''
 
-  /**
-   * Setter code
-   * @param {string } value
-   */
-  public set code(value: string) {
-    this._code = value;
-  }
+	/**
+	 * Getter name
+	 * @return {string }
+	 */
+	public get name(): string {
+		return this._name
+	}
 
-  /**
-   * Setter name
-   * @param {string } value
-   */
-  public set name(value: string) {
-    this._name = value;
-  }
+	/**
+	 * Setter name
+	 * @param {string } value
+	 */
+	public set name(value: string) {
+		this._name = value
+	}
 
-  /**
-   * Setter price
-   * @param {number } value
-   */
-  public set price(value: number) {
-    this._price = value;
-  }
+	private _price: number = 0
 
-  /**
-   * Getter stock
-   * @return {number }
-   */
-  public get stock(): number {
-    return this._stock;
-  }
+	/**
+	 * Getter price
+	 * @return {number }
+	 */
+	public get price(): number {
+		return this._price
+	}
 
-  /**
-   * Setter stock
-   * @param {number } value
-   */
-  public set stock(value: number) {
-    this._stock = value;
-  }
+	/**
+	 * Setter price
+	 * @param {number } value
+	 */
+	public set price(value: number) {
+		this._price = value
+	}
+
+	private _stock: number = 0
+
+	/**
+	 * Getter stock
+	 * @return {number }
+	 */
+	public get stock(): number {
+		return this._stock
+	}
+
+	/**
+	 * Setter stock
+	 * @param {number } value
+	 */
+	public set stock(value: number) {
+		this._stock = value
+	}
 
 }

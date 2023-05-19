@@ -21,6 +21,7 @@ import {
   NbWindowModule,
 } from '@nebular/theme'
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth'
+import { NbEvaIconsModule } from '@nebular/eva-icons'
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    NbEvaIconsModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),

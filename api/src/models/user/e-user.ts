@@ -1,166 +1,175 @@
-import { Entity } from "../../@cores/entity";
-import { MUser } from "./m-user";
-import { EFile } from "../file/e-file";
+import { Entity } from '../../@cores/entity'
+import { MUser } from './m-user'
+import { EFile } from '../file/e-file'
 
 export class EUser extends Entity {
 
-  constructor() {
-    super();
-  }
+	constructor() {
+		super()
+	}
 
-  public getDataRelation(): any {}
-  private _username: string = "";
-  private _email: string = "";
-  private _password: string = "";
-  private _fullName: string = "";
-  private _idFilePicture: string = "";
-  private _privilege: number = MUser.PRIV_NOPRIVILEGE;
-  private _status: number = MUser.STATUS_INACTIVE;
-  private _permission: number = 0;
-  private _image: EFile = new EFile();
+	private _username: string = ''
 
-  /**
-   * Getter permission
-   * @return {number }
-   */
-  public get permission(): number {
-    return this._permission;
-  }
+	/**
+	 * Getter username
+	 * @return {string}
+	 */
+	public get username(): string {
+		return this._username
+	}
 
-  /**
-   * Setter permission
-   * @param {number } value
-   */
-  public set permission(value: number) {
-    this._permission = value;
-  }
+	/**
+	 * Setter username
+	 * @param {string} value
+	 */
+	public set username(value: string) {
+		this._username = !!value ? value : null
+	}
 
-  /**
-   * Getter picture
-   * @return {EFile }
-   */
-  public get image(): EFile {
-    return this._image;
-  }
+	private _email: string = ''
 
-  /**
-   * Setter picture
-   * @param {EFile } value
-   */
-  public set image(value: EFile) {
-    this._image = value;
-  }
+	/**
+	 * Getter email
+	 * @return {string}
+	 */
+	public get email(): string {
+		return this._email
+	}
 
-  /**
-   * Getter username
-   * @return {string}
-   */
-  public get username(): string {
-    return this._username;
-  }
+	/**
+	 * Setter email
+	 * @param {string} value
+	 */
+	public set email(value: string) {
+		this._email = value
+	}
 
-  /**
-   * Getter email
-   * @return {string}
-   */
-  public get email(): string {
-    return this._email;
-  }
+	private _password: string = ''
 
-  /**
-   * Getter password
-   * @return {string}
-   */
-  public get password(): string {
-    return this._password;
-  }
+	/**
+	 * Getter password
+	 * @return {string}
+	 */
+	public get password(): string {
+		return this._password
+	}
 
-  /**
-   * Getter fullName
-   * @return {string}
-   */
-  public get fullName(): string {
-    return this._fullName;
-  }
+	/**
+	 * Setter password
+	 * @param {string} value
+	 */
+	public set password(value: string) {
+		this._password = !!value ? value : undefined
+	}
 
-  /**
-   * Getter idFilePicture
-   * @return {string}
-   */
-  public get idFilePicture(): string {
-    return this._idFilePicture;
-  }
+	private _fullName: string = ''
 
-  /**
-   * Getter privilege
-   * @return {number}
-   */
-  public get privilege(): number {
-    return this._privilege;
-  }
+	/**
+	 * Getter fullName
+	 * @return {string}
+	 */
+	public get fullName(): string {
+		return this._fullName
+	}
 
-  /**
-   * Getter status
-   * @return {number}
-   */
-  public get status(): number {
-    return this._status;
-  }
+	/**
+	 * Setter fullName
+	 * @param {string} value
+	 */
+	public set fullName(value: string) {
+		this._fullName = value
+	}
 
-  /**
-   * Setter username
-   * @param {string} value
-   */
-  public set username(value: string) {
-    this._username = !!value ? value : null;
-  }
+	private _idFilePicture: string = ''
 
-  /**
-   * Setter email
-   * @param {string} value
-   */
-  public set email(value: string) {
-    this._email = value;
-  }
+	/**
+	 * Getter idFilePicture
+	 * @return {string}
+	 */
+	public get idFilePicture(): string {
+		return this._idFilePicture
+	}
 
-  /**
-   * Setter password
-   * @param {string} value
-   */
-  public set password(value: string) {
-    this._password = !!value ? value : undefined;
-  }
+	/**
+	 * Setter idFilePicture
+	 * @param {string} value
+	 */
+	public set idFilePicture(value: string) {
+		this._idFilePicture = value
+	}
 
-  /**
-   * Setter fullName
-   * @param {string} value
-   */
-  public set fullName(value: string) {
-    this._fullName = value;
-  }
+	private _privilege: number = MUser.PRIV_NOPRIVILEGE
 
-  /**
-   * Setter idFilePicture
-   * @param {string} value
-   */
-  public set idFilePicture(value: string) {
-    this._idFilePicture = value;
-  }
+	/**
+	 * Getter privilege
+	 * @return {number}
+	 */
+	public get privilege(): number {
+		return this._privilege
+	}
 
-  /**
-   * Setter privilege
-   * @param {number} value
-   */
-  public set privilege(value: number) {
-    this._privilege = value;
-  }
+	/**
+	 * Setter privilege
+	 * @param {number} value
+	 */
+	public set privilege(value: number) {
+		this._privilege = value
+	}
 
-  /**
-   * Setter status
-   * @param {number} value
-   */
-  public set status(value: number) {
-    this._status = value;
-  }
+	private _status: number = MUser.STATUS_INACTIVE
+
+	/**
+	 * Getter status
+	 * @return {number}
+	 */
+	public get status(): number {
+		return this._status
+	}
+
+	/**
+	 * Setter status
+	 * @param {number} value
+	 */
+	public set status(value: number) {
+		this._status = value
+	}
+
+	private _permission: number = 0
+
+	/**
+	 * Getter permission
+	 * @return {number }
+	 */
+	public get permission(): number {
+		return this._permission
+	}
+
+	/**
+	 * Setter permission
+	 * @param {number } value
+	 */
+	public set permission(value: number) {
+		this._permission = value
+	}
+
+	private _image: EFile = new EFile()
+
+	/**
+	 * Getter picture
+	 * @return {EFile }
+	 */
+	public get image(): EFile {
+		return this._image
+	}
+
+	/**
+	 * Setter picture
+	 * @param {EFile } value
+	 */
+	public set image(value: EFile) {
+		this._image = value
+	}
+
+	public getDataRelation(): any {}
 
 }

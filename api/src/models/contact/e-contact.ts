@@ -1,93 +1,97 @@
-import { Entity } from "../../@cores/entity";
+import { Entity } from '../../@cores/entity'
 
 export class EContact extends Entity {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super()
+	}
 
-  private _name: string = "";
-  private _phone: string = "";
-  private _company: string = "";
-  private _tel: string = "";
-  private _noKtp: string = "";
+	private _name: string = ''
 
-  /**
-   * Getter noKtp
-   * @return {string }
-   */
-  public get noKtp(): string {
-    return this._noKtp;
-  }
+	/**
+	 * Getter name
+	 * @return {string }
+	 */
+	public get name(): string {
+		return this._name
+	}
 
-  /**
-   * Setter noKtp
-   * @param {string } value
-   */
-  public set noKtp(value: string) {
-    this._noKtp = value;
-  }
+	/**
+	 * Setter name
+	 * @param {string } value
+	 */
+	public set name(value: string) {
+		this._name = value
+	}
 
-  /**
-   * Getter name
-   * @return {string }
-   */
-  public get name(): string {
-    return this._name;
-  }
+	private _phone: string = ''
 
-  /**
-   * Getter phone
-   * @return {string }
-   */
-  public get phone(): string {
-    return this._phone;
-  }
+	/**
+	 * Getter phone
+	 * @return {string }
+	 */
+	public get phone(): string {
+		return this._phone
+	}
 
-  /**
-   * Getter company
-   * @return {string }
-   */
-  public get company(): string {
-    return this._company;
-  }
+	/**
+	 * Setter phone
+	 * @param {string } value
+	 */
+	public set phone(value: string) {
+		this._phone = value
+	}
 
-  /**
-   * Getter tel
-   * @return {string }
-   */
-  public get tel(): string {
-    return this._tel;
-  }
+	private _company: string = ''
 
-  /**
-   * Setter name
-   * @param {string } value
-   */
-  public set name(value: string) {
-    this._name = value;
-  }
+	/**
+	 * Getter company
+	 * @return {string }
+	 */
+	public get company(): string {
+		return this._company
+	}
 
-  /**
-   * Setter phone
-   * @param {string } value
-   */
-  public set phone(value: string) {
-    this._phone = value;
-  }
+	/**
+	 * Setter company
+	 * @param {string } value
+	 */
+	public set company(value: string) {
+		this._company = value
+	}
 
-  /**
-   * Setter company
-   * @param {string } value
-   */
-  public set company(value: string) {
-    this._company = value;
-  }
+	private _tel: string = ''
 
-  /**
-   * Setter tel
-   * @param {string } value
-   */
-  public set tel(value: string) {
-    this._tel = value;
-  }
+	/**
+	 * Getter tel
+	 * @return {string }
+	 */
+	public get tel(): string {
+		return this._tel
+	}
+
+	/**
+	 * Setter tel
+	 * @param {string } value
+	 */
+	public set tel(value: string) {
+		this._tel = value
+	}
+
+	private _noKtp: string = ''
+
+	/**
+	 * Getter noKtp
+	 * @return {string }
+	 */
+	public get noKtp(): string {
+		return this._noKtp
+	}
+
+	/**
+	 * Setter noKtp
+	 * @param {string } value
+	 */
+	public set noKtp(value: string) {
+		this._noKtp = value
+	}
 }

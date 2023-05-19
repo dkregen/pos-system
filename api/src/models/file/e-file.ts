@@ -1,134 +1,140 @@
-import { Entity } from "../../@cores/entity";
-import * as Moment from "moment";
-import { MFile } from "./m-file";
+import { Entity } from '../../@cores/entity'
+import * as Moment from 'moment'
+import { MFile } from './m-file'
 
 export class EFile extends Entity {
 
-  private _filename: string = "";
-  private _hash: string = "";
-  private _type: number = 0;
-  private _extension: string = "";
-  private _uploaded: Moment.Moment = Moment();
-  private _status: number = 1;
-  private _req: any = null;
+	private _filename: string = ''
 
-  /**
-   * Getter req
-   * @return {any }
-   */
-  public get req(): any {
-    return this._req;
-  }
+	/**
+	 * Getter filename
+	 * @return {String }
+	 */
+	public get filename(): string {
+		return this._filename
+	}
 
-  /**
-   * Setter req
-   * @param {any } value
-   */
-  public set req(value: any) {
-    this._req = value;
-  }
+	/**
+	 * Setter filename
+	 * @param {String } value
+	 */
+	public set filename(value: string) {
+		this._filename = value
+	}
 
-  /**
-   * Getter type
-   * @return {Number }
-   */
-  public get type(): number {
-    return this._type;
-  }
+	private _hash: string = ''
 
-  /**
-   * Setter type
-   * @param {Number } value
-   */
-  public set type(value: number) {
-    this._type = value;
-  }
+	/**
+	 * Getter hash
+	 * @return {String }
+	 */
+	public get hash(): string {
+		return this._hash
+	}
 
-  /**
-   * Getter filename
-   * @return {String }
-   */
-  public get filename(): string {
-    return this._filename;
-  }
+	/**
+	 * Setter hash
+	 * @param {String } value
+	 */
+	public set hash(value: string) {
+		this._hash = value
+	}
 
-  /**
-   * Getter file URI
-   * @return {String }
-   */
-  public get fileURI(): string {
-    return MFile.FILE_DIR[this.type].pathRoute + this._filename;
-  }
+	private _type: number = 0
 
-  /**
-   * Getter hash
-   * @return {String }
-   */
-  public get hash(): string {
-    return this._hash;
-  }
+	/**
+	 * Getter type
+	 * @return {Number }
+	 */
+	public get type(): number {
+		return this._type
+	}
 
-  /**
-   * Getter extension
-   * @return {String }
-   */
-  public get extension(): string {
-    return this._extension;
-  }
+	/**
+	 * Setter type
+	 * @param {Number } value
+	 */
+	public set type(value: number) {
+		this._type = value
+	}
 
-  /**
-   * Getter uploaded
-   * @return {Date }
-   */
-  public get uploaded(): Moment.Moment {
-    return this._uploaded;
-  }
+	private _extension: string = ''
 
-  /**
-   * Getter status
-   * @return {Number }
-   */
-  public get status(): number {
-    return this._status;
-  }
+	/**
+	 * Getter extension
+	 * @return {String }
+	 */
+	public get extension(): string {
+		return this._extension
+	}
 
-  /**
-   * Setter filename
-   * @param {String } value
-   */
-  public set filename(value: string) {
-    this._filename = value;
-  }
+	/**
+	 * Setter extension
+	 * @param {String } value
+	 */
+	public set extension(value: string) {
+		this._extension = value
+	}
 
-  /**
-   * Setter hash
-   * @param {String } value
-   */
-  public set hash(value: string) {
-    this._hash = value;
-  }
+	private _uploaded: Moment.Moment = Moment()
 
-  /**
-   * Setter extension
-   * @param {String } value
-   */
-  public set extension(value: string) {
-    this._extension = value;
-  }
+	/**
+	 * Getter uploaded
+	 * @return {Date }
+	 */
+	public get uploaded(): Moment.Moment {
+		return this._uploaded
+	}
 
-  /**
-   * Setter uploaded
-   * @param {Date } value
-   */
-  public set uploaded(value: Moment.Moment) {
-    this._uploaded = value;
-  }
+	/**
+	 * Setter uploaded
+	 * @param {Date } value
+	 */
+	public set uploaded(value: Moment.Moment) {
+		this._uploaded = value
+	}
 
-  /**
-   * Setter status
-   * @param {Number } value
-   */
-  public set status(value: number) {
-    this._status = value;
-  }
+	private _status: number = 1
+
+	/**
+	 * Getter status
+	 * @return {Number }
+	 */
+	public get status(): number {
+		return this._status
+	}
+
+	/**
+	 * Setter status
+	 * @param {Number } value
+	 */
+	public set status(value: number) {
+		this._status = value
+	}
+
+	private _req: any = null
+
+	/**
+	 * Getter req
+	 * @return {any }
+	 */
+	public get req(): any {
+		return this._req
+	}
+
+	/**
+	 * Setter req
+	 * @param {any } value
+	 */
+	public set req(value: any) {
+		this._req = value
+	}
+
+	/**
+	 * Getter file URI
+	 * @return {String }
+	 */
+	public get fileURI(): string {
+		return MFile.FILE_DIR[ this.type ].pathRoute + this._filename
+	}
 }

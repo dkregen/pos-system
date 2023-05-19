@@ -1,6 +1,6 @@
-import { App } from "./app";
+import { App } from './app'
 
-const app = new App();
-const PORT = 8000;
+const app = new App()
+const PORT = 8000
 
-app.listen(PORT, () => console.log(`Server running on ${PORT}!`));
+app.listen(PORT, () => console.log(`Server running on ${ PORT }!`))

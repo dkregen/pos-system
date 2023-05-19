@@ -1,10 +1,10 @@
 export class Profiler {
 
-  constructor() {
-    
-  }
+	constructor() {
 
-  public log(o: any): void {
-    console.log(o);
-  }
+	}
+
+	public log(o: any): void {
+		console.log(o)
+	}
 }

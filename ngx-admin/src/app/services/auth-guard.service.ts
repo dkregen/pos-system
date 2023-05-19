@@ -59,19 +59,19 @@ export class AuthGuard implements CanActivate {
   public getMenu(): any {
     let recordTransaksi = {
       title: 'Akses Transaksi',
-      icon: 'nb-e-commerce',
+      icon: 'e-commerce',
       link: '/cashier',
     }
 
     let master = {
       title: 'Master Data',
-      icon: 'nb-keypad',
+      icon: 'keypad',
       children: [],
     }
 
     let report = {
       title: 'Laporan',
-      icon: 'nb-bar-chart',
+      icon: 'bar-chart',
       children: [],
     }
 

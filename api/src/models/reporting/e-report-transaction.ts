@@ -1,179 +1,188 @@
-import { Entity } from "../../@cores/entity";
+import { Entity } from '../../@cores/entity'
 
 export class EReportTransaction extends Entity {
-  constructor() {
-    super();
-  }
+	constructor() {
+		super()
+	}
 
-  private _invoice: string = "";
-  private _contact: string = "";
-  private _amount: number = 0;
-  private _arap: number = 0;
-  private _discount: number = 0;
-  private _date: string = "";
-  private _taxIncluded: number = 0;
-  private _shortCost: number = 0;
-  private _cash: number = 0;
-  private _status: number = 0;
+	private _invoice: string = ''
 
-  /**
-   * Getter status
-   * @return {number }
-   */
-  public get status(): number {
-    return this._status;
-  }
+	/**
+	 * Getter invoice
+	 * @return {string }
+	 */
+	public get invoice(): string {
+		return this._invoice
+	}
 
-  /**
-   * Setter status
-   * @param {number } value
-   */
-  public set status(value: number) {
-    this._status = value;
-  }
+	/**
+	 * Setter invoice
+	 * @param {string } value
+	 */
+	public set invoice(value: string) {
+		this._invoice = value
+	}
 
-  /**
-   * Getter cash
-   * @return {number }
-   */
-  public get cash(): number {
-    return this._cash;
-  }
+	private _contact: string = ''
 
-  /**
-   * Setter cash
-   * @param {number } value
-   */
-  public set cash(value: number) {
-    this._cash = value;
-  }
+	/**
+	 * Getter contact
+	 * @return {string }
+	 */
+	public get contact(): string {
+		return this._contact
+	}
 
-  /**
-   * Getter arap
-   * @return {number }
-   */
-  public get arap(): number {
-    return this._arap;
-  }
+	/**
+	 * Setter contact
+	 * @param {string } value
+	 */
+	public set contact(value: string) {
+		this._contact = value
+	}
 
-  /**
-   * Setter arap
-   * @param {number } value
-   */
-  public set arap(value: number) {
-    this._arap = value;
-  }
+	private _amount: number = 0
 
-  /**
-   * Getter invoice
-   * @return {string }
-   */
-  public get invoice(): string {
-    return this._invoice;
-  }
+	/**
+	 * Getter amount
+	 * @return {number }
+	 */
+	public get amount(): number {
+		return this._amount
+	}
 
-  /**
-   * Getter contact
-   * @return {string }
-   */
-  public get contact(): string {
-    return this._contact;
-  }
+	/**
+	 * Setter amount
+	 * @param {number } value
+	 */
+	public set amount(value: number) {
+		this._amount = value
+	}
 
-  /**
-   * Setter invoice
-   * @param {string } value
-   */
-  public set invoice(value: string) {
-    this._invoice = value;
-  }
+	private _arap: number = 0
 
-  /**
-   * Setter contact
-   * @param {string } value
-   */
-  public set contact(value: string) {
-    this._contact = value;
-  }
+	/**
+	 * Getter arap
+	 * @return {number }
+	 */
+	public get arap(): number {
+		return this._arap
+	}
 
-  /**
-   * Getter amount
-   * @return {number }
-   */
-  public get amount(): number {
-    return this._amount;
-  }
+	/**
+	 * Setter arap
+	 * @param {number } value
+	 */
+	public set arap(value: number) {
+		this._arap = value
+	}
 
-  /**
-   * Getter discount
-   * @return {number }
-   */
-  public get discount(): number {
-    return this._discount;
-  }
+	private _discount: number = 0
 
-  /**
-   * Setter amount
-   * @param {number } value
-   */
-  public set amount(value: number) {
-    this._amount = value;
-  }
+	/**
+	 * Getter discount
+	 * @return {number }
+	 */
+	public get discount(): number {
+		return this._discount
+	}
 
-  /**
-   * Setter discount
-   * @param {number } value
-   */
-  public set discount(value: number) {
-    this._discount = value;
-  }
+	/**
+	 * Setter discount
+	 * @param {number } value
+	 */
+	public set discount(value: number) {
+		this._discount = value
+	}
 
-  /**
-   * Getter date
-   * @return {string }
-   */
-  public get date(): string {
-    return this._date;
-  }
+	private _date: string = ''
 
-  /**
-   * Setter date
-   * @param {string } value
-   */
-  public set date(value: string) {
-    this._date = value;
-  }
+	/**
+	 * Getter date
+	 * @return {string }
+	 */
+	public get date(): string {
+		return this._date
+	}
 
-  /**
-   * Getter taxIncluded
-   * @return {number }
-   */
-  public get taxIncluded(): number {
-    return this._taxIncluded;
-  }
+	/**
+	 * Setter date
+	 * @param {string } value
+	 */
+	public set date(value: string) {
+		this._date = value
+	}
 
-  /**
-   * Setter taxIncluded
-   * @param {number } value
-   */
-  public set taxIncluded(value: number) {
-    this._taxIncluded = value;
-  }
+	private _taxIncluded: number = 0
 
-  /**
-   * Getter shortCost
-   * @return {number }
-   */
-  public get shortCost(): number {
-    return this._shortCost;
-  }
+	/**
+	 * Getter taxIncluded
+	 * @return {number }
+	 */
+	public get taxIncluded(): number {
+		return this._taxIncluded
+	}
 
-  /**
-   * Setter shortCost
-   * @param {number } value
-   */
-  public set shortCost(value: number) {
-    this._shortCost = value;
-  }
+	/**
+	 * Setter taxIncluded
+	 * @param {number } value
+	 */
+	public set taxIncluded(value: number) {
+		this._taxIncluded = value
+	}
+
+	private _shortCost: number = 0
+
+	/**
+	 * Getter shortCost
+	 * @return {number }
+	 */
+	public get shortCost(): number {
+		return this._shortCost
+	}
+
+	/**
+	 * Setter shortCost
+	 * @param {number } value
+	 */
+	public set shortCost(value: number) {
+		this._shortCost = value
+	}
+
+	private _cash: number = 0
+
+	/**
+	 * Getter cash
+	 * @return {number }
+	 */
+	public get cash(): number {
+		return this._cash
+	}
+
+	/**
+	 * Setter cash
+	 * @param {number } value
+	 */
+	public set cash(value: number) {
+		this._cash = value
+	}
+
+	private _status: number = 0
+
+	/**
+	 * Getter status
+	 * @return {number }
+	 */
+	public get status(): number {
+		return this._status
+	}
+
+	/**
+	 * Setter status
+	 * @param {number } value
+	 */
+	public set status(value: number) {
+		this._status = value
+	}
 
 }

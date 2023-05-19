@@ -15,7 +15,7 @@ import {
   NbCheckboxModule,
   NbContextMenuModule,
   NbDatepickerModule,
-  NbDialogModule,
+  NbDialogModule, NbIconModule,
   NbInputModule,
   NbLayoutModule,
   NbListModule,
@@ -84,6 +84,7 @@ const NB_MODULES = [
   NbChatModule,
   NbTooltipModule,
   NbCalendarKitModule,
+  NbIconModule,
 ]
 
 const COMPONENTS = [

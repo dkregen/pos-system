@@ -1,0 +1,27 @@
+.with-close {
+  cursor: pointer;
+  &:after {
+    display: block;
+    float: right;
+    font-family: "Ionicons";
+    content: "";
+  }
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 30px auto 20px auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 100%;
+  overflow: hidden;
+  > * {
+    position: relative;
+    width: 100%;
+    top: 0;
+  }
+}

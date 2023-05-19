@@ -1,0 +1,60 @@
+<div class="transaction-item flexbox flexbox-column {{ class }}">
+  <div class="flexbox flexbox-column overflow-auto">
+    <table class="table item-data">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Kode</th>
+          <th>Nama Barang</th>
+          <th>Satuan</th>
+          <th class="note">Tercatat</th>
+          <th class="changes">Perubahan</th>
+          <th class="movement">Pergerakan</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!hasData()">
+        <tr>
+          <td colspan="8">Tidak ada data.</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="hasData()">
+        <tr *ngFor="let product of products; let i = index">
+          <td (click)="delete(product.type, product.itemId)" [class.delete]="!product.hasId()"></td>
+          <td>{{product.code}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.unit.name}}</td>
+          <td class="form-control-container">
+            <input-currency
+              [class]="'form-control-small monospace'"
+              [(model)]="product.oldStock"
+              [fractionSizeDisplay]="2"
+              [allowNegative]="true"
+              [disabled]="true"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="form-control-container">
+            <input-currency
+              [class]="'form-control-small monospace'"
+              [(model)]="product.newStockAdjustment"
+              [fractionSizeDisplay]="2"
+              [allowNegative]="true"
+              [disabled]="!enabled"
+              (onFocusout)="adjustQty(product); triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="form-control-container">
+            <input-currency
+              [class]="'form-control-small monospace'"
+              [(model)]="product.qtyAdjustment"
+              [fractionSizeDisplay]="2"
+              [allowNegative]="true"
+              [disabled]="!enabled"
+              (onFocusout)="adjustStock(product); triggerChangesAction()">
+            </input-currency>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div>
+  <nb-layout>
+    <nb-layout-column>
+      <div class="main-container">
+        <div class="head">
+          <h1>RECORD.</h1>
+          <div [class.has-third]="auth.hasStockOpname() && auth.hasSell()" class="cashiering-type">
+            <div class="marker {{activeClass()}}"></div>
+            <ul>
+              <li *ngIf="auth.hasSell()" (click)="changeModule(sell.TYPE_SELLING)">
+                <h2>Penjualan</h2>
+              </li>
+              <li *ngIf="auth.hasReceive()" (click)="changeModule(receive.TYPE_RECEIVE)">
+                <h2>Pembelian</h2>
+              </li>
+              <li *ngIf="auth.hasStockOpname()" (click)="changeModule(adjustment.TYPE_ADJUSTMENT)">
+                <h2>Stock Opname</h2>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="main">
+          <div class="row height-full">
+            <div class="col-4 height-full">
+              <div class="row height-full">
+                <div class="col-12 height-full">
+                  <div class="wrapper height-full flexbox flexbox-column position-relative">
+                    <div style="z-index: 1001;">
+                      <cashiering-search-invoice #searchInvoice *ngIf="invoiceType!=adjustment.TYPE_ADJUSTMENT"
+                        (onChose)="attachInvoice($event)" [toast]="toast" [type]="invoiceType"></cashiering-search-invoice>
+                      <cashiering-search-contact #searchContact *ngIf="invoiceType!=adjustment.TYPE_ADJUSTMENT"
+                        (onChose)="attachContact($event)"></cashiering-search-contact>
+                    </div>
+                    <div class="menu-container">
+                      <button (click)="newInvoice()">Transaksi Baru</button>
+                      <button title="Cari Invoice" [attr.disabled]="invoiceType==adjustment.TYPE_ADJUSTMENT || null"
+                        (click)="searchInvoice.activate()">
+                        Invoice
+                      </button>
+                      <button title="Cari Kontak" [attr.disabled]="invoiceType==adjustment.TYPE_ADJUSTMENT || null"
+                        (click)="searchContact.activate()">
+                        Kontak
+                      </button>
+                    </div>
+                    <div class="height-full container-relative flexbox flexbox-column">
+                      <cashiering-search-item #searchItem [toast]="toast" (onChosen)="onChooseItem($event)"
+                        [invoiceType]="invoiceType"></cashiering-search-item>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 height-full">
+              <invoice #formInvoiceSell (onSave)="onSave(sell)" [hide]="invoiceType!=sell.TYPE_SELLING">
+                <invoice-receipt #formInvoiceSellReceipt (onChange)="recall(formInvoiceSellPayment)" [enabled]="!sell.hasId()"></invoice-receipt>
+                <invoice-payment [manualDiscGlobal]="!!invSell.invoice.hasId()" #formInvoiceSellPayment></invoice-payment>
+              </invoice>
+              <invoice #formInvoiceReceive (onSave)="onSave(receive)" [hide]="invoiceType!=sell.TYPE_RECEIVE">
+                <invoice-receipt #formInvoiceReceiveReceipt (onChange)="recall(formInvoiceReceivePayment)" [enabled]="!receive.hasId()"></invoice-receipt>
+                <invoice-payment [manualDiscGlobal]="!!invReceive.invoice.hasId()" #formInvoiceReceivePayment></invoice-payment>
+              </invoice>
+              <invoice #formInvoiceAdjustment (onSave)="onSave(adjustment)" [hide]="invoiceType!=adjustment.TYPE_ADJUSTMENT">
+                <invoice-stock #formInvoiceAdjustmentStock [enabled]="!adjustment.hasId()"></invoice-stock>
+              </invoice>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-layout-column>
+  </nb-layout>
+</div>
+<toaster-container [toasterconfig]="toastrConfig"></toaster-container>

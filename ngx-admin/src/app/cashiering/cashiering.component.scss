@@ -1,0 +1,154 @@
+$color-background-main: #fafafa;
+$color-border: #000;
+
+.main-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  * {
+    font-family: "Consolas";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .menu-container {
+    margin-bottom: -6px;
+    border: 1px solid #bfbfbf;
+    &, & > * {
+      background: linear-gradient(to bottom, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
+    }
+    button {
+      border-radius: 0;
+      margin: 0;
+      float: right;
+      height: 22px;
+      color: black;
+      border-width: 0px 0px 0px 1px;
+      border-style: solid;
+      border-color: #bfbfbf;
+      outline: none !important;
+      padding: 2px 13px;
+        &:active {background: linear-gradient(to bottom, rgba(242,246,248,1) 0%,rgba(216,225,231,1) 50%,rgba(181,198,208,1) 51%,rgba(224,239,249,1) 100%);
+      }
+      &:disabled {
+        cursor: not-allowed;
+        background: linear-gradient(to bottom, rgba(229,229,229,1) 0%,rgba(255,255,255,1) 100%);
+      }
+    }
+  }
+  .head {
+    position: relative;
+    background: black;
+    overflow: hidden;
+    height: 42px;
+    z-index: 9;
+    h1 {
+      margin: 0;
+      color: #4CAF50;
+      font-weight: bolder;
+      float: left;
+      line-height: 42px;
+      font-size: 2rem;
+      padding: 0 20px;
+      background: inherit;
+    }
+  }
+  .main {
+    padding: 62px 20px 20px 20px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $color-background-main;
+    z-index: -1;
+  }
+  .cashiering-type {
+    .marker {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: #235025;
+      transition: .2s;
+      left: 0;
+      &.first {
+        left: 0;
+      }
+      &.second {
+        left: 50%;
+      }
+    }
+
+    display: block;
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    margin-left: 130px;
+    background: inherit;
+    color: white;
+    ul {
+      position:absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0;
+      margin: 0;
+      > * {
+        list-style-type: none;
+        position: relative;
+        width: 50%;
+        font-size: 15px;
+        display: block;
+        color: inherit;
+        text-align: center;
+        margin: 0;
+        line-height: 15px;
+        padding: .75em 0 0 0;
+        float: left;
+        cursor: pointer;
+
+        &:hover{
+          color: yellow;
+        }
+
+        * {
+          color: inherit;
+          font-size: 1em;
+          display: inline;
+          text-transform: uppercase;
+          font-weight: bolder;
+        }
+      }
+    }
+
+    &.has-third {
+      width: 450px;
+      ul > li {
+        width: 33.333%;
+      }
+      .marker {
+        width: 33.333%;
+        &.first {
+          left: 0;
+        }
+        &.second {
+          left: 33.333%;
+        }
+        &.third {
+          left: 66.666%;
+        }
+      }
+    }
+  }
+}

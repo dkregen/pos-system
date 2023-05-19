@@ -1,0 +1,50 @@
+.search-invoice-container {
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  overflow: hidden;
+  display: none;
+}
+
+.box {
+  position: relative;
+  width: 100%;
+  .item-data.table-search {
+    display: none;
+    margin-bottom: 0;
+  }
+}
+
+.active {
+  display: block;
+  .item-data.table-search {
+    display: table;
+  }
+  .box {
+    z-index: 1000;
+    position: absolute;
+    height: 100%;
+    border-radius: 3px;
+    margin-top: 5px;
+    box-shadow: 0 0 20px #2f2f2f;
+    border: 1px solid #565656;
+    .box-content {
+      border: none;
+      .scroll-container {
+        margin: 10px 0;
+        height: 100%;
+      }
+    }
+  }
+  .cover {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: #0000008c;
+  }
+}

@@ -1,0 +1,71 @@
+@import "./../../master/master.component.scss";
+
+.form-group.row {
+  & > label {
+    line-height: 40px;
+    text-align: right;
+  }
+}
+
+/*deep*/ td, /*deep*/ td * {
+  font-family: "Lato", "Roboto";
+}
+
+td {
+  font-size: 12px;
+  &.icon {
+    width: 20px;
+  }
+}
+
+th {
+  text-align: center;
+}
+
+/*deep*/ div.amount {
+  text-align: right;
+}
+
+/*deep*/ .invoice-container .modal-content {
+  background: none !important;
+}
+
+/*deep*/ .invoice-container {
+  .modal-container {
+    height: 100%;
+    .modal-dialog {
+      max-width: 1000px;
+      height: calc(100% - 20px);
+      margin: 10px auto;
+      .modal-content {
+        height: 100%;
+        display: flex;
+        .amount, .form-control-small, input.percent {
+          font-family: Consolas;
+        }
+      }
+    }
+  }
+  & .contact {
+    .modal-dialog {
+      max-width: 366px;
+      max-height: 600px;
+      .search-invoice-container.active .cover {
+        display: none;
+      }
+    }
+  }
+  .main-container {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    margin: auto;
+    max-width: 1000px;
+  }
+}
+
+
+.txt-total {
+  font-weight: bold;
+  text-align: right;
+}

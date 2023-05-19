@@ -1,0 +1,180 @@
+<div class="transaction-item flexbox flexbox-column {{ class }}">
+  <div class="flexbox flexbox-column overflow-auto">
+    <table class="table item-data">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Kode</th>
+          <th>Nama Barang</th>
+          <th style="text-align: center;" colspan="2">Diskon</th>
+          <th style="text-align: right;">Qty</th>
+          <th style="text-align: right;">Harga</th>
+          <th style="text-align: right;">Total</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!hasData()">
+        <tr>
+          <td colspan="8">Tidak ada data.</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="hasData()">
+        <tr class="subtitle" *ngIf="compliments.length>0"><td colspan="8">Bonus</td></tr>
+        <tr *ngFor="let item of compliments; let i = index">
+          <td (click)="delete(item.type, item.itemId)" [class.delete]="enabled"></td>
+          <td>{{item.code}}</td>
+          <td>{{item.name}}</td>
+          <td class="discount-nominal form-control-container">
+            <input-currency [class]="'form-control-small monospace'"
+              [(model)]="item.itemDisc"
+              [fractionSizeDisplay]="2"
+              [class]="'form-control-small'"
+              [allowNegative]="false"
+              [max]="item.priceMirror"
+              [min]="0"
+              [disabled]="true"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="discount-percentage form-control-container">
+            <input-currency
+              [class]="'form-control-small monospace'"
+              [(model)]="item.itemDiscPercent"
+              [fractionSizeDisplay]="2"
+              [allowNegative]="false"
+              [max]="100"
+              [min]="0"
+              [disabled]="true"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="qty">
+            <input [attr.disabled]="!enabled || null" class="form-control-small" (keyup)="triggerChangesAction()" name="qty" min="1" [(ngModel)]="item.qty">
+          </td>
+          <td class="price form-control-container">
+            <input-currency
+              [(model)]="item.priceCal"
+              [fractionSizeDisplay]="2"
+              [class]="'form-control-small monospace'"
+              [disabled]="true"
+              (onFocusout)="triggerChangesAction()"
+              >
+            </input-currency>
+          </td>
+          <td class="total form-control-container">
+              <input-currency
+                [class]="'form-control-small monospace'"
+                [fractionSizeDisplay]="2"
+                [(model)]="item.subTotal"
+                [disabled]="true"
+                (onFocusout)="triggerChangesAction()">
+              </input-currency>
+          </td>
+        </tr>
+        <tr class="subtitle" *ngIf="products.length>0"><td colspan="8">Produk</td></tr>
+        <tr *ngFor="let product of products; let i = index">
+          <td (click)="delete(product.type, product.itemId)" [class.delete]="enabled"></td>
+          <td>{{product.code}}</td>
+          <td>{{product.name}}</td>
+          <td class="discount-nominal form-control-container">
+            <input-currency [class]="'form-control-small'"
+              [(model)]="product.itemDisc"
+              [fractionSizeDisplay]="2"
+              [class]="'form-control-small monospace'"
+              [allowNegative]="false"
+              [max]="product.priceMirror"
+              [min]="0"
+              [disabled]="!enabled"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="discount-percentage form-control-container">
+            <input-currency
+              [class]="'form-control-small monospace'"
+              [(model)]="product.itemDiscPercent"
+              [fractionSizeDisplay]="2"
+              [allowNegative]="false"
+              [max]="100"
+              [min]="0"
+              [disabled]="!enabled"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="qty">
+            <input [attr.disabled]="!enabled || null" class="form-control-small" (keyup)="triggerChangesAction()" name="qty" min="1" [(ngModel)]="product.qty">
+          </td>
+          <td class="price form-control-container">
+            <input-currency
+              [(model)]="product.priceCal"
+              [fractionSizeDisplay]="2"
+              [disabled]="!enabled"
+              [class]="'form-control-small monospace'"
+              (onFocusout)="triggerChangesAction()"
+              >
+            </input-currency>
+          </td>
+          <td class="total form-control-container">
+              <input-currency
+                [class]="'form-control-small monospace'"
+                [fractionSizeDisplay]="2"
+                [(model)]="product.subTotal"
+                [disabled]="!enabled"
+                (onFocusout)="triggerChangesAction()">
+              </input-currency>
+          </td>
+        </tr>
+        <tr class="subtitle" *ngIf="services.length>0"><td colspan="8">Layanan</td></tr>
+        <tr *ngFor="let item of services; let i = index">
+          <td (click)="delete(item.type, item.itemId)" [class.delete]="enabled"></td>
+          <td>{{item.code}}</td>
+          <td>{{item.name}}</td>
+          <td class="discount-nominal form-control-container">
+            <input-currency [class]="'form-control-small monospace'"
+              [(model)]="item.itemDisc"
+              [fractionSizeDisplay]="2"
+              [class]="'form-control-small'"
+              [allowNegative]="false"
+              [max]="item.priceMirror"
+              [min]="0"
+              [disabled]="!enabled"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="discount-percentage form-control-container">
+            <input-currency
+              [class]="'form-control-small monospace'"
+              [(model)]="item.itemDiscPercent"
+              [fractionSizeDisplay]="2"
+              [allowNegative]="false"
+              [max]="100"
+              [min]="0"
+              [disabled]="!enabled"
+              (onFocusout)="triggerChangesAction()">
+            </input-currency>
+          </td>
+          <td class="qty">
+            <input [attr.disabled]="!enabled || null" class="form-control-small" (keyup)="triggerChangesAction()" name="qty" min="1" [(ngModel)]="item.qty">
+          </td>
+          <td class="price form-control-container">
+            <input-currency
+              [(model)]="item.priceCal"
+              [fractionSizeDisplay]="2"
+              [disabled]="!enabled"
+              [class]="'form-control-small monospace'"
+              (onFocusout)="triggerChangesAction()"
+              >
+            </input-currency>
+          </td>
+          <td class="total form-control-container">
+              <input-currency
+                [class]="'form-control-small monospace'"
+                [fractionSizeDisplay]="2"
+                [(model)]="item.subTotal"
+                [disabled]="!enabled"
+                (onFocusout)="triggerChangesAction()">
+              </input-currency>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+* {
+  font-family: "consolas";
+}
+
+.transaction-item {
+  margin-left: -1px;
+  margin-right: -1px;
+  overflow: hidden;
+  .item-data {
+    margin-bottom: 0;
+    th, td {
+      color: white;
+      border: 1px solid #000;
+      position: relative;
+      vertical-align: middle;
+    }
+    th {
+      background: #1f1f1f;
+      font-weight: bold;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    tbody tr {
+      td {
+        background-color: #101010;
+        height: 50px;
+      }
+      &:nth-child(2n) td {
+        background-color: #151515;
+      }
+      &.subtitle {
+        td {
+          height: 10px;
+          padding: 5px;
+          background: black !important;
+          color: #8BC34A;
+        }
+      }
+      &:hover {
+        td {
+          background-color: #ffc06242;
+        }
+      }
+    }
+  }
+
+  .delete {
+    &:hover {
+      background-color:#401010 !important;
+    }
+    width: 46px;
+    text-align: center;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "nebular";
+    font-size: 2rem !important;
+    cursor: pointer;
+    padding-left: 0;
+    padding-right: 0;
+    &:before {
+      color: #c75757;
+      content: '\e90e';
+    }
+  }
+
+  /*deep*/.form-control-container input:focus {
+    padding:10px 12px;
+  }
+
+  /*deep*/.form-control-container input, input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border: none;
+    border-radius: 0;
+    background: inherit !important;
+    color: white;
+    text-align: right;
+    width: 100%;
+
+    @at-root {
+      .price {
+        width: 136px;
+      }
+
+      /*deep*/.discount-percentage {
+        width: 84px;
+        input {
+          padding-right: 30px !important;
+          &:focus {
+            padding-right: 30px;
+          }
+        }
+        &:after {
+          display: block;
+          position: absolute;
+          right: 0;
+          content: "%";
+          width: 21px;
+          height: 48px;
+          line-height: 48px;
+          top: 0;
+        }
+      }
+      .discount-nominal {
+        width: 136px;
+      }
+      .qty {
+        width: 45px;
+        * {
+          text-align: center !important;
+        }
+      }
+      .total {
+        width: 146px;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

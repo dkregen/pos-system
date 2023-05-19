@@ -1,0 +1,122 @@
+<div class="row">
+  <div class="col-12">
+    <nb-card>
+      <nb-card-header>
+        <div class="pull-left">Data Barang</div>
+        <div class="pull-right">
+          <button class="btn btn-header btn-icon" (click)="resetData()">RESET</button>
+          <button title="Cari" class="btn btn-header btn-icon" (click)="formSearch.toggle()">
+            <i class="ion-search"></i>
+          </button>
+          <button title="Baru" class="btn btn-header btn-icon" (click)="formNew.toggle()">
+            <i class="ion-plus-round"></i>
+          </button>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngIf="!list || list.length <= 0">
+          Tidak ada data.
+        </div>
+        <div *ngIf="list && list.length > 0">
+          <table class="table table-hovered table-bordered">
+            <thead>
+              <tr>
+                <th class="no">No.</th>
+                <th class="actions" colspan="2">Actions</th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.name)"
+                  [class.sort] = "isSort(oHead.NAMES.name)"
+                  [class.desc] = "isDesc()">
+                  Nama
+                </th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.barcode)"
+                  [class.sort] = "isSort(oHead.NAMES.barcode)"
+                  [class.desc] = "isDesc()">
+                  Kode Barang
+                </th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.upPercent)"
+                  [class.sort] = "isSort(oHead.NAMES.upPercent)"
+                  [class.desc] = "isDesc()">
+                  Markup Persen
+                </th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.upNominal)"
+                  [class.sort] = "isSort(oHead.NAMES.upNominal)"
+                  [class.desc] = "isDesc()">
+                  Markup Nominal
+                </th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.priceSell)"
+                  [class.sort] = "isSort(oHead.NAMES.priceSell)"
+                  [class.desc] = "isDesc()">
+                  Harga Jual Tetap
+                </th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.priceType)"
+                  [class.sort] = "isSort(oHead.NAMES.priceType)"
+                  [class.desc] = "isDesc()">
+                  Tipe Harga Jual
+                </th>
+                <th class="sortable"
+                  (click)="doSort(oHead.NAMES.name)"
+                  [class.sort] = "isSort(oHead.NAMES.name)"
+                  [class.desc] = "isDesc()">
+                  Update Terakhir
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ent of list | paginate: { id: 'foo', itemsPerPage: 10, currentPage: page, totalItems: count }; let i = index">
+                <td class="no">{{((page-1)*numOfList)+i+1}}</td>
+                <td (click)="edit(ent)" class="action edit"></td>
+                <td (click)="delete(ent)" class="action delete"></td>
+                <td>{{ent.name}}</td>
+                <td>{{ent.barcode}}</td>
+                <td>
+                  <input-currency [model]="ent.upPercent"
+                    [class]="'number'" [fractionSizeDisplay]="2"
+                    [disabled]="true" [asInput]="false" [suffix]="'%'">
+                  </input-currency>
+                </td>
+                <td>
+                  <input-currency [model]="ent.upNominal"
+                    [class]="'number'" [fractionSizeDisplay]="2"
+                    [disabled]="true" [asInput]="false" [strictFraction]="true">
+                  </input-currency>
+                </td>
+                <td>
+                  <input-currency [model]="ent.priceSell"
+                    [class]="'number'" [fractionSizeDisplay]="2"
+                    [disabled]="true" [asInput]="false" [strictFraction]="true">
+                  </input-currency>
+                </td>
+                <td>{{ent.getTextOfPriceType(ent.priceType)}}</td>
+                <td>{{ent.user.uname}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-template [id]="'foo'" #p="paginationApi" [maxSize]="6" (pageChange)="changeList($event)">
+            <div class="btn-group btn-group-toggle pagination">
+              <div class="pagination-description">Ditemukan {{count}} data.</div>
+              <div class="pagination-content">
+                <button class="btn btn-success arrow" [class.disabled]="p.isFirstPage()" (click)="p.isFirstPage() || p.previous()"><i
+                    class="nb-arrow-left"></i></button>
+                <div class="group-number">
+                  <button class="btn btn-success" (click)="p.setCurrent(page.value)" *ngFor="let page of p.pages"
+                    [class.active]="p.getCurrent() === page.value">{{ page.label }}</button>
+                </div>
+                <button class="btn btn-success arrow" [class.disabled]="p.isLastPage()" (click)="p.isLastPage() || p.next()"><i class="nb-arrow-right"></i></button>
+              </div>
+            </div>
+          </pagination-template>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<master-item-new #formNew (complete)="onSaveCompleted($event)" [toast]="toasterService"></master-item-new>
+<master-item-edit #formEdit (complete)="onSaveCompleted($event)" [toast]="toasterService"></master-item-edit>
+<master-item-search #formSearch (onSubmit)="onSearch($event)"></master-item-search>
+<toaster-container [toasterconfig]="config"></toaster-container>

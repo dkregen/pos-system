@@ -1,0 +1,10 @@
+<div class="modal fade {{show?'show':''}}">
+  <div (click)="hide()" class="modal-backdrop"></div>
+  <div class="modal-container">
+      <div role="document" class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <ng-content></ng-content>
+        </div>
+      </div>
+  </div>
+</div>

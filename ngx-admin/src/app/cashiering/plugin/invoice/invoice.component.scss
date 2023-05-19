@@ -1,0 +1,84 @@
+* {
+  font-family: "consolas";
+}
+
+.transaction-container {
+  border-radius: 2px;
+  background-color: #050505;
+  box-shadow: 0 0 20px #0000007a;
+  overflow: hidden;
+  .transaction-nav {
+    padding: 10px;
+    width: 100%;
+    background: #2f2f2f;
+    .transaction-title {
+      float: left;
+      line-height: 14px;
+      font-weight: normal;
+      font-size: 14px;
+      margin-right: 11px;
+      color: white;
+    }
+    .transaction-subtitle {
+      position: absolute;
+      top: 51px;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: lavenderblush;
+    }
+    .transaction-button {
+      float: right;
+      .transaction-date {
+        width: 129px;
+        background: #212121;
+        border-color: #1d1d1d;
+        border-width: 1px;
+        color: white;
+        &.has-error {
+          background-color: #78342f;
+        }
+        &:disabled {
+          background: #3c3c3c;
+          cursor: not-allowed;
+          border: none;
+          color: white;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+      button {
+        height: 28.8px;
+        line-height: 26.8px;
+        padding: 0 8px;
+        margin: 0 0 0 5px;
+        border-radius: 1px;
+        margin-top: -2px;
+        font-weight: bolder;
+      }
+      > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+  .head {
+    overflow: auto;
+    h2 {
+      font-size: 14px;
+      float: left;
+      font-weight: bold;
+      font-family: "Roboto";
+    }
+    .ppic {
+      float: right;
+      font-family: "Roboto", Arial;
+    }
+    * {
+      color: #00BCD4;
+    }
+  }
+}
+
+.hide {
+  display: none !important;
+}

@@ -1,0 +1,48 @@
+.with-close {
+  cursor: pointer;
+  &:after {
+    display: block;
+    float: right;
+    font-family: "Ionicons";
+    content: "";
+  }
+}
+
+.markup {
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: auto;
+  & > .percent {
+    float: left;
+    width: calc(30% - 10px);
+    margin-right: 10px;
+    padding-right: 10px;
+    position: relative;
+    &:after {
+      content: "%";
+      position: absolute;
+      right: 20px;
+      top: 0;
+      height: 100%;
+      line-height: 45px;
+    }
+  }
+  & > .nominal {
+    float: left;
+    width: 70%;
+  }
+}
+
+.price-type {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.image {
+  width: 100%;
+  & > * {
+    width: 100%;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+}

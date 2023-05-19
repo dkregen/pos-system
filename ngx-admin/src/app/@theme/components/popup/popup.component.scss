@@ -1,0 +1,33 @@
+.modal.fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  margin: 0 !important;
+  display: unset;
+  transition: visibility 0s, opacity 0.5s linear;
+  visibility: hidden;
+  opacity: 0;
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 !important;
+    background-color: rgba(0,0,0, .5);
+    z-index: 0;
+  }
+
+  &.show {
+    visibility: visible;
+    transition: visibility .6s, opacity 0.5s linear;
+    opacity: 1;
+  }
+
+  .modal-container {
+    z-index: 1;
+  }
+}

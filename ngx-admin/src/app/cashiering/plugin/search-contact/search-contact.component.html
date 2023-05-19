@@ -1,0 +1,32 @@
+<div [class.active]="isActive || alwaysOn" class="search-invoice-container">
+  <div (click)="deactivate()" class="cover"></div>
+  <div class="box">
+    <div class="box-title">Cari Kontak</div>
+    <div class="box-content flexbox flexbox-column height-full">
+      <input tabindex="-1" (focus)="activate()" (keydown)="checkSubmition($event)" name="query" [(ngModel)]="query" class="form-control-small shadowed">
+      <div class="flexbox flexbox-column">
+        <div class="scroll-container">
+          <table class="table table-hover item-data table-search">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Telp</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="contacts.length == 0">
+              <tr>
+                <td colspan="2">Tidak ada data.</td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="contacts.length > 0">
+              <tr *ngFor="let c of contacts" (click)="choose(c)">
+                <td>{{c.name}}</td>
+                <td>{{c.phone}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<side-container [show]="show">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="header-form with-close" (click)="toggle()">Edit Barang</h3>
+      <form>
+        <div class="image">
+          <img src="{{ent.image.filePath()}}">
+        </div>
+        <div class="form-group">
+          <label>Foto</label>
+          <input name="picture" (change)="onFileChange($event)" name="photo" accept=".jpeg,.png,.jpg" type="file"
+            required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Kode Barang</label>
+          <input name="barcode" [(ngModel)]="ent.barcode" required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Nama Barang</label>
+          <input name="name" [(ngModel)]="ent.name" required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Satuan</label>
+          <select name="unitId" [(ngModel)]="ent.unitId" required class="form-control" autocomplete="off">
+            <option value=""> -- Pilih Salah Satu --</option>
+            <option *ngFor="let unit of listUnit" value="{{unit.id}}">{{unit.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Markup</label>
+          <div class="markup">
+            <div class="percent">
+              <input name="upPercent" [(ngModel)]="ent.upPercent" required class="form-control" autocomplete="off">
+            </div>
+            <div class="nominal">
+              <input-currency [(model)]="ent.upNominal" [class]="'form-control'"></input-currency>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Harga Jual Tetap</label>
+          <input-currency [(model)]="ent.priceSell" [class]="'form-control'"></input-currency>
+        </div>
+        <div class="price-type form-group">
+          <label>Tipe Harga Jual</label>
+          <div class="form-check">
+            <label class="custom-control custom-radio">
+              <input type="radio" [value]="0" [(ngModel)]="ent.priceType" class="custom-control-input"
+                name="priceType">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Markup Persen</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="custom-control custom-radio">
+              <input type="radio" [value]="1" [(ngModel)]="ent.priceType" class="custom-control-input"
+                name="priceType">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Markup Nominal</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="custom-control custom-radio">
+              <input type="radio" [value]="2" [(ngModel)]="ent.priceType" class="custom-control-input"
+                name="priceType">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Harga Jual Tetap</span>
+            </label>
+          </div>
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-danger">Simpan</button>
+      </form>
+    </div>
+  </div>
+</side-container>

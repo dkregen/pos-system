@@ -1,0 +1,153 @@
+<div class="row">
+  <div class="col-12">
+    <nb-card>
+      <nb-card-header>
+        <div class="pull-left">Laporan Perubahan Stok</div>
+        <div class="pull-right">
+          <button title="Cari" class="btn btn-header btn-icon" (click)="showSearch()">
+            <i class="ion-search"></i>
+          </button>
+        </div>
+      </nb-card-header>
+      <nb-card-body [ngClass]="'flexbox flexbox-column'">
+        <div *ngIf="result.length == 0">
+          Tidak ada data.
+        </div>
+        <div *ngIf="result.length > 0" class="flexbox flexbox-column overflow-auto">
+          <table class="table table-hovered table-bordered">
+            <thead>
+              <tr>
+                <th class="no">No.</th>
+                <th class="action">Aksi</th>
+                <th>Nama Barang</th>
+                <th class="stock">Stok</th>
+                <th class="stock">Satuan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of result; let i = index;">
+                <td>{{ i+1 }}</td>
+                <td class="action-link" title="Buka Rincian" (click)="getDetail(item)"><i [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i></td>
+                <td>{{ item.name }}</td>
+                <td class="stock-data">
+                  <input-currency [model]="item.stock" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
+                    [asInput]="false">
+                  </input-currency>
+                </td>
+                <td>{{ item.unit }}</td>
+            </tbody>
+          </table>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <ng-template #contentTemplate let-data>
+    <div style="min-width: 500px">
+      <div class="form-group row">
+        <label class="col-3">Tanggal</label>
+        <div class="col-9">
+          <input nbInput placeholder="Tanggal" [nbDatepicker]="datepicker" [(ngModel)]="parameter.date" class="form-control">
+          <nb-datepicker #datepicker format="dd/MM/yyyy"></nb-datepicker>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3">Nama Barang</label>
+        <div class="col-9">
+          <input class="form-control" [(ngModel)]="parameter.name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3"></label>
+        <div class="col-9">
+          <button class="btn btn-success" (click)="submitSearch()">Cari</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div class="invoice-container">
+    <popup [show]="shownInvoice" (hidding)="shownInvoice =! shownInvoice">
+      <div class="main-container">
+        <invoice #invoice (onSave)="saveInvoice()">
+          <invoice-receipt #invoiceReceipt [enabled]="false"></invoice-receipt>
+          <invoice-payment #invoicePayment [forceEnableState]="true"></invoice-payment>
+        </invoice>
+      </div>
+    </popup>
+  </div>
+  <div class="invoice-container">
+    <popup [show]="shownInvoiceStock" (hidding)="shownInvoiceStock =! shownInvoiceStock">
+      <div class="main-container">
+        <invoice #invoiceStock (onSave)="saveInvoice()" [readonly]="true">
+          <invoice-stock #invoiceReceiptStock [enabled]="false"></invoice-stock>
+        </invoice>
+      </div>
+    </popup>
+  </div>
+  <side-container [show]="show" [width]="640">
+    <div class="row">
+      <h3 class="header-form with-close" (click)="show = false">Rincian Perubahan Stok</h3>
+      <div class="col-12">
+        <div *ngIf="result.length > 0" class="flexbox flexbox-column overflow-auto">
+          <table id="table-detail-stock">
+            <tr>
+              <td class="title">Periode</td>
+              <td class="div">:</td>
+              <td>{{ moment(parameter.date).format("DD/MM/YYYY") }}</td>
+            </tr>
+            <tr>
+              <td class="title">Nama Barang</td>
+              <td class="div">:</td>
+              <td>{{ selectedItem.name }}</td>
+            </tr>
+            <tr>
+              <td class="title">Satuan</td>
+              <td>:</td>
+              <td>{{selectedItem.unit }}</td>
+            </tr>
+          </table>
+          <table class="table table-hovered table-bordered">
+            <thead>
+              <tr>
+                <th class="no">No</th>
+                <th class="action" colspan="2">Aksi</th>
+                <th class="no">Nomor</th>
+                <th class="action">Tipe</th>
+                <th class="no">Status</th>
+                <th class="action">Qty</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="details.length>0">
+              <tr *ngFor="let item of details; let i = index;">
+                <td *ngIf="item.hasId()" class="txt-center">{{i}}</td>
+                <td *ngIf="item.hasId()" class="action-link" title="Buka Record" (click)="getDetailRecord(item)"><i
+                    [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i></td>
+                <td *ngIf="item.hasId()" class="action-link" title="Ganti Status" (click)="toggleVoid(item)"><i
+                    [innerHTML]="'flip-2' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i></td>
+                <td [attr.colspan]="item.hasId()?1:6" [class.txt-right]="!item.hasId()" [class.upcase]="!item.hasId()">{{item.invoice}}</td>
+                <td *ngIf="item.hasId()" class="tipe">{{ txtType(item.type) }}</td>
+                <td *ngIf="item.hasId()">{{ txtStatus(item.status) }}</td>
+                <td>
+                  <input-currency [model]="item.qty" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
+                    [asInput]="false">
+                  </input-currency>
+                </td>
+              </tr>
+              <tr id="total">
+                <td class="txt-total" colspan="6">TOTAL</td>
+                <td>
+                  <input-currency [model]="totalStockDetail()" [class]="'amount txt-total'" [fractionSizeDisplay]="2"
+                    [disabled]="true" [asInput]="false"></input-currency>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="details.length==0">
+              <tr>
+                <td colspan="9">Tidak ada data.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </side-container>
+  <toaster-container [toasterconfig]="config"></toaster-container>

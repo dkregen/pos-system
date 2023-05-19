@@ -1,0 +1,115 @@
+<div class="search-item-container height-full active">
+  <!--div (click)="deactivate()" class="cover"></div-->
+  <div class="box flexbox flexbox-column height-full">
+    <div class="box-title">Item</div>
+    <div class="box-content padding-none flexbox flexbox-column height-full">
+      <div class="block-box">
+        <div class="button-group block-center">
+          <div class="button-wrapper">
+            <button (click)="moveTo('products')" [class.choosen]="choosen == 'products'" class="btn btn-info btn-sm">Produk</button>
+            <button (click)="moveTo('compliments')" [class.choosen]="choosen == 'compliments'" [class.disabled]="onlyProduct" class="btn btn-info btn-sm">Bonus</button>
+            <button (click)="moveTo('services')" [class.choosen]="choosen == 'services'" [class.disabled]="isServiceDisabled || onlyProduct"
+              class="btn btn-info btn-sm">Layanan</button>
+          </div>
+        </div>
+      </div>
+      <div class="item-search flexbox flexbox-column height-full">
+        <div class="wrapper-search {{ choosen }}">
+          <div class="container-search">
+            <div class="input-container">
+              <input placeholder="Pencarian" tabindex="-1" (focus)="activate()" (keydown)="checkSubmition($event)" name="query"
+                [(ngModel)]="query" class="form-control-small">
+            </div>
+            <div class="scroll-container flexbox flexbox-column height-full">
+              <table class="table table-hover item-data table-search">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="items.length == 0">
+                  <tr>
+                    <td colspan="3">Tidak ada data.</td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="items.length >0">
+                  <tr *ngFor="let item of items" (click)="chooseAsProduct(item)">
+                    <td>{{item.code}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="container-search">
+            <div class="input-container">
+              <input placeholder="Pencarian" tabindex="-1" (focus)="activate()" (keydown)="checkSubmition($event)" name="query"
+                [(ngModel)]="query" class="form-control-small">
+            </div>
+            <div class="scroll-container flexbox flexbox-column height-full">
+              <table class="table table-hover item-data table-search">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="items.length == 0">
+                  <tr>
+                    <td colspan="3">Tidak ada data.</td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="items.length >0">
+                  <tr *ngFor="let item of items" (click)="chooseAsCompliment(item)">
+                    <td>{{item.code}}</td>
+                    <td>{{item.name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="container-search">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Kode</label>
+                  <input [(ngModel)]="service.code" class="form-control">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label>Nama Layanan</label>
+                  <input [(ngModel)]="service.name" class="form-control">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="pull-left" style="width: 20%">
+                  <div class="form-group">
+                    <label>Qty</label>
+                    <input-currency [(model)]="service.qty" [class]="'form-control currency monospace'" [allowNegative]="false"
+                      [min]="1">
+                    </input-currency>
+                  </div>
+                </div>
+                <div class="pull-left" style="width: 80%">
+                  <div class="form-group">
+                    <label>Harga</label>
+                    <input-currency [(model)]="service.price" [class]="'form-control currency monospace'" [allowNegative]="false"
+                      [min]="0">
+                    </input-currency>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button (click)="chooseAsService()" class="btn btn-info pull-right">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

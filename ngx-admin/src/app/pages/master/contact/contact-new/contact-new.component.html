@@ -1,0 +1,30 @@
+<side-container [show]="show">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="header-form with-close" (click)="toggle()">Kontak Baru</h3>
+      <form>
+        <div class="form-group">
+          <label>No. KTP</label>
+          <input name="ktp" [(ngModel)]="ent.ktp" required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Nama</label>
+          <input name="name" [(ngModel)]="ent.name" required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Perusahaan</label>
+          <input name="company" [(ngModel)]="ent.company" required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>Telp.</label>
+          <input name="tlp" [(ngModel)]="ent.tlp" required class="form-control" autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>HP</label>
+          <input name="phone" [(ngModel)]="ent.phone" required class="form-control" autocomplete="off">
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-danger">Simpan</button>
+      </form>
+    </div>
+  </div>
+</side-container>

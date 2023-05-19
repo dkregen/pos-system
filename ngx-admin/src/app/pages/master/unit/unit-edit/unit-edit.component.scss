@@ -1,0 +1,9 @@
+.with-close {
+  cursor: pointer;
+  &:after {
+    display: block;
+    float: right;
+    font-family: "Ionicons";
+    content: "";
+  }
+}

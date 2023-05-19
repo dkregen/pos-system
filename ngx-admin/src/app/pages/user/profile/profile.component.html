@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-md-8">
+    <form>
+      <nb-card>
+        <nb-card-header>Profiles</nb-card-header>
+        <nb-card-body>
+          <toaster-container [toasterconfig]="config"></toaster-container>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="profile-container"><img src="{{user.image.file}}" /></div>
+              <input class="input-image" type="file" (change)="onFileChange($event)" name="photo" accept=".jpeg,.png,.jpg" />
+            </div>
+            <div class="col-md-8">
+              <div class="form-group row">
+                <label for="inputEmail1" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" [(ngModel)]="user.mail" name="mail" id="inputEmail1"
+                    placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputUsername" class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputUsername" [(ngModel)]="user.uname" name="uname"
+                    placeholder="Username">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputFullName" class="col-sm-3 col-form-label">Full Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="inputFullName" [(ngModel)]="user.name" name="name"
+                    placeholder="Full Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3">Permission</label>
+                <div class="col-sm-9">
+                  <div class="form-check">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" [value]="user.PERM_ALWAYS_ASK" [(ngModel)]="user.perm" class="custom-control-input"
+                        name="perm">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Selalu Tanya</span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" [value]="user.PERM_ASK_ONCE" [(ngModel)]="user.perm" class="custom-control-input"
+                        name="perm">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Tanya Sekali</span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" [value]="user.PERM_GRANT_ALL" [(ngModel)]="user.perm" class="custom-control-input"
+                        name="perm">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Ijinkan Semua</span>
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <label class="custom-control custom-radio">
+                      <input type="radio" [value]="user.PERM_DENY_ALL" [(ngModel)]="user.perm" class="custom-control-input"
+                        name="perm">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Selalu Tolak</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <button type="button" (click)="onSubmit()" class="btn btn-success right pull-right">Simpan</button>
+        </nb-card-footer>
+      </nb-card>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <form>
+      <nb-card>
+        <nb-card-header>Change Password</nb-card-header>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="inputPass1">Password Sekarang</label>
+            <input type="password" [(ngModel)]="pass.current" name="current" class="form-control" id="inputPass1" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="inputPass2">Password Baru</label>
+            <input type="password" [(ngModel)]="pass.new" name="new" class="form-control" id="inputPass2" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="inputPass3">Konfirmasi Password Baru</label>
+            <input type="password" [(ngModel)]="pass.confirm" name="confirm" class="form-control" id="inputPass3" placeholder="">
+          </div>
+        </nb-card-body>
+        <nb-card-footer>
+          <button type="submit" (click)="onChangePassword()" class="btn btn-success right pull-right">Ubah</button>
+        </nb-card-footer>
+      </nb-card>
+    </form>
+  </div>
+</div>

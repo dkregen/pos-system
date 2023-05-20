@@ -5,8 +5,8 @@ export class DB {
 		var c
 		c = mysql.createConnection({
 			host: 'localhost',
-			user: 'remote',
-			password: 'generasioptimis',
+			user: 'root',
+			password: 'root',
 			database: 'retail',
 			port: '3306',
 		})

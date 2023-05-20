@@ -4,11 +4,11 @@
       <nb-card-header>
         <div class="pull-left">Data Kontak</div>
         <div class="pull-right">
-          <button class="btn btn-header btn-icon" (click)="resetData()">RESET</button>
-          <button title="Cari" class="btn btn-header btn-icon" (click)="formSearch.toggle()">
+          <button (click)="resetData()" class="btn btn-header btn-icon">RESET</button>
+          <button (click)="formSearch.toggle()" class="btn btn-header btn-icon" title="Cari">
             <i class="ion-search"></i>
           </button>
-          <button title="Baru" class="btn btn-header btn-icon" (click)="formNew.toggle()">
+          <button (click)="formNew.toggle()" class="btn btn-header btn-icon" title="Baru">
             <i class="ion-plus-round"></i>
           </button>
         </div>
@@ -23,34 +23,34 @@
               <tr>
                 <th class="no">No.</th>
                 <th class="actions" colspan="2">Actions</th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.ktp)"
+                <th (click)="doSort(oHead.NAMES.ktp)"
+                  [class.desc]="isDesc()"
                   [class.sort]="isSort(oHead.NAMES.ktp)"
-                  [class.desc]="isDesc()">
+                  class="sortable">
                   No. KTP
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.name)"
+                <th (click)="doSort(oHead.NAMES.name)"
+                  [class.desc]="isDesc()"
                   [class.sort]="isSort(oHead.NAMES.name)"
-                  [class.desc]="isDesc()">
+                  class="sortable">
                   Nama
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.company)"
+                <th (click)="doSort(oHead.NAMES.company)"
+                  [class.desc]="isDesc()"
                   [class.sort]="isSort(oHead.NAMES.company)"
-                  [class.desc]="isDesc()">
+                  class="sortable">
                   Perusahaan
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.tlp)"
+                <th (click)="doSort(oHead.NAMES.tlp)"
+                  [class.desc]="isDesc()"
                   [class.sort]="isSort(oHead.NAMES.tlp)"
-                  [class.desc]="isDesc()">
+                  class="sortable">
                   Telp.
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.phone)"
+                <th (click)="doSort(oHead.NAMES.phone)"
+                  [class.desc]="isDesc()"
                   [class.sort]="isSort(oHead.NAMES.phone)"
-                  [class.desc]="isDesc()">
+                  class="sortable">
                   HP
                 </th>
               </tr>
@@ -69,19 +69,19 @@
               </tr>
             </tbody>
           </table>
-          <pagination-template [id]="'foo'" #p="paginationApi" [maxSize]="6" (pageChange)="changeList($event)">
+          <pagination-template #p="paginationApi" (pageChange)="changeList($event)" [id]="'foo'" [maxSize]="6">
             <div class="btn-group btn-group-toggle pagination">
               <div class="pagination-description">Ditemukan {{count}} data.</div>
               <div class="pagination-content">
-                <button class="btn btn-success arrow" [class.disabled]="p.isFirstPage()"
-                  (click)="p.isFirstPage() || p.previous()"><i
+                <button (click)="p.isFirstPage() || p.previous()" [class.disabled]="p.isFirstPage()"
+                  class="btn btn-success arrow"><i
                   class="nb-arrow-left"></i></button>
                 <div class="group-number">
-                  <button class="btn btn-success" (click)="p.setCurrent(page.value)" *ngFor="let page of p.pages"
-                    [class.active]="p.getCurrent() === page.value">{{ page.label }}</button>
+                  <button (click)="p.setCurrent(page.value)" *ngFor="let page of p.pages" [class.active]="p.getCurrent() === page.value"
+                    class="btn btn-success">{{ page.label }}</button>
                 </div>
-                <button class="btn btn-success arrow" [class.disabled]="p.isLastPage()"
-                  (click)="p.isLastPage() || p.next()"><i class="nb-arrow-right"></i></button>
+                <button (click)="p.isLastPage() || p.next()" [class.disabled]="p.isLastPage()"
+                  class="btn btn-success arrow"><i class="nb-arrow-right"></i></button>
               </div>
             </div>
           </pagination-template>

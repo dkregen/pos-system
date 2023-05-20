@@ -3,7 +3,7 @@
     <table class="payment table item-data">
       <tbody>
         <tr class="paid">
-          <td *ngIf="payment.paymentBeforeId" colspan="4" class="title">Penerimaan Kas Sebelumnya</td>
+          <td *ngIf="payment.paymentBeforeId" class="title" colspan="4">Penerimaan Kas Sebelumnya</td>
           <td *ngIf="payment.paymentBeforeId" class="total">1.000.000,00</td>
         </tr>
         <tr class="payment-input">
@@ -11,17 +11,19 @@
             <div (click)="toggleDiscGlobal()" [class.hidden]="!isEnabled()" class="toggle">
               <i class="ion ion-power"></i>
             </div>
-            <label for="selling-discount-global" class="title">G.Disc.</label>
+            <label class="title" for="selling-discount-global">G.Disc.</label>
 
-            <input-currency [(model)]="payment.discGlobalTotal" (onFocusout)="calculateGDiscPercent()"
-              [class]="'amount monospace'" [id]="'selling-discount-global'" [readonly]="!isEnabled() && payment.id != '-1'"
-              [tabindex]="3" [disabled]="!hasDiscGlobal()">
+            <input-currency (onFocusout)="calculateGDiscPercent()" [(model)]="payment.discGlobalTotal"
+              [class]="'amount monospace'" [disabled]="!hasDiscGlobal()"
+              [id]="'selling-discount-global'"
+              [readonly]="!isEnabled() && payment.id != '-1'" [tabindex]="3">
             </input-currency>
 
             <div [class.to-right]="!isEnabled()" class="percentage form-control-container">
-              <input-currency [(model)]="payment.discGlobalPercent" (onFocusout)="calculateGDiscNominal()"
-                [min]="0" [max]="100" [fractionSizeDisplay]="2" [allowNegative]="false" [readonly]="!isEnabled() && payment.id != '-1'"
-                [tabindex]="2" [class]="'percent monospace'" [disabled]="!hasDiscGlobal()">
+              <input-currency (onFocusout)="calculateGDiscNominal()" [(model)]="payment.discGlobalPercent"
+                [allowNegative]="false" [class]="'percent monospace'" [disabled]="!hasDiscGlobal()" [fractionSizeDisplay]="2"
+                [max]="100"
+                [min]="0" [readonly]="!isEnabled() && payment.id != '-1'" [tabindex]="2">
               </input-currency>
             </div>
           </td>
@@ -29,18 +31,18 @@
             <div (click)="toggleTax()" [class.hidden]="!isEnabled()" class="toggle">
               <i class="ion ion-power"></i>
             </div>
-            <label for="selling-tax" class="title">Pajak</label>
+            <label class="title" for="selling-tax">Pajak</label>
 
-            <input-currency [(model)]="payment.taxTotal"
-              [class]="'amount monospace'" [id]="'selling-tax'" (onFocusout)="calculateTaxPercent()"
-              [tabindex]="5" [disabled]="!hasTax()" [readonly]="!isEnabled() && payment.id != '-1'">
+            <input-currency (onFocusout)="calculateTaxPercent()"
+              [(model)]="payment.taxTotal" [class]="'amount monospace'" [disabled]="!hasTax()"
+              [id]="'selling-tax'" [readonly]="!isEnabled() && payment.id != '-1'" [tabindex]="5">
             </input-currency>
 
             <div [class.to-right]="!isEnabled()" class="percentage form-control-container">
-              <input-currency [(model)]="payment.taxPercent"
-                [allowNegative]="false" [min]="0" [max]="100"
-                [tabindex]="4" [fractionSizeDisplay]="2" (onFocusout)="calculateTotal()"
-                [class]="'percent monospace'" [disabled]="!hasTax()" [readonly]="!isEnabled() && payment.id != '-1'">
+              <input-currency (onFocusout)="calculateTotal()"
+                [(model)]="payment.taxPercent" [allowNegative]="false" [class]="'percent monospace'"
+                [disabled]="!hasTax()" [fractionSizeDisplay]="2" [max]="100"
+                [min]="0" [readonly]="!isEnabled() && payment.id != '-1'" [tabindex]="4">
               </input-currency>
             </div>
           </td>
@@ -48,11 +50,12 @@
             <div (click)="toggleCash()" [class.hidden]="!isEnabled()" class="toggle">
               <i class="ion ion-power"></i>
             </div>
-            <label for="selling-cash" class="title">Cash</label>
+            <label class="title" for="selling-cash">Cash</label>
 
-            <input-currency [(model)]="payment.cash" (onFocusout)="calculatePr();calculateTotal()" (onKeyUp)="calculatePr();calculateTotal()"
-              [class]="'amount monospace'" [id]="'selling-cash'" [readonly]="!isEnabled() && payment.id != '-1'"
-              [tabindex]="5" [disabled]="!hasCash()">
+            <input-currency (onFocusout)="calculatePr();calculateTotal()" (onKeyUp)="calculatePr();calculateTotal()"
+              [(model)]="payment.cash"
+              [class]="'amount monospace'" [disabled]="!hasCash()" [id]="'selling-cash'"
+              [readonly]="!isEnabled() && payment.id != '-1'" [tabindex]="5">
             </input-currency>
 
           </td>
@@ -60,11 +63,11 @@
             <div (click)="togglePr()" [class.hidden]="!isEnabled()" class="toggle">
               <i class="ion ion-power"></i>
             </div>
-            <label for="selling-arap" class="title">Piutang</label>
+            <label class="title" for="selling-arap">Piutang</label>
 
-            <input-currency [(model)]="payment.prTotal"
-              [class]="'amount'" [id]="'selling-arap'" (onFocusout)="calculateTotal()"
-              [tabindex]="5" [disabled]="!hasPr()" [readonly]="!isEnabled() && payment.id != '-1'">
+            <input-currency (onFocusout)="calculateTotal()"
+              [(model)]="payment.prTotal" [class]="'amount'" [disabled]="!hasPr()"
+              [id]="'selling-arap'" [readonly]="!isEnabled() && payment.id != '-1'" [tabindex]="5">
             </input-currency>
 
           </td>
@@ -72,8 +75,8 @@
             <span class="title">Total Pembayaran</span>
             <div class="amount payment-total">
               <input-currency [(model)]="payment.paymentTotal"
-                [class]="'amount monospace'" [fractionSizeDisplay]="2"
-                [disabled]="true" [asInput]="false" [strictFraction]="true"
+                [asInput]="false" [class]="'amount monospace'"
+                [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                 [tabindex]="5">
               </input-currency>
             </div>
@@ -84,8 +87,8 @@
             <span class="title">Total Diskon</span>
             <div class="amount">
               <input-currency [(model)]="payment.discTotalCal"
-                [class]="'amount monospace'" [fractionSizeDisplay]="2"
-                [disabled]="true" [asInput]="false" [strictFraction]="true"
+                [asInput]="false" [class]="'amount monospace'"
+                [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                 [tabindex]="5">
               </input-currency>
             </div>
@@ -93,9 +96,9 @@
           <td class="summary-tax">
             <span [class.include]="payment.taxState <= 0" class="title">Total Pajak</span>
             <div class="amount">
-                <input-currency [(model)]="payment.taxTotalCal"
-                [class]="'amount monospace'" [fractionSizeDisplay]="2" (onFocusout)="percentManual = true"
-                [disabled]="true" [asInput]="false" [strictFraction]="true"
+              <input-currency (onFocusout)="percentManual = true"
+                [(model)]="payment.taxTotalCal" [asInput]="false" [class]="'amount monospace'"
+                [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                 [tabindex]="5">
               </input-currency>
             </div>
@@ -103,9 +106,9 @@
           <td>
             <span class="title">Total Harga</span>
             <div class="amount">
-                <input-currency [(model)]="payment.priceTotal"
-                [class]="'amount monospace'" [fractionSizeDisplay]="2"
-                [disabled]="true" [asInput]="false" [strictFraction]="true"
+              <input-currency [(model)]="payment.priceTotal"
+                [asInput]="false" [class]="'amount monospace'"
+                [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                 [tabindex]="5">
               </input-currency>
             </div>
@@ -114,8 +117,8 @@
             <span class="title">Grand Total</span>
             <div class="amount">
               <input-currency [(model)]="payment.grandTotalCal"
-                [class]="'amount monospace'" [fractionSizeDisplay]="2"
-                [disabled]="true" [asInput]="false" [strictFraction]="true"
+                [asInput]="false" [class]="'amount monospace'"
+                [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                 [tabindex]="5">
               </input-currency>
             </div>
@@ -124,8 +127,8 @@
             <span class="title">Uang Kembali</span>
             <div class="amount">
               <input-currency [(model)]="payment.returnCash"
-                [class]="'amount monospace'" [fractionSizeDisplay]="2"
-                [disabled]="true" [asInput]="false" [strictFraction]="true"
+                [asInput]="false" [class]="'amount monospace'"
+                [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                 [tabindex]="5">
               </input-currency>
             </div>

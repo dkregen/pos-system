@@ -15,19 +15,19 @@
 
         <div class="form-group">
           <label class="label">Title:</label>
-          <input nbInput [(ngModel)]="title" name="title">
+          <input [(ngModel)]="title" name="title" nbInput>
         </div>
 
         <form>
           <div class="form-group">
             <label class="label">Content:</label>
-            <input nbInput [(ngModel)]="content" name="content">
+            <input [(ngModel)]="content" name="content" nbInput>
           </div>
         </form>
 
         <div class="form-group">
           <label class="label">Time to hide toast, ms. 0 to persistent toast:</label>
-          <input nbInput type="number" [(ngModel)]="duration" name="timeout">
+          <input [(ngModel)]="duration" name="timeout" nbInput type="number">
         </div>
       </div>
 
@@ -53,7 +53,7 @@
   </nb-card-body>
 
   <nb-card-footer>
-    <button nbButton (click)="makeToast()">Show toast</button>
-    <button nbButton status="success" (click)="openRandomToast()">Random toast</button>
+    <button (click)="makeToast()" nbButton>Show toast</button>
+    <button (click)="openRandomToast()" nbButton status="success">Random toast</button>
   </nb-card-footer>
 </nb-card>

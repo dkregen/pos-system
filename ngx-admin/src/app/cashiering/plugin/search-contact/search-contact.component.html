@@ -3,7 +3,8 @@
   <div class="box">
     <div class="box-title">Cari Kontak</div>
     <div class="box-content flexbox flexbox-column height-full">
-      <input tabindex="-1" (focus)="activate()" (keydown)="checkSubmition($event)" name="query" [(ngModel)]="query" class="form-control-small shadowed">
+      <input (focus)="activate()" (keydown)="checkSubmition($event)" [(ngModel)]="query" class="form-control-small shadowed" name="query"
+        tabindex="-1">
       <div class="flexbox flexbox-column">
         <div class="scroll-container">
           <table class="table table-hover item-data table-search">
@@ -19,7 +20,7 @@
               </tr>
             </tbody>
             <tbody *ngIf="contacts.length > 0">
-              <tr *ngFor="let c of contacts" (click)="choose(c)">
+              <tr (click)="choose(c)" *ngFor="let c of contacts">
                 <td>{{c.name}}</td>
                 <td>{{c.phone}}</td>
               </tr>

@@ -16,23 +16,21 @@ import { delay } from 'q'
 })
 
 export class ContactComponent implements OnInit {
-  @ViewChild('formNew') protected formNew: ContactNewComponent
-  @ViewChild('formEdit') protected formEdit: ContactEditComponent
-  @ViewChild('formSearch') protected formSearch: ContactSearchComponent
-
-  protected config = ToastrConfig
   public showNew: boolean = false
   public showSearch: boolean = false
   public editObj: EContact = new EContact()
-
   public contacts: Array<EContact> = new Array<EContact>()
   public count: number = 0
-  protected numOfList: number = 10
   public sort: string = ''
   public sortType: string = ''
   public oHead: EContact = new EContact()
   public page: number = 1
   public searchQuery: string = ''
+  @ViewChild('formNew') protected formNew: ContactNewComponent
+  @ViewChild('formEdit') protected formEdit: ContactEditComponent
+  @ViewChild('formSearch') protected formSearch: ContactSearchComponent
+  protected config = ToastrConfig
+  protected numOfList: number = 10
 
   constructor(
     private contactService: ContactService,

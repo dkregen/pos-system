@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { Component } from '@angular/core'
+import { NbDialogRef } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-dialog-name-prompt',
@@ -11,10 +11,10 @@ export class DialogNamePromptComponent {
   constructor(protected ref: NbDialogRef<DialogNamePromptComponent>) {}
 
   cancel() {
-    this.ref.close();
+    this.ref.close()
   }
 
   submit(name) {
-    this.ref.close(name);
+    this.ref.close(name)
   }
 }

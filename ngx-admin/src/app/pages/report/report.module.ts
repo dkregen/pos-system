@@ -4,7 +4,7 @@ import { NbMomentDateModule } from '@nebular/moment'
 import { ThemeModule } from '../../@theme/theme.module'
 import { ProfileService } from '../../services/profile.service'
 import { ToasterModule } from 'angular2-toaster'
-import { routedComponents } from './report-routing.module'
+import { ReportRoutingModule, routedComponents } from './report-routing.module'
 import { InvoiceService } from '../../services/invoice.service'
 import { TransactionService } from '../../services/transaction.service'
 import { CashieringModule } from '../../cashiering/cashiering.module'
@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router'
   ],
   imports: [
     ThemeModule,
+    ReportRoutingModule,
     ToasterModule.forRoot(),
     CashieringModule,
     NbMomentDateModule,

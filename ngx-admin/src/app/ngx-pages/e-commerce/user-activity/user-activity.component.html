@@ -2,7 +2,7 @@
 
   <nb-card-header>
     <span>User Activity</span>
-    <nb-select [selected]="type" (selectedChange)="getUserActivity($event); type = $event">
+    <nb-select (selectedChange)="getUserActivity($event); type = $event" [selected]="type">
       <nb-option *ngFor="let t of types" [value]="t">{{ t }}</nb-option>
     </nb-select>
   </nb-card-header>
@@ -21,7 +21,7 @@
 
       <div class="visited-percentages">
         <div class="caption">New visits, %</div>
-        <div class="delta value" [class.up]="item.deltaUp" [class.down]="!item.deltaUp">
+        <div [class.down]="!item.deltaUp" [class.up]="item.deltaUp" class="delta value">
           <nb-icon [icon]="item.deltaUp ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
           {{ item.newVisits }}%
         </div>

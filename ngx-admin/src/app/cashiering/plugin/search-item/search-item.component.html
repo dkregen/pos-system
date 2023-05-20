@@ -6,10 +6,16 @@
       <div class="block-box">
         <div class="button-group block-center">
           <div class="button-wrapper">
-            <button (click)="moveTo('products')" [class.choosen]="choosen == 'products'" class="btn btn-info btn-sm">Produk</button>
-            <button (click)="moveTo('compliments')" [class.choosen]="choosen == 'compliments'" [class.disabled]="onlyProduct" class="btn btn-info btn-sm">Bonus</button>
-            <button (click)="moveTo('services')" [class.choosen]="choosen == 'services'" [class.disabled]="isServiceDisabled || onlyProduct"
-              class="btn btn-info btn-sm">Layanan</button>
+            <button (click)="moveTo('products')" [class.choosen]="choosen == 'products'"
+              class="btn btn-info btn-sm">Produk
+            </button>
+            <button (click)="moveTo('compliments')" [class.choosen]="choosen == 'compliments'"
+              [class.disabled]="onlyProduct" class="btn btn-info btn-sm">Bonus
+            </button>
+            <button (click)="moveTo('services')" [class.choosen]="choosen == 'services'"
+              [class.disabled]="isServiceDisabled || onlyProduct"
+              class="btn btn-info btn-sm">Layanan
+            </button>
           </div>
         </div>
       </div>
@@ -17,8 +23,9 @@
         <div class="wrapper-search {{ choosen }}">
           <div class="container-search">
             <div class="input-container">
-              <input placeholder="Pencarian" tabindex="-1" (focus)="activate()" (keydown)="checkSubmition($event)" name="query"
-                [(ngModel)]="query" class="form-control-small">
+              <input (focus)="activate()" (keydown)="checkSubmition($event)" [(ngModel)]="query" class="form-control-small"
+                name="query"
+                placeholder="Pencarian" tabindex="-1">
             </div>
             <div class="scroll-container flexbox flexbox-column height-full">
               <table class="table table-hover item-data table-search">
@@ -35,7 +42,7 @@
                   </tr>
                 </tbody>
                 <tbody *ngIf="items.length >0">
-                  <tr *ngFor="let item of items" (click)="chooseAsProduct(item)">
+                  <tr (click)="chooseAsProduct(item)" *ngFor="let item of items">
                     <td>{{item.code}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.price}}</td>
@@ -46,8 +53,9 @@
           </div>
           <div class="container-search">
             <div class="input-container">
-              <input placeholder="Pencarian" tabindex="-1" (focus)="activate()" (keydown)="checkSubmition($event)" name="query"
-                [(ngModel)]="query" class="form-control-small">
+              <input (focus)="activate()" (keydown)="checkSubmition($event)" [(ngModel)]="query" class="form-control-small"
+                name="query"
+                placeholder="Pencarian" tabindex="-1">
             </div>
             <div class="scroll-container flexbox flexbox-column height-full">
               <table class="table table-hover item-data table-search">
@@ -63,7 +71,7 @@
                   </tr>
                 </tbody>
                 <tbody *ngIf="items.length >0">
-                  <tr *ngFor="let item of items" (click)="chooseAsCompliment(item)">
+                  <tr (click)="chooseAsCompliment(item)" *ngFor="let item of items">
                     <td>{{item.code}}</td>
                     <td>{{item.name}}</td>
                   </tr>
@@ -89,7 +97,8 @@
                 <div class="pull-left" style="width: 20%">
                   <div class="form-group">
                     <label>Qty</label>
-                    <input-currency [(model)]="service.qty" [class]="'form-control currency monospace'" [allowNegative]="false"
+                    <input-currency [(model)]="service.qty" [allowNegative]="false"
+                      [class]="'form-control currency monospace'"
                       [min]="1">
                     </input-currency>
                   </div>
@@ -97,7 +106,8 @@
                 <div class="pull-left" style="width: 80%">
                   <div class="form-group">
                     <label>Harga</label>
-                    <input-currency [(model)]="service.price" [class]="'form-control currency monospace'" [allowNegative]="false"
+                    <input-currency [(model)]="service.price" [allowNegative]="false"
+                      [class]="'form-control currency monospace'"
                       [min]="0">
                     </input-currency>
                   </div>

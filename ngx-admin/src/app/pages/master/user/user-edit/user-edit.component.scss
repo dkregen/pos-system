@@ -1,5 +1,6 @@
 .with-close {
   cursor: pointer;
+
   &:after {
     display: block;
     float: right;
@@ -19,6 +20,7 @@
   align-items: center;
   border-radius: 100%;
   overflow: hidden;
+
   > * {
     position: relative;
     width: 100%;

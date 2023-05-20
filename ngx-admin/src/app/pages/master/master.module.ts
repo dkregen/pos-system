@@ -13,14 +13,14 @@ import { FormsModule } from '@angular/forms'
 import { NbCardModule } from '@nebular/theme'
 
 @NgModule({
-	imports: [
-		ThemeModule,
-		ToasterModule.forRoot(),
-		MasterRoutingModule,
-		NgxPaginationModule,
-		FormsModule,
-		NbCardModule,
-	],
+  imports: [
+    ThemeModule,
+    ToasterModule.forRoot(),
+    MasterRoutingModule,
+    NgxPaginationModule,
+    FormsModule,
+    NbCardModule,
+  ],
   declarations: [
     ...routedComponents,
   ],

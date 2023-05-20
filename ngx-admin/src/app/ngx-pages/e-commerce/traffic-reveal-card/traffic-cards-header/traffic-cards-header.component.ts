@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
 
 @Component({
   selector: 'ngx-traffic-cards-header',
@@ -8,29 +8,26 @@ import { takeWhile } from 'rxjs/operators';
   templateUrl: './traffic-cards-header.component.html',
 })
 export class TrafficCardsHeaderComponent implements OnDestroy {
-  private alive = true;
-
-  @Output() periodChange = new EventEmitter<string>();
-
-  @Input() type: string = 'week';
-
-  types: string[] = ['week', 'month', 'year'];
-  currentTheme: string;
+  @Output() periodChange = new EventEmitter<string>()
+  @Input() type: string = 'week'
+  types: string[] = ['week', 'month', 'year']
+  currentTheme: string
+  private alive = true
 
   constructor(private themeService: NbThemeService) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
-        this.currentTheme = theme.name;
-      });
+        this.currentTheme = theme.name
+      })
   }
 
   changePeriod(period: string): void {
-    this.type = period;
-    this.periodChange.emit(period);
+    this.type = period
+    this.periodChange.emit(period)
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

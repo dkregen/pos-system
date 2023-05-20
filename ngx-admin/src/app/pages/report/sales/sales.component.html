@@ -4,7 +4,7 @@
       <nb-card-header>
         <div class="pull-left">Laporan Penjualan</div>
         <div class="pull-right">
-          <button title="Cari" class="btn btn-header btn-icon" (click)="showSearch()">
+          <button (click)="showSearch()" class="btn btn-header btn-icon" title="Cari">
             <i class="ion-search"></i>
           </button>
         </div>
@@ -18,7 +18,7 @@
             <thead>
               <tr>
                 <th class="no">No.</th>
-                <th colspan="3" class="txt-center">Aksi</th>
+                <th class="txt-center" colspan="3">Aksi</th>
                 <th>Invoice</th>
                 <th>Kontak</th>
                 <th>Tgl</th>
@@ -35,90 +35,97 @@
             <tbody>
               <tr *ngFor="let item of result; let i = index;">
                 <td>{{ addTotal(i, item) }}</td>
-                <td class="icon" (click)="retrieveInvoice(item.id)" title="Buka Invoice">
-                  <i [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
+                <td (click)="retrieveInvoice(item.id)" class="icon" title="Buka Invoice">
+                  <i
+                    [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
                 </td>
-                <td class="icon" (click)="showContact(item.id)" title="Ubah Kontak">
-                  <i [innerHTML]="'person-add' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
+                <td (click)="showContact(item.id)" class="icon" title="Ubah Kontak">
+                  <i
+                    [innerHTML]="'person-add' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
                 </td>
-                <td class="icon" (click)="toggleVoid(item.id)" title="Toggle Void">
-                  <i [innerHTML]="'flip-2' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
+                <td (click)="toggleVoid(item.id)" class="icon" title="Toggle Void">
+                  <i
+                    [innerHTML]="'flip-2' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
                 </td>
                 <td>{{ item.invoice }}</td>
                 <td>{{ item.contact }}</td>
                 <td>{{ item.date }}</td>
                 <td>{{ txtStatus(item.status) }}</td>
                 <td>
-                  <input-currency [model]="item.amount" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="item.amount" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="item.taxIncluded" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true"
+                    [fractionSizeDisplay]="2"
+                    [model]="item.taxIncluded" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="item.discount" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="item.discount" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="item.shortCost" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true"
+                    [fractionSizeDisplay]="2"
+                    [model]="item.shortCost" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="item.nettWorth" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true"
+                    [fractionSizeDisplay]="2"
+                    [model]="item.nettWorth" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="item.cash" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="item.cash" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="item.arap" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="item.arap" [strictFraction]="true">
                   </input-currency>
                 </td>
               </tr>
               <tr>
-                <td colspan="8" class="txt-total">TOTAL</td>
+                <td class="txt-total" colspan="8">TOTAL</td>
                 <td>
-                  <input-currency [model]="total.bruto" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="total.bruto" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="total.tax" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="total.tax" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="total.short" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="total.short" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="total.discount" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true"
+                    [fractionSizeDisplay]="2"
+                    [model]="total.discount" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="total.nett" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="total.nett" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="total.cash" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="total.cash" [strictFraction]="true">
                   </input-currency>
                 </td>
                 <td>
-                  <input-currency [model]="total.arap" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false" [strictFraction]="true">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="total.arap" [strictFraction]="true">
                   </input-currency>
                 </td>
               </tr>
@@ -133,32 +140,33 @@
       <div class="form-group row">
         <label class="col-3">Tanggal</label>
         <div class="col-9">
-          <input nbInput placeholder="Range Picker" [nbDatepicker]="rangepicker" [(ngModel)]="parameter.date" class="form-control">
+          <input [(ngModel)]="parameter.date" [nbDatepicker]="rangepicker" class="form-control" nbInput
+            placeholder="Range Picker">
           <nb-rangepicker #rangepicker format="dd/MM/yyyy"></nb-rangepicker>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-3">No. Invoice</label>
         <div class="col-9">
-          <input class="form-control" [(ngModel)]="parameter.invNo">
+          <input [(ngModel)]="parameter.invNo" class="form-control">
         </div>
       </div>
       <div class="form-group row">
         <label class="col-3">Kontak/Tlp</label>
         <div class="col-9">
-          <input class="form-control" [(ngModel)]="parameter.contact">
+          <input [(ngModel)]="parameter.contact" class="form-control">
         </div>
       </div>
       <div class="form-group row">
         <label class="col-3">PIC</label>
         <div class="col-9">
-          <input class="form-control" [(ngModel)]="parameter.pic">
+          <input [(ngModel)]="parameter.pic" class="form-control">
         </div>
       </div>
       <div class="form-group row">
         <label class="col-3">Status</label>
         <div class="col-9">
-          <select class="form-control" [(ngModel)]="parameter.status">
+          <select [(ngModel)]="parameter.status" class="form-control">
             <option value="">-- Pilih --</option>
             <option value="-1">Void</option>
             <option value="1">Aktif</option>
@@ -170,23 +178,25 @@
         <div class="col-9">
           <div class="form-check">
             <label class="custom-control custom-radio">
-              <input type="radio" [value]="-1" [(ngModel)]="parameter.arap" class="custom-control-input" name="arapType">
+              <input [(ngModel)]="parameter.arap" [value]="-1" class="custom-control-input" name="arapType"
+                type="radio">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Tampilkan semua</span>
             </label>
           </div>
           <div class="form-check">
             <label class="custom-control custom-radio">
-              <input type="radio" [value]="inv.INVOICE_ARAP" [(ngModel)]="parameter.arap" class="custom-control-input"
-                name="arapType">
+              <input [(ngModel)]="parameter.arap" [value]="inv.INVOICE_ARAP" class="custom-control-input" name="arapType"
+                type="radio">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Tampilkan outstanding</span>
             </label>
           </div>
           <div class="form-check">
             <label class="custom-control custom-radio">
-              <input type="radio" [value]="inv.INVOICE_NON_ARAP" [(ngModel)]="parameter.arap" class="custom-control-input"
-                name="arapType">
+              <input [(ngModel)]="parameter.arap" [value]="inv.INVOICE_NON_ARAP" class="custom-control-input"
+                name="arapType"
+                type="radio">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Tampilkan non-outstanding</span>
             </label>
@@ -196,24 +206,25 @@
       <div class="form-group row">
         <label class="col-3"></label>
         <div class="col-9">
-          <button class="btn btn-success" (click)="submitSearch()">Cari</button>
+          <button (click)="submitSearch()" class="btn btn-success">Cari</button>
         </div>
       </div>
     </div>
   </ng-template>
   <div class="invoice-container">
-    <popup [show]="shownInvoice" (hidding)="shownInvoice =! shownInvoice">
+    <popup (hidding)="shownInvoice =! shownInvoice" [show]="shownInvoice">
       <div class="main-container">
         <invoice #invoice (onSave)="saveInvoice()">
           <invoice-receipt #invoiceReceipt [enabled]="false"></invoice-receipt>
-          <invoice-payment [manualDiscGlobal]="true" #invoicePayment [forceEnableState]="true"></invoice-payment>
+          <invoice-payment #invoicePayment [forceEnableState]="true" [manualDiscGlobal]="true"></invoice-payment>
         </invoice>
       </div>
     </popup>
     <div class="contact">
-      <popup [show]="shownContact" (hidding)="shownContact =! shownContact">
+      <popup (hidding)="shownContact =! shownContact" [show]="shownContact">
         <div class="main-container">
-          <cashiering-search-contact #searchContact [alwaysOn]="true" (onChose)="saveNewContact($event)"></cashiering-search-contact>
+          <cashiering-search-contact #searchContact (onChose)="saveNewContact($event)"
+            [alwaysOn]="true"></cashiering-search-contact>
         </div>
       </popup>
     </div>

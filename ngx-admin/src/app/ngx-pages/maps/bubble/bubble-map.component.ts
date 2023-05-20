@@ -1,9 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { combineLatest } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
-import { NbThemeService } from '@nebular/theme';
-import { registerMap } from 'echarts';
+import { Component, OnDestroy } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { combineLatest } from 'rxjs'
+import { takeWhile } from 'rxjs/operators'
+import { NbThemeService } from '@nebular/theme'
+import { registerMap } from 'echarts'
 
 @Component({
   selector: 'ngx-bubble-map',
@@ -17,16 +17,16 @@ import { registerMap } from 'echarts';
 })
 export class BubbleMapComponent implements OnDestroy {
 
-  latlong: any = {};
-  mapData: any[];
-  max = -Infinity;
-  min = Infinity;
-  options: any;
+  latlong: any = {}
+  mapData: any[]
+  max = -Infinity
+  min = Infinity
+  options: any
 
-  bubbleTheme: any;
-  geoColors: any[];
+  bubbleTheme: any
+  geoColors: any[]
 
-  private alive = true;
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private http: HttpClient) {
@@ -38,11 +38,11 @@ export class BubbleMapComponent implements OnDestroy {
       .pipe(takeWhile(() => this.alive))
       .subscribe(([map, config]: [any, any]) => {
 
-        registerMap('world', map);
+        registerMap('world', map)
 
-        const colors = config.variables;
-        this.bubbleTheme = config.variables.bubbleMap;
-        this.geoColors = [colors.primary, colors.info, colors.success, colors.warning, colors.danger];
+        const colors = config.variables
+        this.bubbleTheme = config.variables.bubbleMap
+        this.geoColors = [colors.primary, colors.info, colors.success, colors.warning, colors.danger]
 
         this.latlong = {
           'AD': { 'latitude': 42.5, 'longitude': 1.5 },
@@ -285,7 +285,7 @@ export class BubbleMapComponent implements OnDestroy {
           'ZA': { 'latitude': -29, 'longitude': 24 },
           'ZM': { 'latitude': -15, 'longitude': 30 },
           'ZW': { 'latitude': -20, 'longitude': 30 },
-        };
+        }
 
         this.mapData = [
           { 'code': 'AF', 'name': 'Afghanistan', 'value': 32358260, 'color': this.getRandomGeoColor() },
@@ -456,16 +456,16 @@ export class BubbleMapComponent implements OnDestroy {
           { 'code': 'VN', 'name': 'Vietnam', 'value': 88791996, 'color': this.getRandomGeoColor() },
           { 'code': 'YE', 'name': 'Yemen, Rep.', 'value': 24799880, 'color': this.getRandomGeoColor() },
           { 'code': 'ZM', 'name': 'Zambia', 'value': 13474959, 'color': this.getRandomGeoColor() },
-          { 'code': 'ZW', 'name': 'Zimbabwe', 'value': 12754378, 'color': this.getRandomGeoColor() }];
+          { 'code': 'ZW', 'name': 'Zimbabwe', 'value': 12754378, 'color': this.getRandomGeoColor() }]
 
         this.mapData.forEach((itemOpt) => {
           if (itemOpt.value > this.max) {
-            this.max = itemOpt.value;
+            this.max = itemOpt.value
           }
           if (itemOpt.value < this.min) {
-            this.min = itemOpt.value;
+            this.min = itemOpt.value
           }
-        });
+        })
 
         this.options = {
           title: {
@@ -479,7 +479,7 @@ export class BubbleMapComponent implements OnDestroy {
           tooltip: {
             trigger: 'item',
             formatter: params => {
-              return `${params.name}: ${params.value[2]}`;
+              return `${ params.name }: ${ params.value[ 2 ] }`
             },
           },
           visualMap: {
@@ -519,8 +519,8 @@ export class BubbleMapComponent implements OnDestroy {
                 return {
                   name: itemOpt.name,
                   value: [
-                    this.latlong[itemOpt.code].longitude,
-                    this.latlong[itemOpt.code].latitude,
+                    this.latlong[ itemOpt.code ].longitude,
+                    this.latlong[ itemOpt.code ].latitude,
                     itemOpt.value,
                   ],
                   itemStyle: {
@@ -528,20 +528,20 @@ export class BubbleMapComponent implements OnDestroy {
                       color: itemOpt.color,
                     },
                   },
-                };
+                }
               }),
             },
           ],
-        };
-      });
+        }
+      })
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 
   private getRandomGeoColor() {
-    const index = Math.round(Math.random() * this.geoColors.length);
-    return this.geoColors[index];
+    const index = Math.round(Math.random() * this.geoColors.length)
+    return this.geoColors[ index ]
   }
 }

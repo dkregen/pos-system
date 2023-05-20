@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core'
 
 @Component({
   selector: 'master-contact-search',
@@ -7,16 +7,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ContactSearchComponent {
 
-  public query: string = "";
-  public show: boolean = false;
-  @Output() public onSubmit = new EventEmitter<string>();
+  public query: string = ''
+  public show: boolean = false
+  @Output() public onSubmit = new EventEmitter<string>()
 
   toggle() {
-    this.show =! this.show;
+    this.show = !this.show
   }
 
   submit() {
-    this.onSubmit.emit(this.query);
-    this.show = false;
+    this.onSubmit.emit(this.query)
+    this.show = false
   }
 }

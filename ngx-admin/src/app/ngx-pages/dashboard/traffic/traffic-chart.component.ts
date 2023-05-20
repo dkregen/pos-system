@@ -1,7 +1,7 @@
-import { delay, takeWhile } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../@core/utils';
+import { delay, takeWhile } from 'rxjs/operators'
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { LayoutService } from '../../../@core/utils'
 
 @Component({
   selector: 'ngx-traffic-chart',
@@ -15,14 +15,12 @@ import { LayoutService } from '../../../@core/utils';
 })
 export class TrafficChartComponent implements AfterViewInit, OnDestroy {
 
-  private alive = true;
-
-  @Input() points: number[];
-
-  type = 'month';
-  types = ['week', 'month', 'year'];
-  option: any = {};
-  echartsIntance: any;
+  @Input() points: number[]
+  type = 'month'
+  types = ['week', 'month', 'year']
+  option: any = {}
+  echartsIntance: any
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -30,7 +28,7 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngAfterViewInit() {
@@ -40,7 +38,7 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
         takeWhile(() => this.alive),
       )
       .subscribe(config => {
-        const trafficTheme: any = config.variables.traffic;
+        const trafficTheme: any = config.variables.traffic
 
         this.option = Object.assign({}, {
           grid: {
@@ -154,21 +152,21 @@ export class TrafficChartComponent implements AfterViewInit, OnDestroy {
               data: this.points,
             },
           ],
-        });
-    });
+        })
+      })
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
     if (this.echartsIntance) {
-      this.echartsIntance.resize();
+      this.echartsIntance.resize()
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

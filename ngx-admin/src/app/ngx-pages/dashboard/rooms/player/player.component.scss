@@ -96,6 +96,7 @@
       @include nb-ltr(order, 0);
       @include nb-rtl(order, 1);
     }
+
     .remaining {
       @include nb-ltr(order, 1);
       @include nb-rtl(order, 0);
@@ -236,6 +237,7 @@
       button {
         display: none;
       }
+
       .play-button,
       .skip-forward-button {
         display: block;

@@ -20,10 +20,6 @@ export class UnitEditComponent {
     private unitService: UnitService,
   ) { }
 
-  private saved() {
-    return this.savedId === this.ent.id
-  }
-
   public setEntity(o: EUnit) {
     this.ent = o
     this.entBackup = new EUnit()
@@ -67,5 +63,9 @@ export class UnitEditComponent {
 
   hide() {
     this.show = false
+  }
+
+  private saved() {
+    return this.savedId === this.ent.id
   }
 }

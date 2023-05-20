@@ -7,13 +7,13 @@
           <div [class.has-third]="auth.hasStockOpname() && auth.hasSell()" class="cashiering-type">
             <div class="marker {{activeClass()}}"></div>
             <ul>
-              <li *ngIf="auth.hasSell()" (click)="changeModule(sell.TYPE_SELLING)">
+              <li (click)="changeModule(sell.TYPE_SELLING)" *ngIf="auth.hasSell()">
                 <h2>Penjualan</h2>
               </li>
-              <li *ngIf="auth.hasReceive()" (click)="changeModule(receive.TYPE_RECEIVE)">
+              <li (click)="changeModule(receive.TYPE_RECEIVE)" *ngIf="auth.hasReceive()">
                 <h2>Pembelian</h2>
               </li>
-              <li *ngIf="auth.hasStockOpname()" (click)="changeModule(adjustment.TYPE_ADJUSTMENT)">
+              <li (click)="changeModule(adjustment.TYPE_ADJUSTMENT)" *ngIf="auth.hasStockOpname()">
                 <h2>Stock Opname</h2>
               </li>
             </ul>
@@ -26,25 +26,26 @@
                 <div class="col-12 height-full">
                   <div class="wrapper height-full flexbox flexbox-column position-relative">
                     <div style="z-index: 1001;">
-                      <cashiering-search-invoice #searchInvoice *ngIf="invoiceType!=adjustment.TYPE_ADJUSTMENT"
-                        (onChose)="attachInvoice($event)" [toast]="toast" [type]="invoiceType"></cashiering-search-invoice>
-                      <cashiering-search-contact #searchContact *ngIf="invoiceType!=adjustment.TYPE_ADJUSTMENT"
-                        (onChose)="attachContact($event)"></cashiering-search-contact>
+                      <cashiering-search-invoice #searchInvoice (onChose)="attachInvoice($event)"
+                        *ngIf="invoiceType!=adjustment.TYPE_ADJUSTMENT" [toast]="toast"
+                        [type]="invoiceType"></cashiering-search-invoice>
+                      <cashiering-search-contact #searchContact (onChose)="attachContact($event)"
+                        *ngIf="invoiceType!=adjustment.TYPE_ADJUSTMENT"></cashiering-search-contact>
                     </div>
                     <div class="menu-container">
                       <button (click)="newInvoice()">Transaksi Baru</button>
-                      <button title="Cari Invoice" [attr.disabled]="invoiceType==adjustment.TYPE_ADJUSTMENT || null"
-                        (click)="searchInvoice.activate()">
+                      <button (click)="searchInvoice.activate()" [attr.disabled]="invoiceType==adjustment.TYPE_ADJUSTMENT || null"
+                        title="Cari Invoice">
                         Invoice
                       </button>
-                      <button title="Cari Kontak" [attr.disabled]="invoiceType==adjustment.TYPE_ADJUSTMENT || null"
-                        (click)="searchContact.activate()">
+                      <button (click)="searchContact.activate()" [attr.disabled]="invoiceType==adjustment.TYPE_ADJUSTMENT || null"
+                        title="Cari Kontak">
                         Kontak
                       </button>
                     </div>
                     <div class="height-full container-relative flexbox flexbox-column">
-                      <cashiering-search-item #searchItem [toast]="toast" (onChosen)="onChooseItem($event)"
-                        [invoiceType]="invoiceType"></cashiering-search-item>
+                      <cashiering-search-item #searchItem (onChosen)="onChooseItem($event)" [invoiceType]="invoiceType"
+                        [toast]="toast"></cashiering-search-item>
                     </div>
                   </div>
                 </div>
@@ -52,14 +53,17 @@
             </div>
             <div class="col-8 height-full">
               <invoice #formInvoiceSell (onSave)="onSave(sell)" [hide]="invoiceType!=sell.TYPE_SELLING">
-                <invoice-receipt #formInvoiceSellReceipt (onChange)="recall(formInvoiceSellPayment)" [enabled]="!sell.hasId()"></invoice-receipt>
-                <invoice-payment [manualDiscGlobal]="!!invSell.invoice.hasId()" #formInvoiceSellPayment></invoice-payment>
+                <invoice-receipt #formInvoiceSellReceipt (onChange)="recall(formInvoiceSellPayment)"
+                  [enabled]="!sell.hasId()"></invoice-receipt>
+                <invoice-payment #formInvoiceSellPayment></invoice-payment>
               </invoice>
               <invoice #formInvoiceReceive (onSave)="onSave(receive)" [hide]="invoiceType!=sell.TYPE_RECEIVE">
-                <invoice-receipt #formInvoiceReceiveReceipt (onChange)="recall(formInvoiceReceivePayment)" [enabled]="!receive.hasId()"></invoice-receipt>
-                <invoice-payment [manualDiscGlobal]="!!invReceive.invoice.hasId()" #formInvoiceReceivePayment></invoice-payment>
+                <invoice-receipt #formInvoiceReceiveReceipt (onChange)="recall(formInvoiceReceivePayment)"
+                  [enabled]="!receive.hasId()"></invoice-receipt>
+                <invoice-payment #formInvoiceReceivePayment></invoice-payment>
               </invoice>
-              <invoice #formInvoiceAdjustment (onSave)="onSave(adjustment)" [hide]="invoiceType!=adjustment.TYPE_ADJUSTMENT">
+              <invoice #formInvoiceAdjustment (onSave)="onSave(adjustment)"
+                [hide]="invoiceType!=adjustment.TYPE_ADJUSTMENT">
                 <invoice-stock #formInvoiceAdjustmentStock [enabled]="!adjustment.hasId()"></invoice-stock>
               </invoice>
             </div>

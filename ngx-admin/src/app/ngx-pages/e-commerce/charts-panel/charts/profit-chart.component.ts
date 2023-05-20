@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
 
-import { ProfitChart } from '../../../../@core/data/profit-chart';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { ProfitChart } from '../../../../@core/data/profit-chart'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
 @Component({
   selector: 'ngx-profit-chart',
@@ -15,12 +15,10 @@ import { LayoutService } from '../../../../@core/utils/layout.service';
 export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   @Input()
-  profitChartData: ProfitChart;
-
-  private alive = true;
-
-  echartsIntance: any;
-  options: any = {};
+  profitChartData: ProfitChart
+  echartsIntance: any
+  options: any = {}
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -28,12 +26,12 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngOnChanges(): void {
     if (this.echartsIntance) {
-      this.updateProfitChartOptions(this.profitChartData);
+      this.updateProfitChartOptions(this.profitChartData)
     }
   }
 
@@ -41,10 +39,10 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
     this.theme.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(config => {
-        const eTheme: any = config.variables.profit;
+        const eTheme: any = config.variables.profit
 
-        this.setOptions(eTheme);
-      });
+        this.setOptions(eTheme)
+      })
   }
 
   setOptions(eTheme) {
@@ -119,7 +117,7 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
               }]),
             },
           },
-          data: this.profitChartData.data[0],
+          data: this.profitChartData.data[ 0 ],
         },
         {
           name: 'Payment',
@@ -136,7 +134,7 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
               }]),
             },
           },
-          data: this.profitChartData.data[1],
+          data: this.profitChartData.data[ 1 ],
         },
         {
           name: 'All orders',
@@ -153,35 +151,35 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
               }]),
             },
           },
-          data: this.profitChartData.data[2],
+          data: this.profitChartData.data[ 2 ],
         },
       ],
-    };
+    }
   }
 
   updateProfitChartOptions(profitChartData: ProfitChart) {
-    const options = this.options;
-    const series = this.getNewSeries(options.series, profitChartData.data);
+    const options = this.options
+    const series = this.getNewSeries(options.series, profitChartData.data)
 
     this.echartsIntance.setOption({
       series: series,
       xAxis: {
         data: this.profitChartData.chartLabel,
       },
-    });
+    })
   }
 
   getNewSeries(series, data: number[][]) {
     return series.map((line, index) => {
       return {
         ...line,
-        data: data[index],
-      };
-    });
+        data: data[ index ],
+      }
+    })
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
@@ -189,12 +187,12 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
       // Fix recalculation chart size
       // TODO: investigate more deeply
       setTimeout(() => {
-        this.echartsIntance.resize();
-      }, 0);
+        this.echartsIntance.resize()
+      }, 0)
     }
   }
 
   ngOnDestroy(): void {
-    this.alive = false;
+    this.alive = false
   }
 }

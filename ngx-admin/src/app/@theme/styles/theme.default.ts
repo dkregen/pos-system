@@ -1,6 +1,6 @@
-import { NbJSThemeOptions, DEFAULT_THEME as baseTheme } from '@nebular/theme';
+import { DEFAULT_THEME as baseTheme, NbJSThemeOptions } from '@nebular/theme'
 
-const baseThemeVariables = baseTheme.variables;
+const baseThemeVariables = baseTheme.variables
 
 export const DEFAULT_THEME = {
   name: 'default',
@@ -311,4 +311,4 @@ export const DEFAULT_THEME = {
       tooltipExtraCss: 'border-radius: 10px; padding: 4px 16px;',
     },
   },
-} as NbJSThemeOptions;
+} as NbJSThemeOptions

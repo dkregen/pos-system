@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
-declare const echarts: any;
+declare const echarts: any
 
 @Component({
   selector: 'ngx-traffic-bar-chart',
@@ -17,14 +17,12 @@ declare const echarts: any;
 })
 export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnChanges {
 
-  @Input() data: number[];
-  @Input() labels: string[];
-  @Input() formatter: string;
-
-  private alive = true;
-
-  option: any = {};
-  echartsInstance: any;
+  @Input() data: number[]
+  @Input() labels: string[]
+  @Input() formatter: string
+  option: any = {}
+  echartsInstance: any
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -32,16 +30,16 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   onChartInit(ec) {
-    this.echartsInstance = ec;
+    this.echartsInstance = ec
   }
 
   resizeChart() {
     if (this.echartsInstance) {
-      this.echartsInstance.resize();
+      this.echartsInstance.resize()
     }
   }
 
@@ -57,7 +55,7 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
         tooltip: {
           formatter: this.formatter,
         },
-      });
+      })
     }
   }
 
@@ -65,7 +63,7 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
     this.theme.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(config => {
-        const trafficTheme: any = config.variables.trafficBarEchart;
+        const trafficTheme: any = config.variables.trafficBarEchart
 
         this.option = Object.assign({}, {
           grid: {
@@ -76,8 +74,8 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
             containLabel: true,
           },
           xAxis: {
-            type : 'category',
-            data : this.labels,
+            type: 'category',
+            data: this.labels,
             axisLabel: {
               color: trafficTheme.axisTextColor,
               fontSize: trafficTheme.axisFontSize,
@@ -139,12 +137,12 @@ export class TrafficBarChartComponent implements AfterViewInit, OnDestroy, OnCha
               },
             },
           ],
-        });
-    });
+        })
+      })
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 
 }

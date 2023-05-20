@@ -1,29 +1,29 @@
 <side-container [show]="show">
   <div class="row">
     <div class="col-12">
-      <h3 class="header-form with-close" (click)="toggle()">Kontak Baru</h3>
+      <h3 (click)="toggle()" class="header-form with-close">Kontak Baru</h3>
       <form>
         <div class="form-group">
           <label>No. KTP</label>
-          <input name="ktp" [(ngModel)]="ent.ktp" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.ktp" autocomplete="off" class="form-control" name="ktp" required>
         </div>
         <div class="form-group">
           <label>Nama</label>
-          <input name="name" [(ngModel)]="ent.name" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.name" autocomplete="off" class="form-control" name="name" required>
         </div>
         <div class="form-group">
           <label>Perusahaan</label>
-          <input name="company" [(ngModel)]="ent.company" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.company" autocomplete="off" class="form-control" name="company" required>
         </div>
         <div class="form-group">
           <label>Telp.</label>
-          <input name="tlp" [(ngModel)]="ent.tlp" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.tlp" autocomplete="off" class="form-control" name="tlp" required>
         </div>
         <div class="form-group">
           <label>HP</label>
-          <input name="phone" [(ngModel)]="ent.phone" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.phone" autocomplete="off" class="form-control" name="phone" required>
         </div>
-        <button type="submit" (click)="onSubmit()" class="btn btn-danger">Simpan</button>
+        <button (click)="onSubmit()" class="btn btn-danger" type="submit">Simpan</button>
       </form>
     </div>
   </div>

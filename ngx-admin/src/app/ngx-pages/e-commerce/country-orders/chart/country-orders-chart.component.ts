@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
 
 @Component({
@@ -21,15 +21,13 @@ import { LayoutService } from '../../../../@core/utils/layout.service';
 })
 export class CountryOrdersChartComponent implements OnDestroy, OnChanges {
 
-  @Input() countryName: string;
-  @Input() data: number[];
-  @Input() maxValue: number;
-  @Input() labels: string[];
-
-  private alive = true;
-
-  option: any = {};
-  echartsInstance;
+  @Input() countryName: string
+  @Input() data: number[]
+  @Input() maxValue: number
+  @Input() labels: string[]
+  option: any = {}
+  echartsInstance
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -37,7 +35,7 @@ export class CountryOrdersChartComponent implements OnDestroy, OnChanges {
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,7 +52,7 @@ export class CountryOrdersChartComponent implements OnDestroy, OnChanges {
             data: this.data,
           },
         ],
-      });
+      })
     }
   }
 
@@ -62,7 +60,7 @@ export class CountryOrdersChartComponent implements OnDestroy, OnChanges {
     this.theme.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(config => {
-        const countriesTheme: any = config.variables.countryOrders;
+        const countriesTheme: any = config.variables.countryOrders
 
         this.option = Object.assign({}, {
           grid: {
@@ -160,24 +158,24 @@ export class CountryOrdersChartComponent implements OnDestroy, OnChanges {
               z: 3,
             },
           ],
-        });
-      });
+        })
+      })
   }
 
   onChartInit(ec) {
-    this.echartsInstance = ec;
+    this.echartsInstance = ec
 
-    this.initChartOptions();
+    this.initChartOptions()
   }
 
   resizeChart() {
     if (this.echartsInstance) {
-      this.echartsInstance.resize();
+      this.echartsInstance.resize()
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 
 }

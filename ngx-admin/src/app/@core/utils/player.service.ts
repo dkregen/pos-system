@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
 export class Track {
-  name: string;
-  artist: string;
-  url: string;
-  cover: string;
+  name: string
+  artist: string
+  url: string
+  cover: string
 }
 
 @Injectable()
 export class PlayerService {
-  current: number;
+  current: number
   playlist: Track[] = [
     {
       name: 'Don\'t Wanna Fight',
@@ -29,38 +29,38 @@ export class PlayerService {
       url: 'https://p.scdn.co/mp3-preview/83090a4db6899eaca689ae35f69126dbe65d94c9',
       cover: 'assets/images/cover3.jpg',
     },
-  ];
+  ]
 
   random(): Track {
-    this.current = Math.floor(Math.random() * this.playlist.length);
-    return this.playlist[this.current];
+    this.current = Math.floor(Math.random() * this.playlist.length)
+    return this.playlist[ this.current ]
   }
 
   next(): Track {
-    return this.getNextTrack();
+    return this.getNextTrack()
   }
 
   prev() {
-    return this.getPrevTrack();
+    return this.getPrevTrack()
   }
 
   private getNextTrack(): Track {
     if (this.current === this.playlist.length - 1) {
-      this.current = 0;
+      this.current = 0
     } else {
-      this.current++;
+      this.current++
     }
 
-    return this.playlist[this.current];
+    return this.playlist[ this.current ]
   }
 
   private getPrevTrack(): Track {
     if (this.current === 0) {
-      this.current = this.playlist.length - 1;
+      this.current = this.playlist.length - 1
     } else {
-      this.current--;
+      this.current--
     }
 
-    return this.playlist[this.current];
+    return this.playlist[ this.current ]
   }
 }

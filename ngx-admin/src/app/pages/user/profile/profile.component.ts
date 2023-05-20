@@ -7,6 +7,7 @@ import { ToastrConfig, ToastrTypes } from '../../../@config/toastr.config'
 
 import { LoaderService } from '../../../services/loader.service'
 import { UserService } from '../../../@core/mock/users.service'
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'page-profile',
@@ -15,7 +16,6 @@ import { UserService } from '../../../@core/mock/users.service'
 })
 
 export class ProfileComponent implements OnInit {
-  private fileData: any = null
   protected user: EUser = new EUser()
   protected config = ToastrConfig
   protected pass = {
@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
     new: '',
     confirm: '',
   }
+  private fileData: any = null
 
   constructor(
     private userService: UserService,
@@ -42,7 +43,7 @@ export class ProfileComponent implements OnInit {
     let form = new FormData()
     this.user.appendUploader(form)
     form.append('photo', this.fileData)
-    this.httpClient.post<any>('/api/user/profile', form)
+    this.httpClient.post<any>(environment.api + '/user/profile', form)
       .subscribe(
         data => {
           let msg = data[ 'data' ][ 'message' ]

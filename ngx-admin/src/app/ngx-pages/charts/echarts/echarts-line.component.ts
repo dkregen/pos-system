@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-echarts-line',
@@ -8,8 +8,8 @@ import { NbThemeService } from '@nebular/theme';
   `,
 })
 export class EchartsLineComponent implements AfterViewInit, OnDestroy {
-  options: any = {};
-  themeSubscription: any;
+  options: any = {}
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
   }
@@ -17,8 +17,8 @@ export class EchartsLineComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      const colors: any = config.variables
+      const echarts: any = config.variables.echarts
 
       this.options = {
         backgroundColor: echarts.bg,
@@ -96,11 +96,11 @@ export class EchartsLineComponent implements AfterViewInit, OnDestroy {
             data: [1 / 2, 1 / 4, 1 / 8, 1 / 16, 1 / 32, 1 / 64, 1 / 128, 1 / 256, 1 / 512],
           },
         ],
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

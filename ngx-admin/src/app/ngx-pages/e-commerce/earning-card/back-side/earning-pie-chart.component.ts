@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { delay, takeWhile } from 'rxjs/operators';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { delay, takeWhile } from 'rxjs/operators'
 
 @Component({
   selector: 'ngx-earning-pie-chart',
@@ -16,34 +16,32 @@ import { delay, takeWhile } from 'rxjs/operators';
 })
 export class EarningPieChartComponent implements AfterViewInit, OnDestroy {
 
-  @Output() selectPie = new EventEmitter<{value: number; name: string; color: string}>();
-  @Input() values: {value: number; name: string; }[];
-  @Input() defaultSelectedCurrency: string;
-
-  private alive = true;
-
-  options: any = {};
-  echartsInstance;
+  @Output() selectPie = new EventEmitter<{ value: number; name: string; color: string }>()
+  @Input() values: { value: number; name: string; }[]
+  @Input() defaultSelectedCurrency: string
+  options: any = {}
+  echartsInstance
+  private alive = true
 
   constructor(private theme: NbThemeService) {
   }
 
   onChartInit(ec) {
-    this.echartsInstance = ec;
+    this.echartsInstance = ec
   }
 
   onChartClick(event) {
     const pieData = {
       value: event.value,
       name: event.name,
-      color: event.color.colorStops[0].color,
-    };
+      color: event.color.colorStops[ 0 ].color,
+    }
 
-    this.emitSelectPie(pieData);
+    this.emitSelectPie(pieData)
   }
 
-  emitSelectPie(pieData: {value: number; name: string; color: any}) {
-    this.selectPie.emit(pieData);
+  emitSelectPie(pieData: { value: number; name: string; color: any }) {
+    this.selectPie.emit(pieData)
   }
 
   ngAfterViewInit() {
@@ -53,24 +51,24 @@ export class EarningPieChartComponent implements AfterViewInit, OnDestroy {
         delay(1),
       )
       .subscribe(config => {
-        const variables = config.variables;
+        const variables = config.variables
 
-        this.options = this.getOptions(variables);
+        this.options = this.getOptions(variables)
         const defaultSelectedData =
-          this.options.series[0].data.find((item) => item.name === this.defaultSelectedCurrency);
-        const color = defaultSelectedData.itemStyle.normal.color.colorStops[0].color;
+          this.options.series[ 0 ].data.find((item) => item.name === this.defaultSelectedCurrency)
+        const color = defaultSelectedData.itemStyle.normal.color.colorStops[ 0 ].color
         const pieData = {
           value: defaultSelectedData.value,
           name: defaultSelectedData.name,
           color,
-        };
+        }
 
-        this.emitSelectPie(pieData);
-      });
+        this.emitSelectPie(pieData)
+      })
   }
 
   getOptions(variables) {
-    const earningPie: any = variables.earningPie;
+    const earningPie: any = variables.earningPie
 
     return {
       tooltip: {
@@ -87,8 +85,8 @@ export class EarningPieChartComponent implements AfterViewInit, OnDestroy {
           radius: earningPie.radius,
           data: [
             {
-              value: this.values[0].value,
-              name: this.values[0].name,
+              value: this.values[ 0 ].value,
+              name: this.values[ 0 ].name,
               label: {
                 normal: {
                   position: 'center',
@@ -124,8 +122,8 @@ export class EarningPieChartComponent implements AfterViewInit, OnDestroy {
               },
             },
             {
-              value: this.values[1].value,
-              name: this.values[1].name,
+              value: this.values[ 1 ].value,
+              name: this.values[ 1 ].name,
               label: {
                 normal: {
                   position: 'center',
@@ -161,8 +159,8 @@ export class EarningPieChartComponent implements AfterViewInit, OnDestroy {
               },
             },
             {
-              value: this.values[2].value,
-              name: this.values[2].name,
+              value: this.values[ 2 ].value,
+              name: this.values[ 2 ].name,
               label: {
                 normal: {
                   position: 'center',
@@ -200,10 +198,10 @@ export class EarningPieChartComponent implements AfterViewInit, OnDestroy {
           ],
         },
       ],
-    };
+    }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

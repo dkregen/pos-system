@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core'
 })
 export class LoaderService {
 
-  constructor() { }
-
   private _count: number = 0
+
+  constructor() { }
 
   public increase(): void {
     this._count++

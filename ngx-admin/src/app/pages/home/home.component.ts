@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { Router } from '@angular/router'
 
 interface CardSettings {
   title: string;
@@ -15,16 +15,16 @@ interface CardSettings {
 })
 export class HomeComponent implements OnDestroy, OnInit {
 
-  private alive = true;
+  private alive = true
 
 
   constructor(
     private themeService: NbThemeService,
-    private router: Router
-    ) { }
+    private router: Router,
+  ) { }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 
   ngOnInit() {

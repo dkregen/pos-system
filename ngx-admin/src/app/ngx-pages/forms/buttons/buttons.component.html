@@ -4,10 +4,10 @@
       <nb-card-header>Hero Buttons</nb-card-header>
       <nb-card-body>
         <div class="buttons-row">
-          <button *ngFor="let status of statuses" nbButton [status]="status" hero>
+          <button *ngFor="let status of statuses" [status]="status" hero nbButton>
             {{ status }}
           </button>
-          <button disabled nbButton hero>
+          <button disabled hero nbButton>
             disabled
           </button>
         </div>
@@ -18,7 +18,7 @@
       <nb-card-header>Default Buttons</nb-card-header>
       <nb-card-body>
         <div class="buttons-row">
-          <button *ngFor="let status of statuses" nbButton [status]="status">
+          <button *ngFor="let status of statuses" [status]="status" nbButton>
             {{ status }}
           </button>
           <button disabled nbButton>
@@ -32,7 +32,7 @@
       <nb-card-header>Outline Buttons</nb-card-header>
       <nb-card-body>
         <div class="buttons-row">
-          <button *ngFor="let status of statuses" nbButton [status]="status" outline>
+          <button *ngFor="let status of statuses" [status]="status" nbButton outline>
             {{ status }}
           </button>
           <button disabled nbButton outline>
@@ -46,7 +46,7 @@
       <nb-card-header>Ghost Buttons</nb-card-header>
       <nb-card-body>
         <div class="buttons-row">
-          <button *ngFor="let status of statuses" nbButton [status]="status" ghost>
+          <button *ngFor="let status of statuses" [status]="status" ghost nbButton>
             {{ status }}
           </button>
           <button disabled nbButton outline>
@@ -62,7 +62,7 @@
       <nb-card-header>Button shapes</nb-card-header>
       <nb-card-body>
         <div class="buttons-row">
-          <button *ngFor="let shape of shapes" nbButton [shape]="shape">
+          <button *ngFor="let shape of shapes" [shape]="shape" nbButton>
             {{ shape }}
           </button>
         </div>
@@ -73,7 +73,7 @@
       <nb-card-header>Button sizes</nb-card-header>
       <nb-card-body>
         <div class="buttons-row">
-          <button *ngFor="let size of sizes" nbButton [size]="size">
+          <button *ngFor="let size of sizes" [size]="size" nbButton>
             {{ size }}
           </button>
         </div>
@@ -89,9 +89,10 @@
           <nb-action icon="menu-outline"></nb-action>
           <nb-action icon="search-outline"></nb-action>
           <nb-action icon="email-outline"></nb-action>
-          <nb-action disabled icon="bell-outline"></nb-action><nb-action>
-          <nb-user name="Han Solo"></nb-user>
-        </nb-action>
+          <nb-action disabled icon="bell-outline"></nb-action>
+          <nb-action>
+            <nb-user name="Han Solo"></nb-user>
+          </nb-action>
           <nb-action icon="settings-2-outline"></nb-action>
         </nb-actions>
       </nb-card-body>
@@ -99,7 +100,7 @@
 
     <nb-card>
       <nb-card-body>
-        <nb-actions size="medium" fullWidth>
+        <nb-actions fullWidth size="medium">
           <nb-action>
             <nb-icon class="action-icon" icon="pause-circle-outline"></nb-icon>
             <span>Pause</span>

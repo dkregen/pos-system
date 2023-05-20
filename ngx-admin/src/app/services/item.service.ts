@@ -6,6 +6,7 @@ import { Msg } from '../@config/toastr.config'
 import { ECustomItem } from '../@entity/e-custom-item'
 import { ToasterService } from 'angular2-toaster'
 import { ETrxInvoice } from '../@entity/e-trx-invoice'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class ItemService {
   insert(item): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.post<any>('api/item/insertWithPicture', item)
+      this.http.post<any>(environment.api + '/item/insertWithPicture', item)
         .subscribe(
           data => {
             console.log(data)
@@ -41,7 +42,7 @@ export class ItemService {
     this.loader.increase()
     let id = '0'
     try {
-      let r = await this.http.post<any>('api/item/insertWithPicture', item).toPromise()
+      let r = await this.http.post<any>(environment.api + '/item/insertWithPicture', item).toPromise()
       if (r[ 'data' ][ 'message' ]) {
         Msg.pop(toast, r[ 'data' ][ 'message' ])
       }
@@ -59,7 +60,7 @@ export class ItemService {
     this.loader.increase()
     let returnId = '0'
     try {
-      let r = await this.http.post<any>('api/item/updateWithPicture/' + id, item).toPromise()
+      let r = await this.http.post<any>(environment.api + '/item/updateWithPicture/' + id, item).toPromise()
       if (r[ 'data' ][ 'message' ]) {
         Msg.pop(toast, r[ 'data' ][ 'message' ])
       }
@@ -76,7 +77,7 @@ export class ItemService {
   update(item, id): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.post<any>('api/item/updateWithPicture/' + id, item)
+      this.http.post<any>(environment.api + '/item/updateWithPicture/' + id, item)
         .subscribe(
           data => {
             console.log(data)
@@ -96,7 +97,7 @@ export class ItemService {
   delete(item: EItem): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.get<any>('api/item/delete/' + item.id)
+      this.http.get<any>(environment.api + '/item/delete/' + item.id)
         .subscribe(
           data => {
             resolve(data[ 'data' ][ 'message' ])
@@ -115,10 +116,10 @@ export class ItemService {
   list(limit: number, index: number, orderBy?: string, orderType?: string, query = ''): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.get<any>('api/item/list/' + limit + '/' + index + '/' + orderBy + '/' + orderType + '?where=' + query)
+      this.http.get<any>(environment.api + '/item/list/' + limit + '/' + index + '/' + orderBy + '/' + orderType + '?where=' + query)
         .subscribe(
           data => {
-            let arr: Array<EItem> = new Array()
+            let arr: Array<EItem> = []
             for (let i = 0; i < data[ 'data' ][ 'list' ].length; i++) {
               arr[ i ] = (new EItem()).populate(data[ 'data' ][ 'list' ][ i ])
             }
@@ -150,7 +151,7 @@ export class ItemService {
           item = 'search-stock'
           break
       }
-      this.http.get<any>('api/item/' + item + '/' + limit + '/' + index + '?query=' + query)
+      this.http.get<any>(environment.api + '/item/' + item + '/' + limit + '/' + index + '?query=' + query)
         .subscribe(
           data => {
             console.log('Dari service ...', data[ 'data' ])
@@ -168,9 +169,9 @@ export class ItemService {
 
   async listItems(toast: ToasterService, query: string, limit = 0, index = 0): Promise<Array<ECustomItem>> {
     this.loader.increase()
-    let items = new Array()
+    let items = []
     try {
-      let r = await this.http.get<any>('api/item/search-price/' + limit + '/' + index + '?query=' + query).toPromise()
+      let r = await this.http.get<any>(environment.api + '/item/search-price/' + limit + '/' + index + '?query=' + query).toPromise()
       console.log(r)
       if ('data' in r) {
         let data: Array<any> = r[ 'data' ][ 'list' ]

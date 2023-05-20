@@ -1,8 +1,8 @@
-import { delay } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { delay } from 'rxjs/operators'
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
-declare const echarts: any;
+declare const echarts: any
 
 @Component({
   selector: 'ngx-solar',
@@ -23,29 +23,28 @@ declare const echarts: any;
 })
 export class SolarComponent implements AfterViewInit, OnDestroy {
 
-  private value = 0;
+  option: any = {}
+  themeSubscription: any
+  private value = 0
+
+  constructor(private theme: NbThemeService) {
+  }
 
   @Input()
   set chartValue(value: number) {
-    this.value = value;
+    this.value = value
 
     if (this.option.series) {
-      this.option.series[0].data[0].value = value;
-      this.option.series[0].data[1].value = 100 - value;
-      this.option.series[1].data[0].value = value;
+      this.option.series[ 0 ].data[ 0 ].value = value
+      this.option.series[ 0 ].data[ 1 ].value = 100 - value
+      this.option.series[ 1 ].data[ 0 ].value = value
     }
-  }
-
-  option: any = {};
-  themeSubscription: any;
-
-  constructor(private theme: NbThemeService) {
   }
 
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().pipe(delay(1)).subscribe(config => {
 
-      const solarTheme: any = config.variables.solar;
+      const solarTheme: any = config.variables.solar
 
       this.option = Object.assign({}, {
         tooltip: {
@@ -176,11 +175,11 @@ export class SolarComponent implements AfterViewInit, OnDestroy {
             ],
           },
         ],
-      });
-    });
+      })
+    })
   }
 
   ngOnDestroy() {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

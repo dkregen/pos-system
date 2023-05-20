@@ -1,6 +1,6 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { NbWindowService } from '@nebular/theme';
-import { WindowFormComponent } from './window-form/window-form.component';
+import { Component, TemplateRef, ViewChild } from '@angular/core'
+import { NbWindowService } from '@nebular/theme'
+import { WindowFormComponent } from './window-form/window-form.component'
 
 @Component({
   selector: 'ngx-window',
@@ -9,8 +9,8 @@ import { WindowFormComponent } from './window-form/window-form.component';
 })
 export class WindowComponent {
 
-  @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
-  @ViewChild('disabledEsc', { read: TemplateRef, static: true }) disabledEscTemplate: TemplateRef<HTMLElement>;
+  @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>
+  @ViewChild('disabledEsc', { read: TemplateRef, static: true }) disabledEscTemplate: TemplateRef<HTMLElement>
 
   constructor(private windowService: NbWindowService) {}
 
@@ -23,11 +23,11 @@ export class WindowComponent {
           text: 'some text to pass into template',
         },
       },
-    );
+    )
   }
 
   openWindowForm() {
-    this.windowService.open(WindowFormComponent, { title: `Window` });
+    this.windowService.open(WindowFormComponent, { title: `Window` })
   }
 
   openWindowWithoutBackdrop() {
@@ -38,6 +38,6 @@ export class WindowComponent {
         hasBackdrop: false,
         closeOnEsc: false,
       },
-    );
+    )
   }
 }

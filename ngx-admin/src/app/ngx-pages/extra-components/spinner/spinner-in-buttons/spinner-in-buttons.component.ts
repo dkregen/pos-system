@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'ngx-spinner-in-buttons',
@@ -8,18 +8,18 @@ import { Component } from '@angular/core';
 
 export class SpinnerInButtonsComponent {
 
-  loadingLargeGroup = false;
-  loadingMediumGroup = false;
+  loadingLargeGroup = false
+  loadingMediumGroup = false
 
   toggleLoadingLargeGroupAnimation() {
-    this.loadingLargeGroup = true;
+    this.loadingLargeGroup = true
 
-    setTimeout(() => this.loadingLargeGroup = false, 3000);
+    setTimeout(() => this.loadingLargeGroup = false, 3000)
   }
 
   toggleLoadingMediumGroupAnimation() {
-    this.loadingMediumGroup = true;
+    this.loadingMediumGroup = true
 
-    setTimeout(() => this.loadingMediumGroup = false, 3000);
+    setTimeout(() => this.loadingMediumGroup = false, 3000)
   }
 }

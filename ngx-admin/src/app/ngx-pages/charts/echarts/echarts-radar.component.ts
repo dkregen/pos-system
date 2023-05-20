@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-echarts-radar',
@@ -8,8 +8,8 @@ import { NbThemeService } from '@nebular/theme';
   `,
 })
 export class EchartsRadarComponent implements AfterViewInit, OnDestroy {
-  options: any = {};
-  themeSubscription: any;
+  options: any = {}
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
   }
@@ -17,8 +17,8 @@ export class EchartsRadarComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      const colors: any = config.variables
+      const echarts: any = config.variables.echarts
 
       this.options = {
         backgroundColor: echarts.bg,
@@ -66,11 +66,11 @@ export class EchartsRadarComponent implements AfterViewInit, OnDestroy {
             ],
           },
         ],
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

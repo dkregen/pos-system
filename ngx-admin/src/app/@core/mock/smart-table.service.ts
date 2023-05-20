@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { SmartTableData } from '../data/smart-table';
+import { Injectable } from '@angular/core'
+import { SmartTableData } from '../data/smart-table'
 
 @Injectable()
 export class SmartTableService extends SmartTableData {
@@ -424,9 +424,9 @@ export class SmartTableService extends SmartTableData {
     'username': '@Sanchez',
     'email': 'lousanchez@comtours.com',
     'age': 16,
-  }];
+  }]
 
   getData() {
-    return this.data;
+    return this.data
   }
 }

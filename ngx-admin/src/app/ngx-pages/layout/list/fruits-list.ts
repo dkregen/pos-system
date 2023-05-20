@@ -10,4 +10,4 @@ export const fruits: string[] = [
   'Cantaloupe',
   'Oranges',
   'Peaches',
-];
+]

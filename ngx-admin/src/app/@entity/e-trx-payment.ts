@@ -1,37 +1,7 @@
-import { Entity } from "../@core/entity";
-import { EAlert } from "./e-alert";
+import { Entity } from '../@core/entity'
+import { EAlert } from './e-alert'
 
 export class ETrxPayment extends Entity {
-  private _status: number = 0;
-  private _invoiceId: string = "";
-  private _paymentBeforeId: string = "";
-  private _discItemTotal: number = 0;
-  private _discGlobalTotal: number = 0;
-  private _taxTotal: number = 0;
-  private _prTotal: number = 0;
-  private _cash: number = 0;
-  private _firstCash: number = 0;
-  private _returnCash: number = 0;
-  private _discGlobalPercent: number = 0;
-  private _taxPercent: number = 10;
-  private _discGlobalState: number = 0;
-  private _taxState: number = 0;
-  private _prState: number = 0;
-  private _cashState: number = 1;
-  private _discTotalCal: number = 0;
-  private _taxTotalCal: number = 0;
-  private _prTotalCal: number = 0;
-  private _cashTotalCal: number = 0;
-  private _cashBeforeTotalCal: number = 0;
-  private _date: string = "";
-  private _priceTotal: number = 0;
-  private _grandTotalCal: number = 0;
-  private _paymentTotal: number = 0;
-
-  constructor() {
-    super();
-  }
-
   public readonly NAMES = {
     id: 0,
     status: 1,
@@ -56,216 +26,58 @@ export class ETrxPayment extends Entity {
     cashBeforeTotalCal: 20,
     date: 21,
     priceTotal: 22,
-    grandTotalCal: 23
-  };
-
+    grandTotalCal: 23,
+  }
   public objects: Array<any> = [
-    "id",
-    "status",
-    "invoiceId",
-    "paymentBeforeId",
-    "discItemTotal",
-    "discGlobalTotal",
-    "taxTotal",
-    "prTotal",
-    "cash",
-    "returnCash",
-    "discGlobalPercent",
-    "taxPercent",
-    "discGlobalState",
-    "taxState",
-    "prState",
-    "cashState",
-    "discTotalCal",
-    "taxTotalCal",
-    "prTotalCal",
-    "cashTotalCal",
-    "cashBeforeTotalCal",
-    "date",
-    "priceTotal",
-    "grandTotalCal"
-  ];
+    'id',
+    'status',
+    'invoiceId',
+    'paymentBeforeId',
+    'discItemTotal',
+    'discGlobalTotal',
+    'taxTotal',
+    'prTotal',
+    'cash',
+    'returnCash',
+    'discGlobalPercent',
+    'taxPercent',
+    'discGlobalState',
+    'taxState',
+    'prState',
+    'cashState',
+    'discTotalCal',
+    'taxTotalCal',
+    'prTotalCal',
+    'cashTotalCal',
+    'cashBeforeTotalCal',
+    'date',
+    'priceTotal',
+    'grandTotalCal',
+  ]
+  public prFirst: number = 0
+  /**
+   * Setter prTotal
+   * @param {number } value
+   */
+  private firstPr: boolean = true
+  /**
+   * Setter cash
+   * @param {number } value
+   */
+  private cashIsFirst = true
 
-  public checkForm(): EAlert {
-    return null;
+  constructor() {
+    super()
   }
 
-  public calculateTotalPayment() {
-    this._paymentTotal = 0;
-    if (this._prState > 0) {
-      this._paymentTotal += this._prTotal;
-    }
-    if (this._cashState > 0) {
-      this._paymentTotal += this._cash;
-    }
-  }
+  private _status: number = 0
 
   /**
    * Getter status
    * @return {number }
    */
   public get status(): number {
-    return this._status;
-  }
-
-  /**
-   * Getter invoiceId
-   * @return {string }
-   */
-  public get invoiceId(): string {
-    return this._invoiceId;
-  }
-
-  /**
-   * Getter paymentBeforeId
-   * @return {string }
-   */
-  public get paymentBeforeId(): string {
-    return this._paymentBeforeId;
-  }
-
-  /**
-   * Getter discItemTotal
-   * @return {number }
-   */
-  public get discItemTotal(): number {
-    return this._discItemTotal;
-  }
-
-  /**
-   * Getter discGlobalTotal
-   * @return {number }
-   */
-  public get discGlobalTotal(): number {
-    return this._discGlobalTotal;
-  }
-
-  /**
-   * Getter taxTotal
-   * @return {number }
-   */
-  public get taxTotal(): number {
-    return this._taxTotal;
-  }
-
-  /**
-   * Getter prTotal
-   * @return {number }
-   */
-  public get prTotal(): number {
-    return this._prTotal;
-  }
-
-  /**
-   * Getter cash
-   * @return {number }
-   */
-  public get cash(): number {
-    return this._cash;
-  }
-
-  /**
-   * Getter returnCash
-   * @return {number }
-   */
-  public get returnCash(): number {
-    return this._returnCash;
-  }
-
-  /**
-   * Getter discGlobalPercent
-   * @return {number }
-   */
-  public get discGlobalPercent(): number {
-    return this._discGlobalPercent;
-  }
-
-  /**
-   * Getter taxPercent
-   * @return {number }
-   */
-  public get taxPercent(): number {
-    return this._taxPercent;
-  }
-
-  /**
-   * Getter discGlobalState
-   * @return {number }
-   */
-  public get discGlobalState(): number {
-    return this._discGlobalState;
-  }
-
-  /**
-   * Getter taxState
-   * @return {number }
-   */
-  public get taxState(): number {
-    return this._taxState;
-  }
-
-  /**
-   * Getter prState
-   * @return {number }
-   */
-  public get prState(): number {
-    return this._prState;
-  }
-
-  /**
-   * Getter cashState
-   * @return {number }
-   */
-  public get cashState(): number {
-    return this._cashState;
-  }
-
-  /**
-   * Getter discTotalCal
-   * @return {number }
-   */
-  public get discTotalCal(): number {
-    return this._discTotalCal;
-  }
-
-  /**
-   * Getter taxTotalCal
-   * @return {number }
-   */
-  public get taxTotalCal(): number {
-    return this._taxTotalCal;
-  }
-
-  /**
-   * Getter prTotalCal
-   * @return {number }
-   */
-  public get prTotalCal(): number {
-    return this._prTotalCal;
-  }
-
-  /**
-   * Getter cashTotalCal
-   * @return {number }
-   */
-  public get cashTotalCal(): number {
-    return this._cashTotalCal;
-  }
-
-  /**
-   * Getter cashBeforeTotalCal
-   * @return {number }
-   */
-  public get cashBeforeTotalCal(): number {
-    return this._cashBeforeTotalCal;
-  }
-
-  /**
-   * Getter date
-   * @return {string }
-   */
-  public get date(): string {
-    return this._date;
+    return this._status
   }
 
   /**
@@ -273,7 +85,17 @@ export class ETrxPayment extends Entity {
    * @param {number } value
    */
   public set status(value: number) {
-    this._status = value;
+    this._status = value
+  }
+
+  private _invoiceId: string = ''
+
+  /**
+   * Getter invoiceId
+   * @return {string }
+   */
+  public get invoiceId(): string {
+    return this._invoiceId
   }
 
   /**
@@ -281,7 +103,17 @@ export class ETrxPayment extends Entity {
    * @param {string } value
    */
   public set invoiceId(value: string) {
-    this._invoiceId = value;
+    this._invoiceId = value
+  }
+
+  private _paymentBeforeId: string = ''
+
+  /**
+   * Getter paymentBeforeId
+   * @return {string }
+   */
+  public get paymentBeforeId(): string {
+    return this._paymentBeforeId
   }
 
   /**
@@ -289,7 +121,17 @@ export class ETrxPayment extends Entity {
    * @param {string } value
    */
   public set paymentBeforeId(value: string) {
-    this._paymentBeforeId = value;
+    this._paymentBeforeId = value
+  }
+
+  private _discItemTotal: number = 0
+
+  /**
+   * Getter discItemTotal
+   * @return {number }
+   */
+  public get discItemTotal(): number {
+    return this._discItemTotal
   }
 
   /**
@@ -297,7 +139,17 @@ export class ETrxPayment extends Entity {
    * @param {number } value
    */
   public set discItemTotal(value: number) {
-    this._discItemTotal = value;
+    this._discItemTotal = value
+  }
+
+  private _discGlobalTotal: number = 0
+
+  /**
+   * Getter discGlobalTotal
+   * @return {number }
+   */
+  public get discGlobalTotal(): number {
+    return this._discGlobalTotal
   }
 
   /**
@@ -305,7 +157,17 @@ export class ETrxPayment extends Entity {
    * @param {number } value
    */
   public set discGlobalTotal(value: number) {
-    this._discGlobalTotal = value;
+    this._discGlobalTotal = value
+  }
+
+  private _taxTotal: number = 0
+
+  /**
+   * Getter taxTotal
+   * @return {number }
+   */
+  public get taxTotal(): number {
+    return this._taxTotal
   }
 
   /**
@@ -313,201 +175,58 @@ export class ETrxPayment extends Entity {
    * @param {number } value
    */
   public set taxTotal(value: number) {
-    this._taxTotal = value;
+    this._taxTotal = value
     if (this._taxState > 0) {
-      this._taxTotalCal = value;
+      this._taxTotalCal = value
     }
   }
 
+  private _prTotal: number = 0
+
   /**
-   * Setter prTotal
-   * @param {number } value
+   * Getter prTotal
+   * @return {number }
    */
-  private firstPr: boolean = true;
-  public prFirst: number = 0;
+  public get prTotal(): number {
+    return this._prTotal
+  }
+
   public set prTotal(value: number) {
-    this._prTotal = value;
-    this.calculateTotalPayment();
+    this._prTotal = value
+    this.calculateTotalPayment()
     if (this.firstPr) {
-      this.prFirst = value;
-      this.firstPr = false;
+      this.prFirst = value
+      this.firstPr = false
     }
   }
 
+  private _cash: number = 0
+
   /**
-   * Setter cash
-   * @param {number } value
+   * Getter cash
+   * @return {number }
    */
-  private cashIsFirst = true;
+  public get cash(): number {
+    return this._cash
+  }
+
   public set cash(value: number) {
-    this._cash = value;
-    if(this.cashIsFirst) {
-      this.firstCash = value;
-      this.cashIsFirst = false;
+    this._cash = value
+    if (this.cashIsFirst) {
+      this.firstCash = value
+      this.cashIsFirst = false
     }
-    this.calculateTotalPayment();
+    this.calculateTotalPayment()
   }
 
-  /**
-   * Setter returnCash
-   * @param {number } value
-   */
-  public set returnCash(value: number) {
-    this._returnCash = value;
-  }
-
-  /**
-   * Setter discGlobalPercent
-   * @param {number } value
-   */
-  public set discGlobalPercent(value: number) {
-    this._discGlobalPercent = value;
-  }
-
-  /**
-   * Setter taxPercent
-   * @param {number } value
-   */
-  public set taxPercent(value: number) {
-    this._taxPercent = value;
-  }
-
-  /**
-   * Setter discGlobalState
-   * @param {number } value
-   */
-  public set discGlobalState(value: number) {
-    this._discGlobalState = value;
-  }
-
-  /**
-   * Setter taxState
-   * @param {number } value
-   */
-  public set taxState(value: number) {
-    this._taxState = value;
-  }
-
-  /**
-   * Setter prState
-   * @param {number } value
-   */
-  public set prState(value: number) {
-    this._prState = value;
-    this.calculateTotalPayment();
-  }
-
-  /**
-   * Setter cashState
-   * @param {number } value
-   */
-  public set cashState(value: number) {
-    this._cashState = value;
-    this.calculateTotalPayment();
-  }
-
-  /**
-   * Setter discTotalCal
-   * @param {number } value
-   */
-  public set discTotalCal(value: number) {
-    this._discTotalCal = value;
-  }
-
-  /**
-   * Setter taxTotalCal
-   * @param {number } value
-   */
-  public set taxTotalCal(value: number) {
-    this._taxTotalCal = value;
-  }
-
-  /**
-   * Setter prTotalCal
-   * @param {number } value
-   */
-  public set prTotalCal(value: number) {
-    this._prTotalCal = value;
-  }
-
-  /**
-   * Setter cashTotalCal
-   * @param {number } value
-   */
-  public set cashTotalCal(value: number) {
-    this._cashTotalCal = value;
-  }
-
-  /**
-   * Setter cashBeforeTotalCal
-   * @param {number } value
-   */
-  public set cashBeforeTotalCal(value: number) {
-    this._cashBeforeTotalCal = value;
-  }
-
-  /**
-   * Setter date
-   * @param {string } value
-   */
-  public set date(value: string) {
-    this._date = value;
-  }
-
-  /**
-   * Getter priceTotal
-   * @return {number }
-   */
-  public get priceTotal(): number {
-    return this._priceTotal;
-  }
-
-  /**
-   * Setter priceTotal
-   * @param {number } value
-   */
-  public set priceTotal(value: number) {
-    this._priceTotal = value;
-  }
-
-  /**
-   * Getter grandTotalCal
-   * @return {number }
-   */
-  public get grandTotalCal(): number {
-    return this._grandTotalCal;
-  }
-
-  /**
-   * Setter grandTotalCal
-   * @param {number } value
-   */
-  public set grandTotalCal(value: number) {
-    this._grandTotalCal = value;
-  }
-
-  /**
-   * Getter paymentTotal
-   * @return {number }
-   */
-  public get paymentTotal(): number {
-    return this._paymentTotal;
-  }
-
-  /**
-   * Setter paymentTotal
-   * @param {number } value
-   */
-  public set paymentTotal(value: number) {
-    this._paymentTotal = value;
-  }
+  private _firstCash: number = 0
 
   /**
    * Getter firstCash
    * @return {number }
    */
   public get firstCash(): number {
-    return this._firstCash;
+    return this._firstCash
   }
 
   /**
@@ -515,6 +234,310 @@ export class ETrxPayment extends Entity {
    * @param {number } value
    */
   public set firstCash(value: number) {
-    this._firstCash = value;
+    this._firstCash = value
+  }
+
+  private _returnCash: number = 0
+
+  /**
+   * Getter returnCash
+   * @return {number }
+   */
+  public get returnCash(): number {
+    return this._returnCash
+  }
+
+  /**
+   * Setter returnCash
+   * @param {number } value
+   */
+  public set returnCash(value: number) {
+    this._returnCash = value
+  }
+
+  private _discGlobalPercent: number = 0
+
+  /**
+   * Getter discGlobalPercent
+   * @return {number }
+   */
+  public get discGlobalPercent(): number {
+    return this._discGlobalPercent
+  }
+
+  /**
+   * Setter discGlobalPercent
+   * @param {number } value
+   */
+  public set discGlobalPercent(value: number) {
+    this._discGlobalPercent = value
+  }
+
+  private _taxPercent: number = 10
+
+  /**
+   * Getter taxPercent
+   * @return {number }
+   */
+  public get taxPercent(): number {
+    return this._taxPercent
+  }
+
+  /**
+   * Setter taxPercent
+   * @param {number } value
+   */
+  public set taxPercent(value: number) {
+    this._taxPercent = value
+  }
+
+  private _discGlobalState: number = 0
+
+  /**
+   * Getter discGlobalState
+   * @return {number }
+   */
+  public get discGlobalState(): number {
+    return this._discGlobalState
+  }
+
+  /**
+   * Setter discGlobalState
+   * @param {number } value
+   */
+  public set discGlobalState(value: number) {
+    this._discGlobalState = value
+  }
+
+  private _taxState: number = 0
+
+  /**
+   * Getter taxState
+   * @return {number }
+   */
+  public get taxState(): number {
+    return this._taxState
+  }
+
+  /**
+   * Setter taxState
+   * @param {number } value
+   */
+  public set taxState(value: number) {
+    this._taxState = value
+  }
+
+  private _prState: number = 0
+
+  /**
+   * Getter prState
+   * @return {number }
+   */
+  public get prState(): number {
+    return this._prState
+  }
+
+  /**
+   * Setter prState
+   * @param {number } value
+   */
+  public set prState(value: number) {
+    this._prState = value
+    this.calculateTotalPayment()
+  }
+
+  private _cashState: number = 1
+
+  /**
+   * Getter cashState
+   * @return {number }
+   */
+  public get cashState(): number {
+    return this._cashState
+  }
+
+  /**
+   * Setter cashState
+   * @param {number } value
+   */
+  public set cashState(value: number) {
+    this._cashState = value
+    this.calculateTotalPayment()
+  }
+
+  private _discTotalCal: number = 0
+
+  /**
+   * Getter discTotalCal
+   * @return {number }
+   */
+  public get discTotalCal(): number {
+    return this._discTotalCal
+  }
+
+  /**
+   * Setter discTotalCal
+   * @param {number } value
+   */
+  public set discTotalCal(value: number) {
+    this._discTotalCal = value
+  }
+
+  private _taxTotalCal: number = 0
+
+  /**
+   * Getter taxTotalCal
+   * @return {number }
+   */
+  public get taxTotalCal(): number {
+    return this._taxTotalCal
+  }
+
+  /**
+   * Setter taxTotalCal
+   * @param {number } value
+   */
+  public set taxTotalCal(value: number) {
+    this._taxTotalCal = value
+  }
+
+  private _prTotalCal: number = 0
+
+  /**
+   * Getter prTotalCal
+   * @return {number }
+   */
+  public get prTotalCal(): number {
+    return this._prTotalCal
+  }
+
+  /**
+   * Setter prTotalCal
+   * @param {number } value
+   */
+  public set prTotalCal(value: number) {
+    this._prTotalCal = value
+  }
+
+  private _cashTotalCal: number = 0
+
+  /**
+   * Getter cashTotalCal
+   * @return {number }
+   */
+  public get cashTotalCal(): number {
+    return this._cashTotalCal
+  }
+
+  /**
+   * Setter cashTotalCal
+   * @param {number } value
+   */
+  public set cashTotalCal(value: number) {
+    this._cashTotalCal = value
+  }
+
+  private _cashBeforeTotalCal: number = 0
+
+  /**
+   * Getter cashBeforeTotalCal
+   * @return {number }
+   */
+  public get cashBeforeTotalCal(): number {
+    return this._cashBeforeTotalCal
+  }
+
+  /**
+   * Setter cashBeforeTotalCal
+   * @param {number } value
+   */
+  public set cashBeforeTotalCal(value: number) {
+    this._cashBeforeTotalCal = value
+  }
+
+  private _date: string = ''
+
+  /**
+   * Getter date
+   * @return {string }
+   */
+  public get date(): string {
+    return this._date
+  }
+
+  /**
+   * Setter date
+   * @param {string } value
+   */
+  public set date(value: string) {
+    this._date = value
+  }
+
+  private _priceTotal: number = 0
+
+  /**
+   * Getter priceTotal
+   * @return {number }
+   */
+  public get priceTotal(): number {
+    return this._priceTotal
+  }
+
+  /**
+   * Setter priceTotal
+   * @param {number } value
+   */
+  public set priceTotal(value: number) {
+    this._priceTotal = value
+  }
+
+  private _grandTotalCal: number = 0
+
+  /**
+   * Getter grandTotalCal
+   * @return {number }
+   */
+  public get grandTotalCal(): number {
+    return this._grandTotalCal
+  }
+
+  /**
+   * Setter grandTotalCal
+   * @param {number } value
+   */
+  public set grandTotalCal(value: number) {
+    this._grandTotalCal = value
+  }
+
+  private _paymentTotal: number = 0
+
+  /**
+   * Getter paymentTotal
+   * @return {number }
+   */
+  public get paymentTotal(): number {
+    return this._paymentTotal
+  }
+
+  /**
+   * Setter paymentTotal
+   * @param {number } value
+   */
+  public set paymentTotal(value: number) {
+    this._paymentTotal = value
+  }
+
+  public checkForm(): EAlert {
+    return null
+  }
+
+  public calculateTotalPayment() {
+    this._paymentTotal = 0
+    if (this._prState > 0) {
+      this._paymentTotal += this._prTotal
+    }
+    if (this._cashState > 0) {
+      this._paymentTotal += this._cash
+    }
   }
 }

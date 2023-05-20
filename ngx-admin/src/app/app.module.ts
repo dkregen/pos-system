@@ -22,6 +22,7 @@ import {
 } from '@nebular/theme'
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth'
 import { NbEvaIconsModule } from '@nebular/eva-icons'
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,23 +52,23 @@ import { NbEvaIconsModule } from '@nebular/eva-icons'
             class: NbAuthJWTToken,
           },
           login: {
-            endpoint: '/api/auth/sign-in',
+            endpoint: environment.api + '/auth/sign-in',
             method: 'post',
           },
           register: {
-            endpoint: '/api/auth/sign-up',
+            endpoint: environment.api + '/auth/sign-up',
             method: 'post',
           },
           logout: {
-            endpoint: '/api/auth/sign-out',
+            endpoint: environment.api + '/auth/sign-out',
             method: 'post',
           },
           requestPass: {
-            endpoint: '/api/auth/request-pass',
+            endpoint: environment.api + '/auth/request-pass',
             method: 'post',
           },
           resetPass: {
-            endpoint: '/api/auth/reset-pass',
+            endpoint: environment.api + '/auth/reset-pass',
             method: 'post',
           },
         }),

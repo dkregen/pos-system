@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding } from '@angular/core'
 
 @Component({
   selector: 'ngx-news-post-placeholder',
@@ -8,5 +8,5 @@ import { Component, HostBinding } from '@angular/core';
 export class NewsPostPlaceholderComponent {
 
   @HostBinding('attr.aria-label')
-  label = 'Loading';
+  label = 'Loading'
 }

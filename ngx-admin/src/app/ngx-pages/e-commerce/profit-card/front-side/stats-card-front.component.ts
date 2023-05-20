@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart';
-import { takeWhile } from 'rxjs/operators';
+import { Component } from '@angular/core'
+import { ProfitBarAnimationChartData } from '../../../../@core/data/profit-bar-animation-chart'
+import { takeWhile } from 'rxjs/operators'
 
 @Component({
   selector: 'ngx-stats-card-front',
@@ -9,15 +9,14 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class StatsCardFrontComponent {
 
-  private alive = true;
-
-  linesData: { firstLine: number[]; secondLine: number[] };
+  linesData: { firstLine: number[]; secondLine: number[] }
+  private alive = true
 
   constructor(private profitBarAnimationChartService: ProfitBarAnimationChartData) {
     this.profitBarAnimationChartService.getChartData()
       .pipe(takeWhile(() => this.alive))
       .subscribe((linesData) => {
-        this.linesData = linesData;
-      });
+        this.linesData = linesData
+      })
   }
 }

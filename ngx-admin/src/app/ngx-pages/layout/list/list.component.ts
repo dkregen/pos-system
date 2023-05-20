@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { fruits } from './fruits-list';
+import { Component } from '@angular/core'
+import { fruits } from './fruits-list'
 
 @Component({
   selector: 'ngx-list',
@@ -7,7 +7,7 @@ import { fruits } from './fruits-list';
   styleUrls: ['list.component.scss'],
 })
 export class ListComponent {
-  fruits = fruits;
+  fruits = fruits
 
   users: { name: string, title: string }[] = [
     { name: 'Carla Espinosa', title: 'Nurse' },
@@ -15,5 +15,5 @@ export class ListComponent {
     { name: 'Janitor', title: 'Janitor' },
     { name: 'Perry Cox', title: 'Doctor of Medicine' },
     { name: 'Ben Sullivan', title: 'Carpenter and photographer' },
-  ];
+  ]
 }

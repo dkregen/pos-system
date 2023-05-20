@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UnitService } from '../../../../services/unit.service';
-import { EUnit } from '../../../../@entity/e-unit';
-import { EAlert } from '../../../../@entity/e-alert';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { UnitService } from '../../../../services/unit.service'
+import { EUnit } from '../../../../@entity/e-unit'
+import { EAlert } from '../../../../@entity/e-alert'
 
 @Component({
   selector: 'master-unit-new',
@@ -11,36 +11,36 @@ import { EAlert } from '../../../../@entity/e-alert';
 
 export class UnitNewComponent implements OnInit {
 
-  protected ent: EUnit = new EUnit();
-  public show: boolean = false;
-  @Output() public complete = new EventEmitter();
+  public show: boolean = false
+  @Output() public complete = new EventEmitter()
+  protected ent: EUnit = new EUnit()
 
   constructor(
-    private unitService: UnitService
+    private unitService: UnitService,
   ) { }
 
   onSubmit() {
-    var mess: EAlert = this.ent.checkForm();
+    var mess: EAlert = this.ent.checkForm()
     if (!mess) {
       this.unitService.insert(this.ent).then(msg => {
-        this.complete.emit(msg);
+        this.complete.emit(msg)
       }).catch(msg => {
-        this.complete.emit(msg);
-      });
+        this.complete.emit(msg)
+      })
     } else {
-      this.complete.emit(mess);
+      this.complete.emit(mess)
     }
   }
 
   toggle() {
-    this.show = !this.show;
-    if(this.show) {
-      this.ent = new EUnit();
+    this.show = !this.show
+    if (this.show) {
+      this.ent = new EUnit()
     }
   }
 
   visible() {
-    this.show = true;
+    this.show = true
   }
 
   ngOnInit() {

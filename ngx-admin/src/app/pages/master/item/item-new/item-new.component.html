@@ -1,24 +1,24 @@
 <side-container [show]="show">
   <div class="row">
     <div class="col-12">
-      <h3 class="header-form with-close" (click)="toggle()">Barang Baru</h3>
+      <h3 (click)="toggle()" class="header-form with-close">Barang Baru</h3>
       <form>
         <div class="form-group">
           <label>Foto</label>
-          <input name="picture" (change)="onFileChange($event)" name="photo" accept=".jpeg,.png,.jpg" type="file"
-            required class="form-control" autocomplete="off">
+          <input (change)="onFileChange($event)" accept=".jpeg,.png,.jpg" autocomplete="off" class="form-control" name="photo"
+            name="picture" required type="file">
         </div>
         <div class="form-group">
           <label>Kode Barang</label>
-          <input name="barcode" [(ngModel)]="ent.barcode" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.barcode" autocomplete="off" class="form-control" name="barcode" required>
         </div>
         <div class="form-group">
           <label>Nama Barang</label>
-          <input name="name" [(ngModel)]="ent.name" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.name" autocomplete="off" class="form-control" name="name" required>
         </div>
         <div class="form-group">
           <label>Satuan</label>
-          <select name="unitId" [(ngModel)]="ent.unitId" required class="form-control" autocomplete="off">
+          <select [(ngModel)]="ent.unitId" autocomplete="off" class="form-control" name="unitId" required>
             <option value=""> -- Pilih Salah Satu --</option>
             <option *ngFor="let unit of listUnit" value="{{unit.id}}">{{unit.name}}</option>
           </select>
@@ -27,7 +27,7 @@
           <label>Markup</label>
           <div class="markup">
             <div class="percent">
-              <input name="upPercent" [(ngModel)]="ent.upPercent" required class="form-control" autocomplete="off">
+              <input [(ngModel)]="ent.upPercent" autocomplete="off" class="form-control" name="upPercent" required>
             </div>
             <div class="nominal">
               <input-currency [(model)]="ent.upNominal" [class]="'form-control'"></input-currency>
@@ -42,27 +42,30 @@
           <label>Tipe Harga Jual</label>
           <div class="form-check">
             <label class="custom-control custom-radio">
-              <input type="radio" [value]="ent.PRICE_TYPE_MARKUP_PERCENT" [(ngModel)]="ent.priceType" class="custom-control-input" name="priceType">
+              <input [(ngModel)]="ent.priceType" [value]="ent.PRICE_TYPE_MARKUP_PERCENT" class="custom-control-input"
+                name="priceType" type="radio">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Markup Persen</span>
             </label>
           </div>
           <div class="form-check">
             <label class="custom-control custom-radio">
-              <input type="radio" [value]="ent.PRICE_TYPE_MARKUP_NOMINAL" [(ngModel)]="ent.priceType" class="custom-control-input" name="priceType">
+              <input [(ngModel)]="ent.priceType" [value]="ent.PRICE_TYPE_MARKUP_NOMINAL" class="custom-control-input"
+                name="priceType" type="radio">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Markup Nominal</span>
             </label>
           </div>
           <div class="form-check">
             <label class="custom-control custom-radio">
-              <input type="radio" [value]="ent.PRICE_TYPE_FIX" [(ngModel)]="ent.priceType" class="custom-control-input" name="priceType">
+              <input [(ngModel)]="ent.priceType" [value]="ent.PRICE_TYPE_FIX" class="custom-control-input" name="priceType"
+                type="radio">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Harga Jual Tetap</span>
             </label>
           </div>
         </div>
-        <button type="submit" (click)="onSubmit()" class="btn btn-danger">Simpan</button>
+        <button (click)="onSubmit()" class="btn btn-danger" type="submit">Simpan</button>
       </form>
     </div>
   </div>

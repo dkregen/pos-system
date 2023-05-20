@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'ngx-status-card',
@@ -20,7 +20,7 @@ import { Component, Input } from '@angular/core';
 })
 export class StatusCardComponent {
 
-  @Input() title: string;
-  @Input() type: string;
-  @Input() on = true;
+  @Input() title: string
+  @Input() type: string
+  @Input() on = true
 }

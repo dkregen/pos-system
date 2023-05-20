@@ -1,17 +1,21 @@
 <div [class.hide]="hide" class="transaction-container height-full flexbox flexbox-column">
   <div class="transaction-nav">
     <div class="head">
-      <h2>{{ (title?title:invoice?txtType(invoice.type):"INVOICE") | uppercase }} {{invoice.type==2?"STOK":""}}</h2>
+      <h2>{{ (title ? title : invoice ? txtType(invoice.type) : "INVOICE") | uppercase }} {{invoice.type == 2 ? "STOK" : ""}}</h2>
       <div class="ppic">PIC {{(invoice.pic.uname || '...') | uppercase}}</div>
     </div>
-    <div class="transaction-title">NO : {{invoice.code?invoice.code:"(Auto)"}}</div>
-    <div class="transaction-subtitle">Kontak : {{invoice.contact.hasId()?invoice.contact.name:"-"}}</div>
+    <div class="transaction-title">NO : {{invoice.code ? invoice.code : "(Auto)"}}</div>
+    <div class="transaction-subtitle">Kontak : {{invoice.contact.hasId() ? invoice.contact.name : "-"}}</div>
     <div class="transaction-button">
-      <input *ngIf="!invoice.hasId()" [class.has-error]="invoice.dateNotSaved" class="form-control-small transaction-date"
-        [(ngModel)]="invoice.date" mask="00/00/00" placeholder="dd/mm/yy">
-      <input disabled *ngIf="invoice.hasId()" class="form-control-small transaction-date" value="{{invoice.date+' '+invoice.time}}">
-      <button *ngIf="(!invoice.hasId() || !invoice.payment.hasId() || invoice.payment.id == '-1') && (!readonly)" (click)="onSave.emit()" class="btn btn-info btn-sm">Simpan</button>
-      <button *ngIf="invoice.hasId()" (click)="getWindow().print()" class="btn btn-success btn-sm">Cetak</button>
+      <input *ngIf="!invoice.hasId()" [(ngModel)]="invoice.date"
+        [class.has-error]="invoice.dateNotSaved"
+        class="form-control-small transaction-date" mask="00/00/00" placeholder="dd/mm/yy">
+      <input *ngIf="invoice.hasId()" class="form-control-small transaction-date" disabled
+        value="{{invoice.date+' '+invoice.time}}">
+      <button (click)="onSave.emit()"
+        *ngIf="(!invoice.hasId() || !invoice.payment.hasId() || invoice.payment.id == '-1') && (!readonly)" class="btn btn-info btn-sm">Simpan
+      </button>
+      <button (click)="getWindow().print()" *ngIf="invoice.hasId()" class="btn btn-success btn-sm">Cetak</button>
     </div>
   </div>
   <div class="height-full flexbox flexbox-column">

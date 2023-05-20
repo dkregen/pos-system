@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { TrafficList, TrafficListData } from '../../../@core/data/traffic-list';
-import { TrafficBarData, TrafficBar } from '../../../@core/data/traffic-bar';
-import { takeWhile } from 'rxjs/operators';
+import { Component, OnDestroy } from '@angular/core'
+import { TrafficList, TrafficListData } from '../../../@core/data/traffic-list'
+import { TrafficBar, TrafficBarData } from '../../../@core/data/traffic-bar'
+import { takeWhile } from 'rxjs/operators'
 
 @Component({
   selector: 'ngx-traffic-reveal-card',
@@ -10,47 +10,46 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class TrafficRevealCardComponent implements OnDestroy {
 
-  private alive = true;
-
-  trafficBarData: TrafficBar;
-  trafficListData: TrafficList;
-  revealed = false;
-  period: string = 'week';
+  trafficBarData: TrafficBar
+  trafficListData: TrafficList
+  revealed = false
+  period: string = 'week'
+  private alive = true
 
   constructor(private trafficListService: TrafficListData,
               private trafficBarService: TrafficBarData) {
-    this.getTrafficFrontCardData(this.period);
-    this.getTrafficBackCardData(this.period);
+    this.getTrafficFrontCardData(this.period)
+    this.getTrafficBackCardData(this.period)
   }
 
   toggleView() {
-    this.revealed = !this.revealed;
+    this.revealed = !this.revealed
   }
 
   setPeriodAngGetData(value: string): void {
-    this.period = value;
+    this.period = value
 
-    this.getTrafficFrontCardData(value);
-    this.getTrafficBackCardData(value);
+    this.getTrafficFrontCardData(value)
+    this.getTrafficBackCardData(value)
   }
 
   getTrafficBackCardData(period: string) {
     this.trafficBarService.getTrafficBarData(period)
-      .pipe(takeWhile(() => this.alive ))
+      .pipe(takeWhile(() => this.alive))
       .subscribe(trafficBarData => {
-        this.trafficBarData = trafficBarData;
-      });
+        this.trafficBarData = trafficBarData
+      })
   }
 
   getTrafficFrontCardData(period: string) {
     this.trafficListService.getTrafficListData(period)
       .pipe(takeWhile(() => this.alive))
       .subscribe(trafficListData => {
-        this.trafficListData = trafficListData;
-      });
+        this.trafficListData = trafficListData
+      })
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

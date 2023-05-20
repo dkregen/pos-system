@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { of as observableOf, Observable } from 'rxjs';
-import { Electricity, ElectricityChart, ElectricityData } from '../data/electricity';
+import { Injectable } from '@angular/core'
+import { Observable, of as observableOf } from 'rxjs'
+import { Electricity, ElectricityChart, ElectricityData } from '../data/electricity'
 
 @Injectable()
 export class ElectricityService extends ElectricityData {
 
+  chartData: ElectricityChart[]
   private listData: Electricity[] = [
     {
       title: '2015',
@@ -58,8 +59,7 @@ export class ElectricityService extends ElectricityData {
         { month: 'Dec', delta: '0.52', down: false, kWatts: '776', cost: '95' },
       ],
     },
-  ];
-
+  ]
   private chartPoints = [
     490, 490, 495, 500,
     505, 510, 520, 530,
@@ -73,23 +73,21 @@ export class ElectricityService extends ElectricityData {
     380, 350, 340, 340,
     340, 340, 340, 340,
     340, 340, 340,
-  ];
-
-  chartData: ElectricityChart[];
+  ]
 
   constructor() {
-    super();
+    super()
     this.chartData = this.chartPoints.map((p, index) => ({
-      label: (index % 5 === 3) ? `${Math.round(index / 5)}` : '',
+      label: (index % 5 === 3) ? `${ Math.round(index / 5) }` : '',
       value: p,
-    }));
+    }))
   }
 
   getListData(): Observable<Electricity[]> {
-    return observableOf(this.listData);
+    return observableOf(this.listData)
   }
 
   getChartData(): Observable<ElectricityChart[]> {
-    return observableOf(this.chartData);
+    return observableOf(this.chartData)
   }
 }

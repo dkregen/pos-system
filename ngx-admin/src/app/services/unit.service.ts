@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { LoaderService } from './loader.service'
 import { EUnit } from '../@entity/e-unit'
 import { Msg } from '../@config/toastr.config'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class UnitService {
   insert(unit: EUnit): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.post<any>('api/unit/insert', unit.objectToJson())
+      this.http.post<any>(environment.api + '/unit/insert', unit.objectToJson())
         .subscribe(
           data => {
             console.log(data)
@@ -36,7 +37,7 @@ export class UnitService {
   update(unit: EUnit): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.post<any>('api/unit/update/' + unit.id, unit.objectToJson())
+      this.http.post<any>(environment.api + '/unit/update/' + unit.id, unit.objectToJson())
         .subscribe(
           data => {
             resolve(data[ 'data' ][ 'message' ])
@@ -55,7 +56,7 @@ export class UnitService {
   delete(unit: EUnit): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.get<any>('api/unit/delete/' + unit.id)
+      this.http.get<any>(environment.api + '/unit/delete/' + unit.id)
         .subscribe(
           data => {
             resolve(data[ 'data' ][ 'message' ])
@@ -74,7 +75,7 @@ export class UnitService {
   list(limit: number, index: number, orderBy?: string, orderType?: string, query = ''): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.get<any>('api/unit/list/' + limit + '/' + index + '/' + orderBy + '/' + orderType + '?where=' + query)
+      this.http.get<any>(environment.api + '/unit/list/' + limit + '/' + index + '/' + orderBy + '/' + orderType + '?where=' + query)
         .subscribe(
           data => {
             resolve(data[ 'data' ])

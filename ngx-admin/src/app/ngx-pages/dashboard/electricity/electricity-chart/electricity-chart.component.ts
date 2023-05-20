@@ -1,8 +1,8 @@
-import { delay, takeWhile } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../../@core/utils';
-import { ElectricityChart } from '../../../../@core/data/electricity';
+import { delay, takeWhile } from 'rxjs/operators'
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { LayoutService } from '../../../../@core/utils'
+import { ElectricityChart } from '../../../../@core/data/electricity'
 
 @Component({
   selector: 'ngx-electricity-chart',
@@ -18,12 +18,10 @@ import { ElectricityChart } from '../../../../@core/data/electricity';
 })
 export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
 
-  private alive = true;
-
-  @Input() data: ElectricityChart[];
-
-  option: any;
-  echartsIntance: any;
+  @Input() data: ElectricityChart[]
+  option: any
+  echartsIntance: any
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -31,7 +29,7 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngAfterViewInit(): void {
@@ -41,7 +39,7 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
         delay(1),
       )
       .subscribe(config => {
-        const eTheme: any = config.variables.electricity;
+        const eTheme: any = config.variables.electricity
 
         this.option = {
           grid: {
@@ -178,21 +176,21 @@ export class ElectricityChartComponent implements AfterViewInit, OnDestroy {
               data: this.data.map(i => i.value),
             },
           ],
-        };
-    });
+        }
+      })
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
     if (this.echartsIntance) {
-      this.echartsIntance.resize();
+      this.echartsIntance.resize()
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

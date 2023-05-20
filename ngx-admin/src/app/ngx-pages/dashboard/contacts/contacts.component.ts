@@ -1,8 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
-import { takeWhile } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core'
+import { takeWhile } from 'rxjs/operators'
+import { forkJoin } from 'rxjs'
 
-import { Contacts, RecentUsers, UserData } from '../../../@core/data/users';
+import { Contacts, RecentUsers, UserData } from '../../../@core/data/users'
 
 @Component({
   selector: 'ngx-contacts',
@@ -11,10 +11,9 @@ import { Contacts, RecentUsers, UserData } from '../../../@core/data/users';
 })
 export class ContactsComponent implements OnDestroy {
 
-  private alive = true;
-
-  contacts: any[];
-  recent: any[];
+  contacts: any[]
+  recent: any[]
+  private alive = true
 
   constructor(private userService: UserData) {
     forkJoin(
@@ -23,12 +22,12 @@ export class ContactsComponent implements OnDestroy {
     )
       .pipe(takeWhile(() => this.alive))
       .subscribe(([contacts, recent]: [Contacts[], RecentUsers[]]) => {
-        this.contacts = contacts;
-        this.recent = recent;
-      });
+        this.contacts = contacts
+        this.recent = recent
+      })
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

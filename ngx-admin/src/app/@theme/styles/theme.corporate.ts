@@ -1,13 +1,13 @@
-import { NbJSThemeOptions, CORPORATE_THEME as baseTheme } from '@nebular/theme';
+import { CORPORATE_THEME as baseTheme, NbJSThemeOptions } from '@nebular/theme'
 
-const baseThemeVariables = baseTheme.variables;
+const baseThemeVariables = baseTheme.variables
 
 export const CORPORATE_THEME = {
   name: 'corporate',
   base: 'corporate',
   variables: {
     temperature: {
-      arcFill: [ '#ffa36b', '#ffa36b', '#ff9e7a', '#ff9888', '#ff8ea0' ],
+      arcFill: ['#ffa36b', '#ffa36b', '#ff9e7a', '#ff9888', '#ff8ea0'],
       arcEmpty: baseThemeVariables.bg2,
       thumbBg: baseThemeVariables.bg2,
       thumbBorder: '#ffa36b',
@@ -305,4 +305,4 @@ export const CORPORATE_THEME = {
       tooltipExtraCss: 'border-radius: 10px; padding: 4px 16px;',
     },
   },
-} as NbJSThemeOptions;
+} as NbJSThemeOptions

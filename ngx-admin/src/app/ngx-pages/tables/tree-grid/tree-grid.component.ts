@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
+import { Component, Input } from '@angular/core'
+import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme'
 
 interface TreeNode<T> {
   data: T;
@@ -20,31 +20,14 @@ interface FSEntry {
   styleUrls: ['./tree-grid.component.scss'],
 })
 export class TreeGridComponent {
-  customColumn = 'name';
-  defaultColumns = [ 'size', 'kind', 'items' ];
-  allColumns = [ this.customColumn, ...this.defaultColumns ];
+  customColumn = 'name'
+  defaultColumns = ['size', 'kind', 'items']
+  allColumns = [this.customColumn, ...this.defaultColumns]
 
-  dataSource: NbTreeGridDataSource<FSEntry>;
+  dataSource: NbTreeGridDataSource<FSEntry>
 
-  sortColumn: string;
-  sortDirection: NbSortDirection = NbSortDirection.NONE;
-
-  constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
-    this.dataSource = this.dataSourceBuilder.create(this.data);
-  }
-
-  updateSort(sortRequest: NbSortRequest): void {
-    this.sortColumn = sortRequest.column;
-    this.sortDirection = sortRequest.direction;
-  }
-
-  getSortDirection(column: string): NbSortDirection {
-    if (this.sortColumn === column) {
-      return this.sortDirection;
-    }
-    return NbSortDirection.NONE;
-  }
-
+  sortColumn: string
+  sortDirection: NbSortDirection = NbSortDirection.NONE
   private data: TreeNode<FSEntry>[] = [
     {
       data: { name: 'Projects', size: '1.8 MB', items: 5, kind: 'dir' },
@@ -69,12 +52,28 @@ export class TreeGridComponent {
         { data: { name: 'secret-note.txt', kind: 'txt', size: '2 MB' } },
       ],
     },
-  ];
+  ]
+
+  constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+    this.dataSource = this.dataSourceBuilder.create(this.data)
+  }
+
+  updateSort(sortRequest: NbSortRequest): void {
+    this.sortColumn = sortRequest.column
+    this.sortDirection = sortRequest.direction
+  }
+
+  getSortDirection(column: string): NbSortDirection {
+    if (this.sortColumn === column) {
+      return this.sortDirection
+    }
+    return NbSortDirection.NONE
+  }
 
   getShowOn(index: number) {
-    const minWithForMultipleColumns = 400;
-    const nextColumnStep = 100;
-    return minWithForMultipleColumns + (nextColumnStep * index);
+    const minWithForMultipleColumns = 400
+    const nextColumnStep = 100
+    return minWithForMultipleColumns + (nextColumnStep * index)
   }
 }
 
@@ -89,10 +88,10 @@ export class TreeGridComponent {
   `,
 })
 export class FsIconComponent {
-  @Input() kind: string;
-  @Input() expanded: boolean;
+  @Input() kind: string
+  @Input() expanded: boolean
 
   isDir(): boolean {
-    return this.kind === 'dir';
+    return this.kind === 'dir'
   }
 }

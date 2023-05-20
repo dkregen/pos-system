@@ -2,10 +2,10 @@
   <h4 class="h1">1,100</h4>
   <div class="visitors-title">New Visitors</div>
   <div class="statistics-chart">
-    <div echarts
-         [options]="option"
-         class="echart"
-         (chartInit)="onChartInit($event)">
+    <div (chartInit)="onChartInit($event)"
+      [options]="option"
+      class="echart"
+      echarts>
     </div>
   </div>
   <div class="statistics-footer">
@@ -13,6 +13,6 @@
       <span class="chart-value">25%</span>
       <span class="chart-value">75%</span>
     </div>
-    <ngx-legend-chart class="visitors-statistics-legend" [legendItems]="chartLegend"></ngx-legend-chart>
+    <ngx-legend-chart [legendItems]="chartLegend" class="visitors-statistics-legend"></ngx-legend-chart>
   </div>
 </div>

@@ -1,39 +1,30 @@
-import { Entity } from "../@core/entity";
-import { EAlert } from "./e-alert";
-import { Msg } from "../@config/toastr.config";
+import { Entity } from '../@core/entity'
+import { EAlert } from './e-alert'
+import { Msg } from '../@config/toastr.config'
 
 export class EUnit extends Entity {
 
-  constructor() {
-    super();
-  }
-
-  private _name: String = "";
-  
   public readonly NAMES = {
     id: 0,
-    name: 1
-  };
-  
+    name: 1,
+  }
   public objects: Array<any> = [
-    "id",
-    "name"
+    'id',
+    'name',
   ]
 
-  public checkForm(): EAlert {
-    if(!this.name) {
-      return Msg.error("Kesalahan Form", "Nama satuan tidak boleh kosong.");
-    }
-
-    return null;
+  constructor() {
+    super()
   }
+
+  private _name: String = ''
 
   /**
    * Getter name
    * @return {String }
    */
   public get name(): String {
-    return this._name;
+    return this._name
   }
 
   /**
@@ -41,7 +32,15 @@ export class EUnit extends Entity {
    * @param {String } value
    */
   public set name(value: String) {
-    this._name = value;
+    this._name = value
+  }
+
+  public checkForm(): EAlert {
+    if (!this.name) {
+      return Msg.error('Kesalahan Form', 'Nama satuan tidak boleh kosong.')
+    }
+
+    return null
   }
 
 }

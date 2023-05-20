@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'
 
 export interface Month {
   month: string;
@@ -21,5 +21,6 @@ export interface ElectricityChart {
 
 export abstract class ElectricityData {
   abstract getListData(): Observable<Electricity[]>;
+
   abstract getChartData(): Observable<ElectricityChart[]>;
 }

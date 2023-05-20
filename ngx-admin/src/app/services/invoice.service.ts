@@ -5,6 +5,7 @@ import { ECustomInvoice } from '../@entity/e-custom-invoice'
 import { ToasterService } from 'angular2-toaster'
 import { Msg } from '../@config/toastr.config'
 import { ETrxInvoice } from '../@entity/e-trx-invoice'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +18,9 @@ export class InvoiceService {
 
   async search(toast: ToasterService, type = 0, query = ''): Promise<Array<ECustomInvoice>> {
     this.loader.increase()
-    let arr = new Array()
+    let arr = []
     try {
-      let r = await this.http.get<any>('api/trx/search-invoice?where=' + query + '&type=' + type).toPromise()
+      let r = await this.http.get<any>(environment.api + '/trx/search-invoice?where=' + query + '&type=' + type).toPromise()
       if ('list' in r[ 'data' ]) {
         for (let i = 0; i < r[ 'data' ][ 'list' ].length; i++) {
           let inv: ECustomInvoice = new ECustomInvoice()
@@ -40,7 +41,7 @@ export class InvoiceService {
     this.loader.increase()
     let n: number
     try {
-      let r = await this.http.get<any>('api/trx/toggle-void/' + id).toPromise()
+      let r = await this.http.get<any>(environment.api + '/trx/toggle-void/' + id).toPromise()
       if (!!r[ 'data' ][ 'status' ]) {
         (n = parseInt(r[ 'data' ][ 'status' ]))
         toast.pop(Msg.success('', 'Status berhasil diubah.'))
@@ -58,7 +59,7 @@ export class InvoiceService {
     this.loader.increase()
     let n: number
     try {
-      let r = await this.http.get<any>('api/trx/change-contact/' + idInvoice + '/' + idContact).toPromise()
+      let r = await this.http.get<any>(environment.api + '/trx/change-contact/' + idInvoice + '/' + idContact).toPromise()
       if (!!r[ 'data' ][ 'status' ]) {
         (n = parseInt(r[ 'data' ][ 'status' ]))
         toast.pop(Msg.success('', 'Kontak berhasil diubah.'))
@@ -76,7 +77,7 @@ export class InvoiceService {
     this.loader.increase()
     let obj: ETrxInvoice = new ETrxInvoice()
     try {
-      let r = await this.http.get<any>('api/trx/bring-back/' + id).toPromise()
+      let r = await this.http.get<any>(environment.api + '/trx/bring-back/' + id).toPromise()
       if (!!r && 'object' in r[ 'data' ]) {
         obj.populate(r[ 'data' ][ 'object' ])
       }

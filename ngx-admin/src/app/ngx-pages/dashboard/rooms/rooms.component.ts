@@ -1,6 +1,6 @@
-import { Component, HostBinding, OnDestroy } from '@angular/core';
-import { NbThemeService, NbMediaBreakpoint, NbMediaBreakpointsService } from '@nebular/theme';
-import { map } from 'rxjs/operators';
+import { Component, HostBinding, OnDestroy } from '@angular/core'
+import { NbMediaBreakpoint, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme'
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'ngx-rooms',
@@ -19,59 +19,57 @@ import { map } from 'rxjs/operators';
 })
 export class RoomsComponent implements OnDestroy {
 
+  isDarkTheme: boolean
+  breakpoint: NbMediaBreakpoint
+  breakpoints: any
+  themeSubscription: any
+  themeChangeSubscription: any
   @HostBinding('class.expanded')
-  private expanded: boolean;
-  private selected: number;
-
-  isDarkTheme: boolean;
-
-  breakpoint: NbMediaBreakpoint;
-  breakpoints: any;
-  themeSubscription: any;
-  themeChangeSubscription: any;
+  private expanded: boolean
+  private selected: number
 
   constructor(private themeService: NbThemeService,
               private breakpointService: NbMediaBreakpointsService) {
 
-    this.breakpoints = this.breakpointService.getBreakpointsMap();
+    this.breakpoints = this.breakpointService.getBreakpointsMap()
     this.themeSubscription = this.themeService.onMediaQueryChange()
       .subscribe(([, newValue]) => {
-        this.breakpoint = newValue;
-      });
+        this.breakpoint = newValue
+      })
 
     this.themeChangeSubscription = this.themeService.onThemeChange()
       .pipe(map(({ name }) => name === 'cosmic' || name === 'dark'))
-      .subscribe((isDark: boolean) => this.isDarkTheme = isDark);
+      .subscribe((isDark: boolean) => this.isDarkTheme = isDark)
   }
 
   select(roomNumber) {
     if (this.isSelected(roomNumber)) {
-      this.expand();
+      this.expand()
     } else {
-      this.collapse();
+      this.collapse()
     }
 
-    this.selected = roomNumber;
+    this.selected = roomNumber
   }
 
   expand() {
-    this.expanded = true;
+    this.expanded = true
   }
 
   collapse() {
-    this.expanded = false;
+    this.expanded = false
   }
 
   isCollapsed() {
-    return !this.expanded;
-  }
-
-  private isSelected(roomNumber): boolean {
-    return this.selected === roomNumber;
+    return !this.expanded
   }
 
   ngOnDestroy() {
-    this.themeSubscription.unsubscribe();
-    this.themeChangeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
+    this.themeChangeSubscription.unsubscribe()
+  }
+
+  private isSelected(roomNumber): boolean {
+    return this.selected === roomNumber
   }
 }

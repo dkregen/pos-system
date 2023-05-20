@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'ngx-profit-card',
@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ProfitCardComponent {
 
-  flipped = false;
+  flipped = false
 
   toggleView() {
-    this.flipped = !this.flipped;
+    this.flipped = !this.flipped
   }
 }

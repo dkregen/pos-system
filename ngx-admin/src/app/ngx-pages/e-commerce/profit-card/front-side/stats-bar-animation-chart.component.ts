@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
 @Component({
   selector: 'ngx-stats-bar-animation-chart',
@@ -15,15 +15,13 @@ import { LayoutService } from '../../../../@core/utils/layout.service';
 })
 export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy {
 
-  private alive = true;
-
   @Input() linesData: { firstLine: number[]; secondLine: number[] } = {
     firstLine: [],
     secondLine: [],
-  };
-
-  echartsIntance: any;
-  options: any = {};
+  }
+  echartsIntance: any
+  options: any = {}
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -31,17 +29,17 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngAfterViewInit() {
     this.theme.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(config => {
-        const profitBarAnimationEchart: any = config.variables.profitBarAnimationEchart;
+        const profitBarAnimationEchart: any = config.variables.profitBarAnimationEchart
 
-        this.setChartOption(profitBarAnimationEchart);
-    });
+        this.setChartOption(profitBarAnimationEchart)
+      })
   }
 
   setChartOption(chartVariables) {
@@ -79,7 +77,7 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
         backgroundColor: chartVariables.tooltipBg,
         borderColor: chartVariables.tooltipBorderColor,
         borderWidth: chartVariables.tooltipBorderWidth,
-        formatter: params => `$ ${Math.round(parseInt(params.value, 10))}`,
+        formatter: params => `$ ${ Math.round(parseInt(params.value, 10)) }`,
         extraCssText: chartVariables.tooltipExtraCss,
       },
       xAxis: [
@@ -134,20 +132,20 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
       ],
       animationEasing: 'elasticOut',
       animationDelayUpdate: idx => idx * 5,
-    };
+    }
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
     if (this.echartsIntance) {
-      this.echartsIntance.resize();
+      this.echartsIntance.resize()
     }
   }
 
   ngOnDestroy(): void {
-    this.alive = false;
+    this.alive = false
   }
 }

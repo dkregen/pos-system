@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs'
 
 export interface OutlineData {
   label: string;
@@ -7,6 +7,8 @@ export interface OutlineData {
 
 export abstract class VisitorsAnalyticsData {
   abstract getInnerLineChartData(): Observable<number[]>;
+
   abstract getOutlineLineChartData(): Observable<OutlineData[]>;
+
   abstract getPieChartData(): Observable<number>;
 }

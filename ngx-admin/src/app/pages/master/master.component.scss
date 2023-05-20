@@ -4,6 +4,7 @@
 @include nb-install-component() {
   .table {
     font-family: "Exo";
+
     &, * {
       font-weight: 400 !important;
       border-width: 1px !important;
@@ -18,7 +19,7 @@
       text-align: center;
     }
 
-    th,td {
+    th, td {
       padding: 5px 12px;
     }
 
@@ -33,6 +34,7 @@
       .sortable {
         cursor: pointer;
       }
+
       .sort {
         &:after {
           content: '\e95c';
@@ -51,38 +53,44 @@
           margin: 0;
           color: #00d99c;
         }
-        &.desc{
-          &:after{
+
+        &.desc {
+          &:after {
             content: '\e95f' !important;
           }
         }
       }
+
       @include nb-for-theme(cosmic) {
         background-color: #494299;
       }
       line-height: 30px;
+
       .no {
         width: 50px;
       }
+
       .actions {
         text-align: center;
       }
     }
 
     tbody {
-      tr{
+      tr {
         &:nth-child(2n) {
           background-color: #f9f9f9;
           @include nb-for-theme(cosmic) {
             background-color: #3a347a;
           }
         }
+
         &:hover td {
           background-color: #e5e5e5;
           @include nb-for-theme(cosmic) {
             background-color: #494299;
           }
         }
+
         td {
           height: 38px;
         }
@@ -112,7 +120,8 @@
           &:before {
             content: '\e943';
           }
-          &:hover{
+
+          &:hover {
             color: #00d977 !important;
           }
         }
@@ -121,7 +130,8 @@
           &:before {
             content: '\e91f';
           }
-          &:hover{
+
+          &:hover {
             color: #00d977 !important;
           }
         }
@@ -130,7 +140,8 @@
           &:before {
             content: '\e947';
           }
-          &:hover{
+
+          &:hover {
             color: #f44336 !important;
           }
         }
@@ -146,30 +157,35 @@
         border: 1px solid #2e2869;
       }
       box-shadow: 0 0 1px #0000004a;
+
       button {
         position: relative;
         line-height: 12px;
         margin: 0;
         padding: 10px 14px;
         border-radius: 0 !important;
-        background-color: #8a8a8a ;
+        background-color: #8a8a8a;
         @include nb-for-theme(cosmic) {
           background-color: #3F51B5;
         }
         border: none !important;
         height: 35px;
         min-width: 35px;
+
         &:hover {
           background-color: #2196f3;
         }
+
         &.active {
           background-color: #10db8b;
         }
+
         &.disabled {
           background-color: #8a8a8a !important;
           @include nb-for-theme(cosmic) {
             background-color: #3F51B5 !important;
           }
+
           &:after {
             content: ' ';
             width: 100%;
@@ -181,14 +197,17 @@
           }
         }
       }
+
       .arrow {
         padding-left: 10px;
         padding-right: 10px;
       }
+
       .group-number {
         display: inline-block;
       }
     }
+
     .pagination-description {
       text-align: right;
       display: block;

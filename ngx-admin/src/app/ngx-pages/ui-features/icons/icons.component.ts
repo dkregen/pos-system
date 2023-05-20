@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NbIconLibraries } from '@nebular/theme';
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { NbIconLibraries } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-icons',
@@ -9,17 +9,7 @@ import { NbIconLibraries } from '@nebular/theme';
 })
 export class IconsComponent {
 
-  evaIcons = [];
-
-  constructor(iconsLibrary: NbIconLibraries) {
-    this.evaIcons = Array.from(iconsLibrary.getPack('eva').icons.keys())
-      .filter(icon => icon.indexOf('outline') === -1);
-
-    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' });
-    iconsLibrary.registerFontPack('far', { packClass: 'far', iconClassPrefix: 'fa' });
-    iconsLibrary.registerFontPack('ion', { iconClassPrefix: 'ion' });
-  }
-
+  evaIcons = []
   icons = {
 
     ionicons: [
@@ -47,7 +37,16 @@ export class IconsComponent {
       'briefcase', 'bug', 'building', 'bullhorn',
     ],
 
-    fontAwesomeRegular: [ 'chart-bar', 'bell', 'bell-slash', 'bookmark', 'building' ],
-  };
+    fontAwesomeRegular: ['chart-bar', 'bell', 'bell-slash', 'bookmark', 'building'],
+  }
+
+  constructor(iconsLibrary: NbIconLibraries) {
+    this.evaIcons = Array.from(iconsLibrary.getPack('eva').icons.keys())
+      .filter(icon => icon.indexOf('outline') === -1)
+
+    iconsLibrary.registerFontPack('fa', { packClass: 'fa', iconClassPrefix: 'fa' })
+    iconsLibrary.registerFontPack('far', { packClass: 'far', iconClassPrefix: 'fa' })
+    iconsLibrary.registerFontPack('ion', { iconClassPrefix: 'ion' })
+  }
 
 }

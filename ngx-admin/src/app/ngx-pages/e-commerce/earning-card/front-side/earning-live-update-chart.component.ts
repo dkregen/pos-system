@@ -1,7 +1,7 @@
-import { delay, takeWhile } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { delay, takeWhile } from 'rxjs/operators'
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
 @Component({
   selector: 'ngx-earning-live-update-chart',
@@ -14,12 +14,10 @@ import { LayoutService } from '../../../../@core/utils/layout.service';
   `,
 })
 export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy, OnChanges {
-  private alive = true;
-
-  @Input() liveUpdateChartData: { value: [string, number] }[];
-
-  option: any;
-  echartsInstance;
+  @Input() liveUpdateChartData: { value: [string, number] }[]
+  option: any
+  echartsInstance
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -27,12 +25,12 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngOnChanges(): void {
     if (this.option) {
-      this.updateChartOptions(this.liveUpdateChartData);
+      this.updateChartOptions(this.liveUpdateChartData)
     }
   }
 
@@ -43,10 +41,10 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
         takeWhile(() => this.alive),
       )
       .subscribe(config => {
-        const earningLineTheme: any = config.variables.earningLine;
+        const earningLineTheme: any = config.variables.earningLine
 
-        this.setChartOption(earningLineTheme);
-      });
+        this.setChartOption(earningLineTheme)
+      })
   }
 
   setChartOption(earningLineTheme) {
@@ -100,7 +98,7 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
         backgroundColor: earningLineTheme.tooltipBg,
         borderColor: earningLineTheme.tooltipBorderColor,
         borderWidth: earningLineTheme.tooltipBorderWidth,
-        formatter: params => `$ ${Math.round(parseInt(params.value[1], 10))}`,
+        formatter: params => `$ ${ Math.round(parseInt(params.value[ 1 ], 10)) }`,
         extraCssText: earningLineTheme.tooltipExtraCss,
       },
       series: [
@@ -137,7 +135,7 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
         },
       ],
       animation: true,
-    };
+    }
   }
 
   updateChartOptions(chartData: { value: [string, number] }[]) {
@@ -145,20 +143,20 @@ export class EarningLiveUpdateChartComponent implements AfterViewInit, OnDestroy
       series: [{
         data: chartData,
       }],
-    });
+    })
   }
 
   onChartInit(ec) {
-    this.echartsInstance = ec;
+    this.echartsInstance = ec
   }
 
   resizeChart() {
     if (this.echartsInstance) {
-      this.echartsInstance.resize();
+      this.echartsInstance.resize()
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

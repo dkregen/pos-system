@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'ngx-tab1',
@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
     </p>
   `,
 })
-export class Tab1Component { }
+export class Tab1Component {}
 
 @Component({
   selector: 'ngx-tab2',
@@ -20,7 +20,7 @@ export class Tab1Component { }
     <p>Tab 2 works!</p>
   `,
 })
-export class Tab2Component { }
+export class Tab2Component {}
 
 @Component({
   selector: 'ngx-tabs',
@@ -38,6 +38,6 @@ export class TabsComponent {
       title: 'Route tab #2',
       route: '/pages/layout/tabs/tab2',
     },
-  ];
+  ]
 
 }

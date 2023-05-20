@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'ngx-traffic-bar',
@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TrafficBarComponent {
 
-  @Input() barData: { prevDate: string; prevValue: number; nextDate: string; nextValue: number };
-  @Input() successDelta: boolean;
+  @Input() barData: { prevDate: string; prevValue: number; nextDate: string; nextValue: number }
+  @Input() successDelta: boolean
 }

@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-d3-line',
@@ -58,27 +58,27 @@ export class D3LineComponent implements OnDestroy {
         },
       ],
     },
-  ];
-  showLegend = true;
-  showXAxis = true;
-  showYAxis = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
-  colorScheme: any;
-  themeSubscription: any;
+  ]
+  showLegend = true
+  showXAxis = true
+  showYAxis = true
+  showXAxisLabel = true
+  xAxisLabel = 'Country'
+  showYAxisLabel = true
+  yAxisLabel = 'Population'
+  colorScheme: any
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-      const colors: any = config.variables;
+      const colors: any = config.variables
       this.colorScheme = {
         domain: [colors.primaryLight, colors.infoLight, colors.successLight, colors.warningLight, colors.dangerLight],
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

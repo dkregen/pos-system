@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { of as observableOf, Observable } from 'rxjs';
-import { ProgressInfo, StatsProgressBarData } from '../data/stats-progress-bar';
+import { Injectable } from '@angular/core'
+import { Observable, of as observableOf } from 'rxjs'
+import { ProgressInfo, StatsProgressBarData } from '../data/stats-progress-bar'
 
 @Injectable()
 export class StatsProgressBarService extends StatsProgressBarData {
@@ -23,9 +23,9 @@ export class StatsProgressBarService extends StatsProgressBarData {
       activeProgress: 55,
       description: 'Better than last week (55%)',
     },
-  ];
+  ]
 
   getProgressInfoData(): Observable<ProgressInfo[]> {
-    return observableOf(this.progressInfoData);
+    return observableOf(this.progressInfoData)
   }
 }

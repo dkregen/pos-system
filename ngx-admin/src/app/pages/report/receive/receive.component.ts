@@ -34,11 +34,31 @@ export class ReceiveComponent implements OnInit {
 
   protected config = ToastrConfig
   protected inv: ETrxInvoice = new ETrxInvoice()
-  protected result: Array<EReportTransaction> = new Array()
+  protected result: Array<EReportTransaction> = []
   protected txtStatus = ETrxInvoice.status
   protected shownInvoice: boolean = false
   protected shownContact: boolean = false
   protected pic: EUser = new EUser()
+  protected total = {
+    bruto: 0,
+    tax: 0,
+    short: 0,
+    discount: 0,
+    nett: 0,
+    cash: 0,
+    arap: 0,
+  }
+  protected parameter: any = {
+    arap: -1,
+    contact: '',
+    date: {},
+    dateStart: '',
+    dateEnd: '',
+    invNo: '',
+    pic: '',
+    status: '',
+    useDateBetween: true,
+  }
   private selectedInvoiceId: string = ''
   private formSearch: any
 
@@ -51,56 +71,6 @@ export class ReceiveComponent implements OnInit {
     private auth: AuthGuard,
     private transactionService: TransactionService,
   ) {}
-
-  protected total = {
-    bruto: 0,
-    tax: 0,
-    short: 0,
-    discount: 0,
-    nett: 0,
-    cash: 0,
-    arap: 0,
-  }
-
-  protected setTotalEmpty() {
-    this.total = {
-      bruto: 0,
-      tax: 0,
-      short: 0,
-      discount: 0,
-      nett: 0,
-      cash: 0,
-      arap: 0,
-    }
-  }
-
-  protected addTotal(i: number, item: EReportTransaction) {
-    if (i == 0) {
-      this.setTotalEmpty()
-    }
-
-    this.total.bruto += item.amount
-    this.total.tax += item.taxIncluded
-    this.total.short += item.shortCost
-    this.total.discount += item.discount
-    this.total.nett += item.nettWorth
-    this.total.cash += item.cash
-    this.total.arap += item.arap
-
-    return i + 1
-  }
-
-  protected parameter: any = {
-    arap: -1,
-    contact: '',
-    date: {},
-    dateStart: '',
-    dateEnd: '',
-    invNo: '',
-    pic: '',
-    status: '',
-    useDateBetween: true,
-  }
 
   attachInvoice(invoice: ETrxInvoice) {
     this.inv = invoice
@@ -209,5 +179,33 @@ export class ReceiveComponent implements OnInit {
       this.parameter.date.start = Moment(this.parameter.date.end).startOf('month').toDate()
       this.submitSearch()
     })()
+  }
+
+  protected setTotalEmpty() {
+    this.total = {
+      bruto: 0,
+      tax: 0,
+      short: 0,
+      discount: 0,
+      nett: 0,
+      cash: 0,
+      arap: 0,
+    }
+  }
+
+  protected addTotal(i: number, item: EReportTransaction) {
+    if (i == 0) {
+      this.setTotalEmpty()
+    }
+
+    this.total.bruto += item.amount
+    this.total.tax += item.taxIncluded
+    this.total.short += item.shortCost
+    this.total.discount += item.discount
+    this.total.nett += item.nettWorth
+    this.total.cash += item.cash
+    this.total.arap += item.arap
+
+    return i + 1
   }
 }

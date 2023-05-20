@@ -13,10 +13,8 @@ import { Subject } from 'rxjs'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  private destroy$: Subject<void> = new Subject<void>()
   userPictureOnly: boolean = false
   user: any
-
   themes = [
     {
       value: 'default',
@@ -35,10 +33,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       name: 'Corporate',
     },
   ]
-
   currentTheme = 'default'
-
   userMenu = [{ title: 'Profile' }, { title: 'Log out' }]
+  private destroy$: Subject<void> = new Subject<void>()
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,

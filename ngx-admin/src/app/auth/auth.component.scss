@@ -1,4 +1,5 @@
-:host /*deep*/{
+:host :host ::ng-deep
+{
   $auth-layout-padding: 2.5rem;
 
   nb-layout .layout .layout-container .content .columns nb-layout-column {
@@ -12,6 +13,7 @@
   nb-card-header {
     a {
       text-decoration: none;
+
       i {
         font-size: 2rem;
         font-weight: bold;
@@ -22,16 +24,19 @@
   nb-card {
     margin: 0;
   }
+
   .flex-centered {
-      margin: auto;
+    margin: auto;
   }
+
   nb-card-body {
     display: flex;
   }
 
   // TODO rewrite when develop responsive
   @media (max-width: 550px) {
-    /*deep*/nb-layout .layout .layout-container .content .columns nb-layout-column {
+    :host ::ng-deep
+    nb-layout .layout .layout-container .content .columns nb-layout-column {
       padding: 0;
     }
 

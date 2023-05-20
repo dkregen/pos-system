@@ -109,7 +109,7 @@ export class AuthGuard implements CanActivate {
       },
     }
 
-    let menu: any = new Array()
+    let menu: any = []
     let user = new EUser()
     switch (parseInt(this.payload?.privilege)) {
       case user.PRIV_OWNER:

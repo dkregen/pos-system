@@ -4,8 +4,8 @@
       <nb-card-header>
         <div class="pull-left">Data Satuan</div>
         <div class="pull-right">
-          <button class="btn btn-header btn-icon" (click)="resetData()">RESET</button>
-          <button title="Cari" class="btn btn-header btn-icon" (click)="formSearch.toggle()">
+          <button (click)="resetData()" class="btn btn-header btn-icon">RESET</button>
+          <button (click)="formSearch.toggle()" class="btn btn-header btn-icon" title="Cari">
             <i class="ion-search"></i>
           </button>
         </div>
@@ -20,41 +20,42 @@
               <tr>
                 <th class="no">No.</th>
                 <th class="actions" colspan="2">Actions</th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.name)"
-                  [class.sort] = "isSort(oHead.NAMES.name)"
-                  [class.desc] = "isDesc()">
+                <th (click)="doSort(oHead.NAMES.name)"
+                  [class.desc]="isDesc()"
+                  [class.sort]="isSort(oHead.NAMES.name)"
+                  class="sortable">
                   Nama
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.uname)"
-                  [class.sort] = "isSort(oHead.NAMES.uname)"
-                  [class.desc] = "isDesc()">
+                <th (click)="doSort(oHead.NAMES.uname)"
+                  [class.desc]="isDesc()"
+                  [class.sort]="isSort(oHead.NAMES.uname)"
+                  class="sortable">
                   Username
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.mail)"
-                  [class.sort] = "isSort(oHead.NAMES.mail)"
-                  [class.desc] = "isDesc()">
+                <th (click)="doSort(oHead.NAMES.mail)"
+                  [class.desc]="isDesc()"
+                  [class.sort]="isSort(oHead.NAMES.mail)"
+                  class="sortable">
                   Email
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.priv)"
-                  [class.sort] = "isSort(oHead.NAMES.priv)"
-                  [class.desc] = "isDesc()">
+                <th (click)="doSort(oHead.NAMES.priv)"
+                  [class.desc]="isDesc()"
+                  [class.sort]="isSort(oHead.NAMES.priv)"
+                  class="sortable">
                   Hak Akses
                 </th>
-                <th class="sortable"
-                  (click)="doSort(oHead.NAMES.status)"
-                  [class.sort] = "isSort(oHead.NAMES.status)"
-                  [class.desc] = "isDesc()">
+                <th (click)="doSort(oHead.NAMES.status)"
+                  [class.desc]="isDesc()"
+                  [class.sort]="isSort(oHead.NAMES.status)"
+                  class="sortable">
                   Status
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of users | paginate: { id: 'foo', itemsPerPage: 10, currentPage: page, totalItems: count }; let i = index">
-                <td class="no">{{((page-1)*numOfList)+i+1}}</td>
+              <tr
+                *ngFor="let user of users | paginate: { id: 'foo', itemsPerPage: 10, currentPage: page, totalItems: count }; let i = index">
+                <td class="no">{{((page - 1) * numOfList) + i + 1}}</td>
                 <td (click)="edit(user)" class="action edit"></td>
                 <td (click)="toggleStatus(user)" class="action power"></td>
                 <td>{{user.name}}</td>
@@ -65,17 +66,19 @@
               </tr>
             </tbody>
           </table>
-          <pagination-template [id]="'foo'" #p="paginationApi" [maxSize]="6" (pageChange)="changeList($event)">
+          <pagination-template #p="paginationApi" (pageChange)="changeList($event)" [id]="'foo'" [maxSize]="6">
             <div class="btn-group btn-group-toggle pagination">
               <div class="pagination-description">Ditemukan {{count}} data.</div>
               <div class="pagination-content">
-                <button class="btn btn-success arrow" [class.disabled]="p.isFirstPage()" (click)="p.isFirstPage() || p.previous()"><i
-                    class="nb-arrow-left"></i></button>
+                <button (click)="p.isFirstPage() || p.previous()" [class.disabled]="p.isFirstPage()"
+                  class="btn btn-success arrow"><i
+                  class="nb-arrow-left"></i></button>
                 <div class="group-number">
-                  <button class="btn btn-success" (click)="p.setCurrent(page.value)" *ngFor="let page of p.pages"
-                    [class.active]="p.getCurrent() === page.value">{{ page.label }}</button>
+                  <button (click)="p.setCurrent(page.value)" *ngFor="let page of p.pages" [class.active]="p.getCurrent() === page.value"
+                    class="btn btn-success">{{ page.label }}</button>
                 </div>
-                <button class="btn btn-success arrow" [class.disabled]="p.isLastPage()" (click)="p.isLastPage() || p.next()"><i class="nb-arrow-right"></i></button>
+                <button (click)="p.isLastPage() || p.next()" [class.disabled]="p.isLastPage()"
+                  class="btn btn-success arrow"><i class="nb-arrow-right"></i></button>
               </div>
             </div>
           </pagination-template>

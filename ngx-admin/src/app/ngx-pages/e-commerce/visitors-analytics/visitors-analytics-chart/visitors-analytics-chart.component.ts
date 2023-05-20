@@ -1,8 +1,8 @@
-import { delay, takeWhile } from 'rxjs/operators';
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { LayoutService } from '../../../../@core/utils';
-import { OutlineData } from '../../../../@core/data/visitors-analytics';
+import { delay, takeWhile } from 'rxjs/operators'
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { LayoutService } from '../../../../@core/utils'
+import { OutlineData } from '../../../../@core/data/visitors-analytics'
 
 @Component({
   selector: 'ngx-visitors-analytics-chart',
@@ -18,16 +18,14 @@ import { OutlineData } from '../../../../@core/data/visitors-analytics';
 })
 export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, OnDestroy {
 
-  private alive = true;
-
   @Input() chartData: {
     innerLine: number[];
     outerLine: OutlineData[];
-  };
-
-  option: any;
-  themeSubscription: any;
-  echartsIntance: any;
+  }
+  option: any
+  themeSubscription: any
+  echartsIntance: any
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -35,7 +33,7 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngAfterViewInit(): void {
@@ -45,10 +43,10 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         takeWhile(() => this.alive),
       )
       .subscribe(config => {
-        const eTheme: any = config.variables.visitors;
+        const eTheme: any = config.variables.visitors
 
-        this.setOptions(eTheme);
-    });
+        this.setOptions(eTheme)
+      })
   }
 
   setOptions(eTheme) {
@@ -78,7 +76,7 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         borderColor: eTheme.tooltipBorderColor,
         borderWidth: 1,
         formatter: (params) => {
-          return Math.round(parseInt(params[0].value, 10));
+          return Math.round(parseInt(params[ 0 ].value, 10))
         },
         extraCssText: eTheme.tooltipExtraCss,
       },
@@ -129,7 +127,7 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         this.getInnerLine(eTheme),
         this.getOuterLine(eTheme),
       ],
-    };
+    }
   }
 
   getOuterLine(eTheme) {
@@ -143,9 +141,9 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         },
         emphasis: {
           color: '#ffffff',
-            borderColor: eTheme.itemBorderColor,
-            borderWidth: 2,
-            opacity: 1,
+          borderColor: eTheme.itemBorderColor,
+          borderWidth: 2,
+          opacity: 1,
         },
       },
       lineStyle: {
@@ -176,7 +174,7 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         },
       },
       data: this.chartData.outerLine.map(i => i.value),
-    };
+    }
   }
 
   getInnerLine(eTheme) {
@@ -216,20 +214,20 @@ export class ECommerceVisitorsAnalyticsChartComponent implements AfterViewInit, 
         },
       },
       data: this.chartData.innerLine,
-    };
+    }
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
     if (this.echartsIntance) {
-      this.echartsIntance.resize();
+      this.echartsIntance.resize()
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

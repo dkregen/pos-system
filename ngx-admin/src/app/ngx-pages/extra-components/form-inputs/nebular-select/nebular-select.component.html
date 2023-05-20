@@ -3,7 +3,7 @@
     <nb-card>
       <nb-card-header>Select</nb-card-header>
       <nb-card-body>
-        <nb-select placeholder="Select Showcase" [(selected)]="commonSelectedItem">
+        <nb-select [(selected)]="commonSelectedItem" placeholder="Select Showcase">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
@@ -60,7 +60,7 @@
     <nb-card>
       <nb-card-header>Custom Label</nb-card-header>
       <nb-card-body>
-        <nb-select placeholder="Custom Label" [(selected)]="selectedItem">
+        <nb-select [(selected)]="selectedItem" placeholder="Custom Label">
           <nb-select-label>
             Selected: {{ selectedItem }}
           </nb-select-label>
@@ -118,21 +118,21 @@
 
         <nb-select placeholder="Disabled Items">
           <nb-option value="1">Option 1</nb-option>
-          <nb-option value="2" disabled>Option 2</nb-option>
+          <nb-option disabled value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
-          <nb-option value="4" disabled>Option 4</nb-option>
+          <nb-option disabled value="4">Option 4</nb-option>
         </nb-select>
 
         <nb-select placeholder="Disabled Groups">
 
           <nb-option-group title="Group 1">
             <nb-option value="1">Option 1</nb-option>
-            <nb-option value="2" disabled>Option 2</nb-option>
+            <nb-option disabled value="2">Option 2</nb-option>
             <nb-option value="3">Option 3</nb-option>
             <nb-option value="4">Option 4</nb-option>
           </nb-option-group>
 
-          <nb-option-group title="Group 2" disabled>
+          <nb-option-group disabled title="Group 2">
             <nb-option value="21">Option 21</nb-option>
             <nb-option value="22">Option 22</nb-option>
             <nb-option value="23">Option 23</nb-option>
@@ -261,35 +261,35 @@
     <nb-card>
       <nb-card-header>Outline Select</nb-card-header>
       <nb-card-body class="select-group">
-        <nb-select placeholder="Primary" outline status="primary">
+        <nb-select outline placeholder="Primary" status="primary">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Info" outline status="info">
+        <nb-select outline placeholder="Info" status="info">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Danger" outline status="danger">
+        <nb-select outline placeholder="Danger" status="danger">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Success" outline status="success">
+        <nb-select outline placeholder="Success" status="success">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Warning" outline status="warning">
+        <nb-select outline placeholder="Warning" status="warning">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
@@ -304,35 +304,35 @@
     <nb-card>
       <nb-card-header>Select Colors</nb-card-header>
       <nb-card-body class="select-group">
-        <nb-select placeholder="Primary" hero status="primary">
+        <nb-select hero placeholder="Primary" status="primary">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Info" hero status="info">
+        <nb-select hero placeholder="Info" status="info">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Danger" hero status="danger">
+        <nb-select hero placeholder="Danger" status="danger">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Success" hero status="success">
+        <nb-select hero placeholder="Success" status="success">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>
           <nb-option value="4">Option 4</nb-option>
         </nb-select>
 
-        <nb-select placeholder="Warning" hero status="warning">
+        <nb-select hero placeholder="Warning" status="warning">
           <nb-option value="1">Option 1</nb-option>
           <nb-option value="2">Option 2</nb-option>
           <nb-option value="3">Option 3</nb-option>

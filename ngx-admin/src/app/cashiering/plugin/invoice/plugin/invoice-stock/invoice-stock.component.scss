@@ -5,12 +5,14 @@
 .transaction-item {
   .item-data {
     margin-bottom: 0;
+
     th, td {
       color: white;
       border: 1px solid #000;
       position: relative;
       vertical-align: middle;
     }
+
     th {
       background: #1f1f1f;
       font-weight: bold;
@@ -18,18 +20,22 @@
       position: sticky;
       top: 0;
       z-index: 100;
+
       &.note, &.changes, &.movement {
         text-align: center;
         width: 100px;
       }
     }
+
     tbody tr {
       td {
         background-color: #101010;
       }
+
       &:nth-child(2n) td {
         background-color: #151515;
       }
+
       &.subtitle {
         td {
           height: 10px;
@@ -38,6 +44,7 @@
           color: #8BC34A;
         }
       }
+
       &:hover {
         td {
           background-color: #ffc06242;
@@ -48,8 +55,9 @@
 
   .delete {
     &:hover {
-      background-color:#401010 !important;
+      background-color: #401010 !important;
     }
+
     width: 46px;
     text-align: center;
     speak: none;
@@ -65,17 +73,20 @@
     cursor: pointer;
     padding-left: 0;
     padding-right: 0;
+
     &:before {
       color: #c75757;
       content: '\e90e';
     }
   }
 
-  /*deep*/.form-control-container input:focus {
-    padding:10px 12px;
+  :host ::ng-deep
+  .form-control-container input:focus {
+    padding: 10px 12px;
   }
 
-  /*deep*/.form-control-container input, input {
+  :host ::ng-deep
+  .form-control-container input, input {
     position: absolute;
     left: 0;
     top: 0;
@@ -93,14 +104,18 @@
         width: 136px;
       }
 
-      /*deep*/.discount-percentage {
+      :host ::ng-deep
+      .discount-percentage {
         width: 84px;
+
         input {
           padding-right: 30px !important;
+
           &:focus {
             padding-right: 30px;
           }
         }
+
         &:after {
           display: block;
           position: absolute;
@@ -112,15 +127,19 @@
           top: 0;
         }
       }
+
       .discount-nominal {
         width: 136px;
       }
+
       .qty {
         width: 45px;
+
         * {
           text-align: center !important;
         }
       }
+
       .total {
         width: 146px;
       }

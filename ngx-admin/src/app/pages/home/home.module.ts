@@ -1,7 +1,7 @@
-import { ThemeModule } from "../../@theme/theme.module";
-import { NgxEchartsModule } from "ngx-echarts";
-import { NgModule } from "@angular/core";
-import { HomeComponent } from "./home.component";
+import { ThemeModule } from '../../@theme/theme.module'
+import { NgxEchartsModule } from 'ngx-echarts'
+import { NgModule } from '@angular/core'
+import { HomeComponent } from './home.component'
 
 @NgModule({
   imports: [
@@ -9,7 +9,7 @@ import { HomeComponent } from "./home.component";
     NgxEchartsModule,
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
 })
-export class HomeModule { }
+export class HomeModule {}

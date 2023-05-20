@@ -1,14 +1,16 @@
 @import "./../../master/master.component.scss";
 
 .form-group.row {
-  &>label {
+  & > label {
     line-height: 40px;
     text-align: right;
   }
 }
 
-/*deep*/ td,
-/*deep*/ td * {
+:host ::ng-deep
+td,
+  :host ::ng-deep
+td * {
   font-family: "Lato", "Roboto";
 }
 
@@ -24,15 +26,18 @@ th {
   text-align: center;
 }
 
-/*deep*/ div.amount {
+:host ::ng-deep
+div.amount {
   text-align: right;
 }
 
-/*deep*/ .invoice-container .modal-content {
+:host ::ng-deep
+.invoice-container .modal-content {
   background: none !important;
 }
 
-/*deep*/ .invoice-container {
+:host ::ng-deep
+.invoice-container {
   .modal-container {
     height: 100%;
 
@@ -79,7 +84,7 @@ th {
   text-align: right;
 }
 
-tr#total>td.txt-total {
+tr#total > td.txt-total {
   font-weight: bold !important;
   text-align: right;
 }
@@ -121,13 +126,16 @@ h3 {
 #table-detail-stock {
   width: 100%;
   margin-bottom: 20px;
+
   td {
     padding: 5px;
     font-size: 14px;
     font-family: "Exo";
+
     &.title {
       width: 129px;
     }
+
     &.div {
       width: 5px;
     }

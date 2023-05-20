@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-echarts-bar-animation',
@@ -8,20 +8,20 @@ import { NbThemeService } from '@nebular/theme';
   `,
 })
 export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
-  options: any = {};
-  themeSubscription: any;
+  options: any = {}
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
   }
 
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-      const xAxisData = [];
-      const data1 = [];
-      const data2 = [];
+      const xAxisData = []
+      const data1 = []
+      const data2 = []
 
-      const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      const colors: any = config.variables
+      const echarts: any = config.variables.echarts
 
       this.options = {
         backgroundColor: echarts.bg,
@@ -87,17 +87,17 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
         ],
         animationEasing: 'elasticOut',
         animationDelayUpdate: idx => idx * 5,
-      };
+      }
 
       for (let i = 0; i < 100; i++) {
-        xAxisData.push('Category ' + i);
-        data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
-        data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
+        xAxisData.push('Category ' + i)
+        data1.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
+        data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5)
       }
-    });
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'ngx-nebular-select',
@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class NebularSelectComponent {
 
-  commonSelectedItem = '2';
-  selectedItem;
+  commonSelectedItem = '2'
+  selectedItem
 }

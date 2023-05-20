@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core'
 import { ETrxInvoice } from '../@entity/e-trx-invoice'
 import { Msg } from '../@config/toastr.config'
 import { ToasterService } from 'angular2-toaster'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class TransactionService {
     this.loader.increase()
     try {
       let json = JSON.parse(JSON.stringify(inv))
-      let r = await this.http.post('api/trx/insert', json).toPromise()
+      let r = await this.http.post(environment.api + '/trx/insert', json).toPromise()
       console.log('dariService', r)
       let obj = r[ 'data' ][ 'object' ]
       if (obj != undefined && !!obj) {

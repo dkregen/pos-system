@@ -1,5 +1,5 @@
 <nb-card-header>
-  <nb-select [selected]="selectedCurrency" (selectedChange)="changeCurrency($event)">
+  <nb-select (selectedChange)="changeCurrency($event)" [selected]="selectedCurrency">
     <nb-option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</nb-option>
   </nb-select>
 </nb-card-header>
@@ -7,12 +7,12 @@
   <div class="chart-info">
     <div>Daily Income</div>
     <div class="h6">{{ earningLiveUpdateCardData.dailyIncome | ngxNumberWithCommas }}</div>
-    <div class="delta"
-         [class.up]="earningLiveUpdateCardData.delta.up"
-         [class.down]="!earningLiveUpdateCardData.delta.up">
+    <div [class.down]="!earningLiveUpdateCardData.delta.up"
+      [class.up]="earningLiveUpdateCardData.delta.up"
+      class="delta">
       <nb-icon [icon]="earningLiveUpdateCardData.delta.up ? 'arrow-up' : 'arrow-down'"
-               pack="eva"
-               class="direction">
+        class="direction"
+        pack="eva">
       </nb-icon>
       {{ earningLiveUpdateCardData.delta.value }}%
     </div>

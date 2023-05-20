@@ -3,9 +3,9 @@
     <nb-card class="own-scroll">
       <nb-card-header>Own Scroll</nb-card-header>
       <nb-list
-        nbInfiniteList
+        (bottomThreshold)="loadNext(firstCard)"
         [threshold]="500"
-        (bottomThreshold)="loadNext(firstCard)">
+        nbInfiniteList>
         <nb-list-item *ngFor="let newsPost of firstCard.news">
           <ngx-news-post [post]="newsPost"></ngx-news-post>
         </nb-list-item>
@@ -20,10 +20,10 @@
     <nb-card>
       <nb-card-header>Window Scroll</nb-card-header>
       <nb-list
-        nbInfiniteList
-        listenWindowScroll
+        (bottomThreshold)="loadNext(secondCard)"
         [threshold]="500"
-        (bottomThreshold)="loadNext(secondCard)">
+        listenWindowScroll
+        nbInfiniteList>
         <nb-list-item *ngFor="let newsPost of secondCard.news">
           <ngx-news-post [post]="newsPost"></ngx-news-post>
         </nb-list-item>

@@ -1,11 +1,11 @@
 <nb-card class="cards-container">
-  <nb-card size="large" class="table-card">
+  <nb-card class="table-card" size="large">
     <nb-card-header>
       Electricity Consumption
     </nb-card-header>
 
     <nb-tabset fullWidth>
-      <nb-tab *ngFor="let year of listData" [tabTitle]="year.title" [active]="year.active">
+      <nb-tab *ngFor="let year of listData" [active]="year.active" [tabTitle]="year.title">
         <nb-list>
           <nb-list-item *ngFor="let month of year.months">
             <span class="month">{{ month.month }}</span>
@@ -26,7 +26,7 @@
     </nb-tabset>
   </nb-card>
 
-  <nb-card size="large" class="chart-card">
+  <nb-card class="chart-card" size="large">
     <nb-card-header>
       <span class="stats">
         <span class="caption">Consumed</span>

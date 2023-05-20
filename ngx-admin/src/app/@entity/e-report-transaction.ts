@@ -2,21 +2,6 @@ import { Entity } from '../@core/entity'
 import * as Moment from 'moment'
 
 export class EReportTransaction extends Entity {
-  constructor() {
-    super()
-  }
-
-  private _invoice: string = ''
-  private _contact: string = ''
-  private _amount: number = 0
-  private _arap: number = 0
-  private _discount: number = 0
-  private _date: Moment.Moment = null
-  private _taxIncluded: number = 0
-  private _shortCost: number = 0
-  private _cash: number = 0
-  private _status: number = 1
-
   public readonly NAMES = {
     id: 0,
     invoice: 1,
@@ -30,7 +15,6 @@ export class EReportTransaction extends Entity {
     cash: 9,
     status: 10,
   }
-
   public objects: Array<any> = [
     'id',
     'invoice',
@@ -45,37 +29,11 @@ export class EReportTransaction extends Entity {
     'status',
   ]
 
-  /**
-   * Getter status
-   * @return {number }
-   */
-  public get status(): number {
-    return this._status
+  constructor() {
+    super()
   }
 
-  /**
-   * Setter status
-   * @param {number } value
-   */
-  public set status(value: number) {
-    this._status = value
-  }
-
-  /**
-   * Getter cash
-   * @return {number }
-   */
-  public get cash(): number {
-    return this._cash
-  }
-
-  /**
-   * Setter cash
-   * @param {number } value
-   */
-  public set cash(value: number) {
-    this._cash = value
-  }
+  private _invoice: string = ''
 
   /**
    * Getter invoice
@@ -83,18 +41,6 @@ export class EReportTransaction extends Entity {
    */
   public get invoice(): string {
     return this._invoice
-  }
-
-  public get nettWorth(): number {
-    return this.amount - (this.taxIncluded + this.shortCost + this.discount)
-  }
-
-  /**
-   * Getter contact
-   * @return {string }
-   */
-  public get contact(): string {
-    return this._contact
   }
 
   /**
@@ -105,6 +51,16 @@ export class EReportTransaction extends Entity {
     this._invoice = value
   }
 
+  private _contact: string = ''
+
+  /**
+   * Getter contact
+   * @return {string }
+   */
+  public get contact(): string {
+    return this._contact
+  }
+
   /**
    * Setter contact
    * @param {string } value
@@ -112,6 +68,62 @@ export class EReportTransaction extends Entity {
   public set contact(value: string) {
     this._contact = value
   }
+
+  private _amount: number = 0
+
+  /**
+   * Getter amount
+   * @return {number }
+   */
+  public get amount(): number {
+    return this._amount
+  }
+
+  /**
+   * Setter amount
+   * @param {number } value
+   */
+  public set amount(value: number) {
+    this._amount = value
+  }
+
+  private _arap: number = 0
+
+  /**
+   * Getter arap
+   * @return {number }
+   */
+  public get arap(): number {
+    return this._arap
+  }
+
+  /**
+   * Setter arap
+   * @param {number } value
+   */
+  public set arap(value: number) {
+    this._arap = value
+  }
+
+  private _discount: number = 0
+
+  /**
+   * Getter discount
+   * @return {number }
+   */
+  public get discount(): number {
+    return this._discount
+  }
+
+  /**
+   * Setter discount
+   * @param {number } value
+   */
+  public set discount(value: number) {
+    this._discount = value
+  }
+
+  private _date: Moment.Moment = null
 
   /**
    * Getter date
@@ -129,29 +141,7 @@ export class EReportTransaction extends Entity {
     this._date = Entity.toMoment(value)
   }
 
-  /**
-   * Getter amount
-   * @return {number }
-   */
-  public get amount(): number {
-    return this._amount
-  }
-
-  /**
-   * Getter arap
-   * @return {number }
-   */
-  public get arap(): number {
-    return this._arap
-  }
-
-  /**
-   * Getter discount
-   * @return {number }
-   */
-  public get discount(): number {
-    return this._discount
-  }
+  private _taxIncluded: number = 0
 
   /**
    * Getter taxIncluded
@@ -162,6 +152,16 @@ export class EReportTransaction extends Entity {
   }
 
   /**
+   * Setter taxIncluded
+   * @param {number } value
+   */
+  public set taxIncluded(value: number) {
+    this._taxIncluded = value
+  }
+
+  private _shortCost: number = 0
+
+  /**
    * Getter shortCost
    * @return {number }
    */
@@ -170,43 +170,51 @@ export class EReportTransaction extends Entity {
   }
 
   /**
-   * Setter amount
-   * @param {number } value
-   */
-  public set amount(value: number) {
-    this._amount = value
-  }
-
-  /**
-   * Setter arap
-   * @param {number } value
-   */
-  public set arap(value: number) {
-    this._arap = value
-  }
-
-  /**
-   * Setter discount
-   * @param {number } value
-   */
-  public set discount(value: number) {
-    this._discount = value
-  }
-
-  /**
-   * Setter taxIncluded
-   * @param {number } value
-   */
-  public set taxIncluded(value: number) {
-    this._taxIncluded = value
-  }
-
-  /**
    * Setter shortCost
    * @param {number } value
    */
   public set shortCost(value: number) {
     this._shortCost = value
+  }
+
+  private _cash: number = 0
+
+  /**
+   * Getter cash
+   * @return {number }
+   */
+  public get cash(): number {
+    return this._cash
+  }
+
+  /**
+   * Setter cash
+   * @param {number } value
+   */
+  public set cash(value: number) {
+    this._cash = value
+  }
+
+  private _status: number = 1
+
+  /**
+   * Getter status
+   * @return {number }
+   */
+  public get status(): number {
+    return this._status
+  }
+
+  /**
+   * Setter status
+   * @param {number } value
+   */
+  public set status(value: number) {
+    this._status = value
+  }
+
+  public get nettWorth(): number {
+    return this.amount - (this.taxIncluded + this.shortCost + this.discount)
   }
 
 }

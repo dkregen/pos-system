@@ -1,8 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators';
+import { Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
 
-import { TrafficChartData } from '../../../@core/data/traffic-chart';
+import { TrafficChartData } from '../../../@core/data/traffic-chart'
 
 @Component({
   selector: 'ngx-traffic',
@@ -23,29 +23,28 @@ import { TrafficChartData } from '../../../@core/data/traffic-chart';
 })
 export class TrafficComponent implements OnDestroy {
 
-  private alive = true;
-
-  trafficChartPoints: number[];
-  type = 'month';
-  types = ['week', 'month', 'year'];
-  currentTheme: string;
+  trafficChartPoints: number[]
+  type = 'month'
+  types = ['week', 'month', 'year']
+  currentTheme: string
+  private alive = true
 
   constructor(private themeService: NbThemeService,
               private trafficChartService: TrafficChartData) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
-      this.currentTheme = theme.name;
-    });
+        this.currentTheme = theme.name
+      })
 
     this.trafficChartService.getTrafficChartData()
       .pipe(takeWhile(() => this.alive))
       .subscribe((data) => {
-        this.trafficChartPoints = data;
-      });
+        this.trafficChartPoints = data
+      })
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

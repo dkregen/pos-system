@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-echarts-multiple-xaxis',
@@ -8,8 +8,8 @@ import { NbThemeService } from '@nebular/theme';
   `,
 })
 export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
-  options: any = {};
-  themeSubscription: any;
+  options: any = {}
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
   }
@@ -17,8 +17,8 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const echarts: any = config.variables.echarts;
+      const colors: any = config.variables
+      const echarts: any = config.variables.echarts
 
       this.options = {
         backgroundColor: echarts.bg,
@@ -60,8 +60,8 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
               label: {
                 formatter: params => {
                   return (
-                    'Precipitation  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[0].data : '')
-                  );
+                    'Precipitation  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[ 0 ].data : '')
+                  )
                 },
               },
             },
@@ -100,8 +100,8 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
               label: {
                 formatter: params => {
                   return (
-                    'Precipitation  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[0].data : '')
-                  );
+                    'Precipitation  ' + params.value + (params.seriesData.length ? '：' + params.seriesData[ 0 ].data : '')
+                  )
                 },
               },
             },
@@ -156,11 +156,11 @@ export class EchartsMultipleXaxisComponent implements AfterViewInit, OnDestroy {
             data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7],
           },
         ],
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

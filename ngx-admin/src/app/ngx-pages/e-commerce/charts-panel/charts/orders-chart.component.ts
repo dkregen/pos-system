@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { delay, takeWhile } from 'rxjs/operators';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { delay, takeWhile } from 'rxjs/operators'
 
-import { OrdersChart } from '../../../../@core/data/orders-chart';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { OrdersChart } from '../../../../@core/data/orders-chart'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
 @Component({
   selector: 'ngx-orders-chart',
@@ -20,18 +20,10 @@ import { LayoutService } from '../../../../@core/utils/layout.service';
 export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges {
 
   @Input()
-  ordersChartData: OrdersChart;
-
-  private alive = true;
-
-  echartsIntance: any;
-  option: any;
-
-  ngOnChanges(): void {
-    if (this.option) {
-      this.updateOrdersChartOptions(this.ordersChartData);
-    }
-  }
+  ordersChartData: OrdersChart
+  echartsIntance: any
+  option: any
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -39,7 +31,13 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
+  }
+
+  ngOnChanges(): void {
+    if (this.option) {
+      this.updateOrdersChartOptions(this.ordersChartData)
+    }
   }
 
   ngAfterViewInit(): void {
@@ -49,11 +47,11 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         delay(1),
       )
       .subscribe(config => {
-        const eTheme: any = config.variables.orders;
+        const eTheme: any = config.variables.orders
 
-        this.setOptions(eTheme);
-        this.updateOrdersChartOptions(this.ordersChartData);
-      });
+        this.setOptions(eTheme)
+        this.updateOrdersChartOptions(this.ordersChartData)
+      })
   }
 
   setOptions(eTheme) {
@@ -83,7 +81,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         borderColor: eTheme.tooltipBorderColor,
         borderWidth: 1,
         formatter: (params) => {
-          return Math.round(parseInt(params.value, 10));
+          return Math.round(parseInt(params.value, 10))
         },
         extraCssText: eTheme.tooltipExtraCss,
       },
@@ -135,7 +133,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         this.getSecondLine(eTheme),
         this.getThirdLine(eTheme),
       ],
-    };
+    }
   }
 
   getFirstLine(eTheme) {
@@ -169,11 +167,11 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         },
       },
       data: [],
-    };
+    }
   }
 
   getSecondLine(eTheme) {
-    return         {
+    return {
       type: 'line',
       smooth: true,
       symbolSize: 20,
@@ -213,7 +211,7 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         },
       },
       data: [],
-    };
+    }
   }
 
   getThirdLine(eTheme) {
@@ -257,39 +255,39 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
         },
       },
       data: [],
-    };
+    }
   }
 
   updateOrdersChartOptions(ordersChartData: OrdersChart) {
-    const options = this.option;
-    const series = this.getNewSeries(options.series, ordersChartData.linesData);
-    const xAxis = this.getNewXAxis(options.xAxis, ordersChartData.chartLabel);
+    const options = this.option
+    const series = this.getNewSeries(options.series, ordersChartData.linesData)
+    const xAxis = this.getNewXAxis(options.xAxis, ordersChartData.chartLabel)
 
     this.option = {
       ...options,
       xAxis,
       series,
-    };
+    }
   }
 
   getNewSeries(series, linesData: number[][]) {
     return series.map((line, index) => {
       return {
         ...line,
-        data: linesData[index],
-      };
-    });
+        data: linesData[ index ],
+      }
+    })
   }
 
   getNewXAxis(xAxis, chartLabel: string[]) {
     return {
       ...xAxis,
       data: chartLabel,
-    };
+    }
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
@@ -297,12 +295,12 @@ export class OrdersChartComponent implements AfterViewInit, OnDestroy, OnChanges
       // Fix recalculation chart size
       // TODO: investigate more deeply
       setTimeout(() => {
-        this.echartsIntance.resize();
-      }, 0);
+        this.echartsIntance.resize()
+      }, 0)
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

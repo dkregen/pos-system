@@ -2,7 +2,7 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
-.side-container {
+  .side-container {
     position: fixed;
     width: 350px;
     top: 0;
@@ -14,9 +14,11 @@
     right: -100%;
     visibility: hidden;
     transition: all 1s ease;
+
     * {
       color: #111111;
     }
+
     > .main-container {
       padding: 20px;
       padding-top: 7rem;
@@ -29,7 +31,7 @@
     @include nb-for-theme(cosmic) {
       box-shadow: 0 2px 12px 0 #222;
       background-color: nb-theme(color-bg);
-      border:none;
+      border: none;
     }
 
     .form-contol {

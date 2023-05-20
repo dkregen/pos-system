@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NbWindowRef } from '@nebular/theme';
+import { Component } from '@angular/core'
+import { NbWindowRef } from '@nebular/theme'
 
 @Component({
   template: `
@@ -17,6 +17,6 @@ export class WindowFormComponent {
   constructor(public windowRef: NbWindowRef) {}
 
   close() {
-    this.windowRef.close();
+    this.windowRef.close()
   }
 }

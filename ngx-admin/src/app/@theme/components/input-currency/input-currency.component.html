@@ -1,19 +1,19 @@
-<input *ngIf="asInput"
-    class='{{ class }}'
-    (focus)="onFocus()" 
-    (blur)="onBlur()"
-    (keyup)="onChange($event); onKeyUp.emit();"
-    (change)="onChange()"
-    [(ngModel)]="number"
-    [attr.disabled]="disabled || null"
-    [attr.readonly]="readonly || null"
-    [attr.tabindex]="tabindex || 0"
-    [attr.id]="id || null">
-<div *ngIf="!asInput"
-  class='{{ class }}' 
+<input (blur)="onBlur()"
+  (change)="onChange()"
   (focus)="onFocus()"
-  (blur)="onBlur()" 
+  (keyup)="onChange($event); onKeyUp.emit();"
+  *ngIf="asInput"
+  [(ngModel)]="number"
+  [attr.disabled]="disabled || null"
+  [attr.id]="id || null"
+  [attr.readonly]="readonly || null"
+  [attr.tabindex]="tabindex || 0"
+  class='{{ class }}'>
+<div (blur)="onBlur()"
   (click)="toggleInputDisplay()"
-  [attr.id]="id || null">
-    {{number}}
+  (focus)="onFocus()"
+  *ngIf="!asInput"
+  [attr.id]="id || null"
+  class='{{ class }}'>
+  {{number}}
 </div>

@@ -1,14 +1,15 @@
-<popup [show]="show" (hidding)="toggle()">
+<popup (hidding)="toggle()" [show]="show">
   <form>
     <div class="modal-header">
       <span>Pencarian</span>
-      <button (click)="toggle()" type="button" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      <button (click)="toggle()" aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span>
+      </button>
     </div>
     <div class="modal-body">
-      <input class="form-control" name="query" [(ngModel)]="query" placeholder="Nama Unit">
+      <input [(ngModel)]="query" class="form-control" name="query" placeholder="Nama Unit">
     </div>
     <div class="modal-footer">
       <button (click)="submit()" class="btn btn-md btn-primary">Cari</button>
     </div>
-  </form> 
+  </form>
 </popup>

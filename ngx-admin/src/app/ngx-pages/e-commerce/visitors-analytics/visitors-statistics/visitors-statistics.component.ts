@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { delay, takeWhile } from 'rxjs/operators';
-import { LayoutService } from '../../../../@core/utils/layout.service';
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { delay, takeWhile } from 'rxjs/operators'
+import { LayoutService } from '../../../../@core/utils/layout.service'
 
 
 @Component({
@@ -11,13 +11,11 @@ import { LayoutService } from '../../../../@core/utils/layout.service';
 })
 export class ECommerceVisitorsStatisticsComponent implements AfterViewInit, OnDestroy {
 
-  private alive = true;
-
-  @Input() value: number;
-
-  option: any = {};
-  chartLegend: { iconColor: string; title: string }[];
-  echartsIntance: any;
+  @Input() value: number
+  option: any = {}
+  chartLegend: { iconColor: string; title: string }[]
+  echartsIntance: any
+  private alive = true
 
   constructor(private theme: NbThemeService,
               private layoutService: LayoutService) {
@@ -25,7 +23,7 @@ export class ECommerceVisitorsStatisticsComponent implements AfterViewInit, OnDe
       .pipe(
         takeWhile(() => this.alive),
       )
-      .subscribe(() => this.resizeChart());
+      .subscribe(() => this.resizeChart())
   }
 
   ngAfterViewInit() {
@@ -35,12 +33,12 @@ export class ECommerceVisitorsStatisticsComponent implements AfterViewInit, OnDe
         delay(1),
       )
       .subscribe(config => {
-        const variables: any = config.variables;
-        const visitorsPieLegend: any = config.variables.visitorsPieLegend;
+        const variables: any = config.variables
+        const visitorsPieLegend: any = config.variables.visitorsPieLegend
 
-        this.setOptions(variables);
-        this.setLegendItems(visitorsPieLegend);
-    });
+        this.setOptions(variables)
+        this.setLegendItems(visitorsPieLegend)
+      })
   }
 
   setLegendItems(visitorsPieLegend) {
@@ -53,11 +51,11 @@ export class ECommerceVisitorsStatisticsComponent implements AfterViewInit, OnDe
         iconColor: visitorsPieLegend.secondSection,
         title: 'Return Visitors',
       },
-    ];
+    ]
   }
 
   setOptions(variables) {
-    const visitorsPie: any = variables.visitorsPie;
+    const visitorsPie: any = variables.visitorsPie
 
     this.option = {
       tooltip: {
@@ -196,20 +194,20 @@ export class ECommerceVisitorsStatisticsComponent implements AfterViewInit, OnDe
           ],
         },
       ],
-    };
+    }
   }
 
   onChartInit(echarts) {
-    this.echartsIntance = echarts;
+    this.echartsIntance = echarts
   }
 
   resizeChart() {
     if (this.echartsIntance) {
-      this.echartsIntance.resize();
+      this.echartsIntance.resize()
     }
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

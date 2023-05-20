@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'ngx-gmaps',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './gmaps.component.html',
 })
 export class GmapsComponent {
-  readonly position = { lat: 51.678418, lng: 7.809007 };
+  readonly position = { lat: 51.678418, lng: 7.809007 }
 }

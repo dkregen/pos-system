@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import * as L from 'leaflet';
+import * as L from 'leaflet'
 
 @Component({
   selector: 'ngx-leaflet',
@@ -22,5 +22,5 @@ export class LeafletComponent {
     ],
     zoom: 5,
     center: L.latLng({ lat: 38.991709, lng: -76.886109 }),
-  };
+  }
 }

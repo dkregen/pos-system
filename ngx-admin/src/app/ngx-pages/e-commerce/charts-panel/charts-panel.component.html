@@ -1,19 +1,19 @@
 <nb-card size="large">
-  <nb-tabset fullWidth (changeTab)="changeTab($event)">
+  <nb-tabset (changeTab)="changeTab($event)" fullWidth>
     <nb-tab tabTitle="Orders">
       <div class="chart-container">
         <ngx-chart-panel-summary [summary]="chartPanelSummary"></ngx-chart-panel-summary>
-        <ngx-chart-panel-header [type]="period"
-                                (periodChange)="setPeriodAndGetChartData($event)">
+        <ngx-chart-panel-header (periodChange)="setPeriodAndGetChartData($event)"
+          [type]="period">
         </ngx-chart-panel-header>
         <ngx-orders-chart #ordersChart [ordersChartData]="ordersChartData"></ngx-orders-chart>
       </div>
     </nb-tab>
-    <nb-tab tabTitle="Profit" [lazyLoad]="true">
+    <nb-tab [lazyLoad]="true" tabTitle="Profit">
       <div class="chart-container">
         <ngx-chart-panel-summary [summary]="chartPanelSummary"></ngx-chart-panel-summary>
-        <ngx-chart-panel-header [type]="period"
-                                (periodChange)="setPeriodAndGetChartData($event)">
+        <ngx-chart-panel-header (periodChange)="setPeriodAndGetChartData($event)"
+          [type]="period">
         </ngx-chart-panel-header>
         <ngx-profit-chart #profitChart [profitChartData]="profitChartData"></ngx-profit-chart>
       </div>

@@ -12,9 +12,9 @@ import { AuthGuard } from '../services/auth-guard.service'
 })
 export class PagesComponent {
 
+  menu = this.auth.getMenu()
+
   constructor(
     private auth: AuthGuard,
   ) {}
-
-  menu = this.auth.getMenu()
 }

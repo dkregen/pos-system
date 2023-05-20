@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { Component, OnDestroy } from '@angular/core'
+import { NbColorHelper, NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-chartjs-radar',
@@ -8,15 +8,15 @@ import { NbThemeService, NbColorHelper } from '@nebular/theme';
   `,
 })
 export class ChartjsRadarComponent implements OnDestroy {
-  options: any;
-  data: {};
-  themeSubscription: any;
+  options: any
+  data: {}
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
+      const colors: any = config.variables
+      const chartjs: any = config.variables.chartjs
 
       this.data = {
         labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
@@ -31,7 +31,7 @@ export class ChartjsRadarComponent implements OnDestroy {
           borderColor: colors.warning,
           backgroundColor: NbColorHelper.hexToRgbA(colors.warningLight, 0.5),
         }],
-      };
+      }
 
       this.options = {
         responsive: true,
@@ -54,11 +54,11 @@ export class ChartjsRadarComponent implements OnDestroy {
             color: chartjs.axisLineColor,
           },
         },
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

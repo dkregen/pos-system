@@ -1,6 +1,6 @@
-import { NbJSThemeOptions, DARK_THEME as baseTheme } from '@nebular/theme';
+import { DARK_THEME as baseTheme, NbJSThemeOptions } from '@nebular/theme'
 
-const baseThemeVariables = baseTheme.variables;
+const baseThemeVariables = baseTheme.variables
 
 export const DARK_THEME = {
   name: 'dark',
@@ -311,4 +311,4 @@ export const DARK_THEME = {
       tooltipExtraCss: 'border-radius: 10px; padding: 4px 16px;',
     },
   },
-} as NbJSThemeOptions;
+} as NbJSThemeOptions

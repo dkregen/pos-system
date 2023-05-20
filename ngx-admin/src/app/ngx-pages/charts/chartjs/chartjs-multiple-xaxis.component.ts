@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-chartjs-multiple-xaxis',
@@ -8,15 +8,15 @@ import { NbThemeService } from '@nebular/theme';
   `,
 })
 export class ChartjsMultipleXaxisComponent implements OnDestroy {
-  data: {};
-  options: any;
-  themeSubscription: any;
+  data: {}
+  options: any
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
+      const colors: any = config.variables
+      const chartjs: any = config.variables.chartjs
 
       this.data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -55,7 +55,7 @@ export class ChartjsMultipleXaxisComponent implements OnDestroy {
           pointRadius: 8,
           pointHoverRadius: 10,
         }],
-      };
+      }
 
       this.options = {
         responsive: true,
@@ -103,15 +103,15 @@ export class ChartjsMultipleXaxisComponent implements OnDestroy {
             },
           ],
         },
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 
   private random() {
-    return Math.round(Math.random() * 100);
+    return Math.round(Math.random() * 100)
   }
 }

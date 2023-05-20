@@ -1,13 +1,13 @@
 <side-container [show]="show">
   <div class="row">
     <div class="col-12">
-      <h3 class="header-form with-close" (click)="toggle()">Ubah Satuan</h3>
+      <h3 (click)="toggle()" class="header-form with-close">Ubah Satuan</h3>
       <form>
         <div class="form-group">
           <label>Nama Satuan</label>
-          <input name="name" [(ngModel)]="ent.name" required class="form-control" autocomplete="off">
+          <input [(ngModel)]="ent.name" autocomplete="off" class="form-control" name="name" required>
         </div>
-        <button type="submit" (click)="onSubmit()" class="btn btn-danger">Simpan</button>
+        <button (click)="onSubmit()" class="btn btn-danger" type="submit">Simpan</button>
       </form>
     </div>
   </div>

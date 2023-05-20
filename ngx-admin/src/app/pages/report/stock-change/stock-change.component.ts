@@ -34,11 +34,12 @@ export class StockChangeComponent implements OnInit {
   @ViewChild('invoiceStock') formInvoiceStock: InvoiceComponent
   @ViewChild('invoiceReceiptStock')
   formInvoiceReceiptStock: InvoiceReceiptComponent
-
+  moment = Moment
+  isNaN = Number.isNaN
   protected config = ToastrConfig
   protected inv: ETrxInvoice = new ETrxInvoice()
-  protected result: Array<EReportStock> = new Array()
-  protected details: Array<EReportStockDetail> = new Array()
+  protected result: Array<EReportStock> = []
+  protected details: Array<EReportStockDetail> = []
   protected txtStatus = ETrxInvoice.status
   protected txtType = ETrxInvoice.txtType
   protected shownInvoice: boolean = false
@@ -46,8 +47,20 @@ export class StockChangeComponent implements OnInit {
   protected shownContact: boolean = false
   protected pic: EUser = new EUser()
   protected show: boolean = false
-  moment = Moment
-  isNaN = Number.isNaN
+  protected total = {
+    bruto: 0,
+    tax: 0,
+    short: 0,
+    discount: 0,
+    nett: 0,
+    cash: 0,
+    arap: 0,
+  }
+  protected parameter: any = {
+    date: Moment().toDate(),
+    name: '',
+  }
+  protected selectedItem: EReportStock = new EReportStock()
 
   constructor(
     private windowService: NbWindowService,
@@ -58,21 +71,6 @@ export class StockChangeComponent implements OnInit {
     private auth: AuthGuard,
     private transactionService: TransactionService,
   ) {}
-
-  protected total = {
-    bruto: 0,
-    tax: 0,
-    short: 0,
-    discount: 0,
-    nett: 0,
-    cash: 0,
-    arap: 0,
-  }
-
-  protected parameter: any = {
-    date: Moment().toDate(),
-    name: '',
-  }
 
   attachInvoice(invoice: ETrxInvoice) {
     this.inv = invoice
@@ -123,8 +121,6 @@ export class StockChangeComponent implements OnInit {
   async submitSearch() {
     this.result = await this.report.getReportStock(this.toast, this.parameter)
   }
-
-  protected selectedItem: EReportStock = new EReportStock()
 
   async getDetail(item?: EReportStock, status = false) {
     this.show = status

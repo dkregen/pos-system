@@ -3,11 +3,11 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Component, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnDestroy } from '@angular/core'
+import { Location } from '@angular/common'
 
-import { takeWhile } from 'rxjs/operators';
-import { NbAuthService } from '@nebular/auth';
+import { takeWhile } from 'rxjs/operators'
+import { NbAuthService } from '@nebular/auth'
 
 @Component({
   selector: 'nb-auth',
@@ -31,12 +31,10 @@ import { NbAuthService } from '@nebular/auth';
 })
 export class AuthComponent implements OnDestroy {
 
-  private alive = true;
-
-  subscription: any;
-
-  authenticated: boolean = false;
-  token: string = '';
+  subscription: any
+  authenticated: boolean = false
+  token: string = ''
+  private alive = true
 
   // showcase of how to use the onAuthenticationChange method
   constructor(protected auth: NbAuthService, protected location: Location) {
@@ -44,16 +42,16 @@ export class AuthComponent implements OnDestroy {
     this.subscription = auth.onAuthenticationChange()
       .pipe(takeWhile(() => this.alive))
       .subscribe((authenticated: boolean) => {
-        this.authenticated = authenticated;
-      });
+        this.authenticated = authenticated
+      })
   }
 
   back() {
-    this.location.back();
-    return false;
+    this.location.back()
+    return false
   }
 
   ngOnDestroy(): void {
-    this.alive = false;
+    this.alive = false
   }
 }

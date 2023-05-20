@@ -8,21 +8,35 @@ import { ETrxItem } from '../../../../../@entity/e-trx-item'
   templateUrl: './invoice-payment.component.html',
 })
 export class InvoicePaymentComponent implements OnInit {
-  private _payment: ETrxPayment = new ETrxPayment()
-  public products: Array<ETrxItem> = new Array()
-  public services: Array<ETrxItem> = new Array()
-  public compliments: Array<ETrxItem> = new Array()
+  public products: Array<ETrxItem> = []
+  public services: Array<ETrxItem> = []
+  public compliments: Array<ETrxItem> = []
   @Input() public manualDiscGlobal: boolean = false
   @Input() public percentManual: boolean = false
   @Input() public class: string = ''
   @Input() public forceEnableState: boolean = false
+  private helperBeforeCash = 0
+
+  private _payment: ETrxPayment = new ETrxPayment()
+
+  /**
+   * Getter payment
+   * @return {ETrxPayment }
+   */
+  public get payment(): ETrxPayment {
+    return this._payment
+  }
+
+  /**
+   * Setter payment
+   * @param {ETrxPayment } value
+   */
+  public set payment(value: ETrxPayment) {
+    this._payment = value
+  }
 
   public isEnabled(): boolean {
     return (!this._payment.hasId() && this._payment.id != '-1') || this.forceEnableState
-  }
-
-  private combineItem() {
-    return this.products.concat(this.services).concat(this.compliments)
   }
 
   public counter() {
@@ -54,7 +68,9 @@ export class InvoicePaymentComponent implements OnInit {
     this.payment.returnCash = this.payment.paymentTotal - this.payment.grandTotalCal
   }
 
-  private helperBeforeCash = 0
+  ngOnInit() {
+
+  }
 
   protected calculatePr() {
     if (this.payment.prFirst > 0) {
@@ -136,24 +152,8 @@ export class InvoicePaymentComponent implements OnInit {
     this.calculateTotal()
   }
 
-  ngOnInit() {
-
-  }
-
-  /**
-   * Getter payment
-   * @return {ETrxPayment }
-   */
-  public get payment(): ETrxPayment {
-    return this._payment
-  }
-
-  /**
-   * Setter payment
-   * @param {ETrxPayment } value
-   */
-  public set payment(value: ETrxPayment) {
-    this._payment = value
+  private combineItem() {
+    return this.products.concat(this.services).concat(this.compliments)
   }
 
 }

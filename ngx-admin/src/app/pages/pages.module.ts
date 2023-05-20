@@ -10,23 +10,23 @@ import { CashieringModule } from '../cashiering/cashiering.module'
 import { NbIconModule, NbMenuModule } from '@nebular/theme'
 
 const PAGES_COMPONENTS = [
-	PagesComponent,
+  PagesComponent,
 ]
 
 @NgModule({
-	imports: [
-		PagesRoutingModule,
-		ThemeModule,
-		HomeModule,
-		MiscellaneousModule,
-		MasterModule,
-		CashieringModule,
-		NbMenuModule,
-		NbIconModule,
-	],
-	declarations: [
-		...PAGES_COMPONENTS,
-	],
+  imports: [
+    PagesRoutingModule,
+    ThemeModule,
+    HomeModule,
+    MiscellaneousModule,
+    MasterModule,
+    CashieringModule,
+    NbMenuModule,
+    NbIconModule,
+  ],
+  declarations: [
+    ...PAGES_COMPONENTS,
+  ],
 })
 export class PagesModule {
 }

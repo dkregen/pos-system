@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
-import { OrdersChart } from './orders-chart';
-import { ProfitChart  } from './profit-chart';
+import { Observable } from 'rxjs'
+import { OrdersChart } from './orders-chart'
+import { ProfitChart } from './profit-chart'
 
 export interface OrderProfitChartSummary {
   title: string;
@@ -9,6 +9,8 @@ export interface OrderProfitChartSummary {
 
 export abstract class OrdersProfitChartData {
   abstract getOrderProfitChartSummary(): Observable<OrderProfitChartSummary[]>;
+
   abstract getOrdersChartData(period: string): Observable<OrdersChart>;
+
   abstract getProfitChartData(period: string): Observable<ProfitChart>;
 }

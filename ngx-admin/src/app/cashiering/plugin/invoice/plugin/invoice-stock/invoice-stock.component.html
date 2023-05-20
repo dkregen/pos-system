@@ -25,32 +25,32 @@
           <td>{{product.unit.name}}</td>
           <td class="form-control-container">
             <input-currency
-              [class]="'form-control-small monospace'"
+              (onFocusout)="triggerChangesAction()"
               [(model)]="product.oldStock"
-              [fractionSizeDisplay]="2"
               [allowNegative]="true"
+              [class]="'form-control-small monospace'"
               [disabled]="true"
-              (onFocusout)="triggerChangesAction()">
+              [fractionSizeDisplay]="2">
             </input-currency>
           </td>
           <td class="form-control-container">
             <input-currency
-              [class]="'form-control-small monospace'"
+              (onFocusout)="adjustQty(product); triggerChangesAction()"
               [(model)]="product.newStockAdjustment"
-              [fractionSizeDisplay]="2"
               [allowNegative]="true"
+              [class]="'form-control-small monospace'"
               [disabled]="!enabled"
-              (onFocusout)="adjustQty(product); triggerChangesAction()">
+              [fractionSizeDisplay]="2">
             </input-currency>
           </td>
           <td class="form-control-container">
             <input-currency
-              [class]="'form-control-small monospace'"
+              (onFocusout)="adjustStock(product); triggerChangesAction()"
               [(model)]="product.qtyAdjustment"
-              [fractionSizeDisplay]="2"
               [allowNegative]="true"
+              [class]="'form-control-small monospace'"
               [disabled]="!enabled"
-              (onFocusout)="adjustStock(product); triggerChangesAction()">
+              [fractionSizeDisplay]="2">
             </input-currency>
           </td>
         </tr>

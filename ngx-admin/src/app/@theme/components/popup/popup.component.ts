@@ -1,4 +1,4 @@
-import { OnInit, Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 
 @Component({
   selector: 'popup',
@@ -6,12 +6,12 @@ import { OnInit, Component, Input, Output, EventEmitter } from "@angular/core";
   templateUrl: './popup.component.html',
 })
 export class PopUpComponent implements OnInit {
-  @Input() public show: boolean = false;
-  @Output() public hidding = new EventEmitter<boolean>();
+  @Input() public show: boolean = false
+  @Output() public hidding = new EventEmitter<boolean>()
 
   hide() {
-    this.show = false;
-    this.hidding.emit(this.show);
+    this.show = false
+    this.hidding.emit(this.show)
   }
 
   ngOnInit() {

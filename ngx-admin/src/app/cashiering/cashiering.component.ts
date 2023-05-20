@@ -47,8 +47,8 @@ export class CashieringComponent implements OnInit {
 
   protected hasAdjustment: boolean = true
   protected toastrConfig = ToastrConfig
-  private pic: EUser = new EUser()
   protected invoiceType: number = ETrxInvoice.TYPE_SELLING
+  private pic: EUser = new EUser()
 
   constructor(
     private transactionService: TransactionService,
@@ -56,41 +56,6 @@ export class CashieringComponent implements OnInit {
     private userService: RegisteredUserService,
     protected toast: ToasterService,
   ) {}
-
-  protected activeClass() {
-    if (this.invoiceType === ETrxInvoice.TYPE_SELLING) {
-      return 'first'
-    } else if (this.invoiceType === ETrxInvoice.TYPE_RECEIVE && !this.auth.hasSell()) {
-      return 'first'
-    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT && !this.auth.hasSell() && !this.auth.hasReceive()) {
-      return 'first'
-    } else if (this.invoiceType === ETrxInvoice.TYPE_RECEIVE) {
-      return 'second'
-    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT && !this.auth.hasSell()) {
-      return 'second'
-    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT && !this.auth.hasReceive()) {
-      return 'second'
-    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT) {
-      return 'third'
-    }
-  }
-
-  protected changeModule(type: number) {
-    !this.searchInvoice || (this.searchInvoice.list = [])
-    !this.searchItem || (this.searchItem.items = [])
-    this.invoiceType = type
-    if (type == ETrxInvoice.TYPE_ADJUSTMENT) {
-      this.searchItem.onlyEnableProduct()
-      this.toast.pop(
-        Msg.info(
-          '',
-          'Mohon seluruh transaksi dihentikan ketika melakukan stock opname.',
-        ),
-      )
-    } else {
-      this.searchItem.enableAll()
-    }
-  }
 
   onSave(inv: ETrxInvoice) {
     (async () => {
@@ -236,5 +201,40 @@ export class CashieringComponent implements OnInit {
       this.newInvoice(ETrxInvoice.TYPE_RECEIVE, null, false)
       this.newInvoice(ETrxInvoice.TYPE_ADJUSTMENT, null, false)
     })()
+  }
+
+  protected activeClass() {
+    if (this.invoiceType === ETrxInvoice.TYPE_SELLING) {
+      return 'first'
+    } else if (this.invoiceType === ETrxInvoice.TYPE_RECEIVE && !this.auth.hasSell()) {
+      return 'first'
+    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT && !this.auth.hasSell() && !this.auth.hasReceive()) {
+      return 'first'
+    } else if (this.invoiceType === ETrxInvoice.TYPE_RECEIVE) {
+      return 'second'
+    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT && !this.auth.hasSell()) {
+      return 'second'
+    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT && !this.auth.hasReceive()) {
+      return 'second'
+    } else if (this.invoiceType === ETrxInvoice.TYPE_ADJUSTMENT) {
+      return 'third'
+    }
+  }
+
+  protected changeModule(type: number) {
+    !this.searchInvoice || (this.searchInvoice.list = [])
+    !this.searchItem || (this.searchItem.items = [])
+    this.invoiceType = type
+    if (type == ETrxInvoice.TYPE_ADJUSTMENT) {
+      this.searchItem.onlyEnableProduct()
+      this.toast.pop(
+        Msg.info(
+          '',
+          'Mohon seluruh transaksi dihentikan ketika melakukan stock opname.',
+        ),
+      )
+    } else {
+      this.searchItem.enableAll()
+    }
   }
 }

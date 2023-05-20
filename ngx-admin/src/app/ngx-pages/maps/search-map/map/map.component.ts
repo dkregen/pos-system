@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PositionModel } from '../entity/position.model';
+import { Component, Input, OnInit } from '@angular/core'
+import { PositionModel } from '../entity/position.model'
 
 @Component({
   selector: 'ngx-map',
@@ -7,14 +7,14 @@ import { PositionModel } from '../entity/position.model';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  position: PositionModel = null;
-  zoom: number = 1;
+  position: PositionModel = null
+  zoom: number = 1
 
   @Input()
   public set searchedPosition(position: PositionModel) {
     if (position) {
-      this.position = position;
-      this.zoom = 12;
+      this.position = position
+      this.zoom = 12
     }
   }
 
@@ -25,8 +25,8 @@ export class MapComponent implements OnInit {
         this.searchedPosition = new PositionModel(
           position.coords.latitude,
           position.coords.longitude,
-        );
-      });
+        )
+      })
     }
   }
 }

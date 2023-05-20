@@ -1,7 +1,7 @@
-import {Component, OnDestroy} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators' ;
-import { SolarData } from '../../@core/data/solar';
+import { Component, OnDestroy } from '@angular/core'
+import { NbThemeService } from '@nebular/theme'
+import { takeWhile } from 'rxjs/operators'
+import { SolarData } from '../../@core/data/solar'
 
 interface CardSettings {
   title: string;
@@ -16,39 +16,34 @@ interface CardSettings {
 })
 export class DashboardComponent implements OnDestroy {
 
-  private alive = true;
-
-  solarValue: number;
+  solarValue: number
   lightCard: CardSettings = {
     title: 'Light',
     iconClass: 'nb-lightbulb',
     type: 'primary',
-  };
+  }
   rollerShadesCard: CardSettings = {
     title: 'Roller Shades',
     iconClass: 'nb-roller-shades',
     type: 'success',
-  };
+  }
   wirelessAudioCard: CardSettings = {
     title: 'Wireless Audio',
     iconClass: 'nb-audio',
     type: 'info',
-  };
+  }
   coffeeMakerCard: CardSettings = {
     title: 'Coffee Maker',
     iconClass: 'nb-coffee-maker',
     type: 'warning',
-  };
-
-  statusCards: string;
-
+  }
+  statusCards: string
   commonStatusCardsSet: CardSettings[] = [
     this.lightCard,
     this.rollerShadesCard,
     this.wirelessAudioCard,
     this.coffeeMakerCard,
-  ];
-
+  ]
   statusCardsByThemes: {
     default: CardSettings[];
     cosmic: CardSettings[];
@@ -76,24 +71,25 @@ export class DashboardComponent implements OnDestroy {
       },
     ],
     dark: this.commonStatusCardsSet,
-  };
+  }
+  private alive = true
 
   constructor(private themeService: NbThemeService,
               private solarService: SolarData) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
-        this.statusCards = this.statusCardsByThemes[theme.name];
-    });
+        this.statusCards = this.statusCardsByThemes[ theme.name ]
+      })
 
     this.solarService.getSolarData()
       .pipe(takeWhile(() => this.alive))
       .subscribe((data) => {
-        this.solarValue = data;
-      });
+        this.solarValue = data
+      })
   }
 
   ngOnDestroy() {
-    this.alive = false;
+    this.alive = false
   }
 }

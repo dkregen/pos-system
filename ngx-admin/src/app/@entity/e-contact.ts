@@ -2,16 +2,6 @@ import { Entity } from '../@core/entity'
 import { EAlert } from './e-alert'
 
 export class EContact extends Entity {
-  constructor() {
-    super()
-  }
-
-  private _name: string = ''
-  private _phone: string = ''
-  private _company: string = ''
-  private _tlp: string = ''
-  private _ktp: string = ''
-
   public readonly NAMES = {
     id: 0,
     name: 1,
@@ -20,28 +10,13 @@ export class EContact extends Entity {
     tlp: 4,
     ktp: 5,
   }
-
   public objects: Array<any> = ['id', 'name', 'phone', 'company', 'tlp', 'ktp']
 
-  public checkForm(): EAlert {
-    return null
+  constructor() {
+    super()
   }
 
-  /**
-   * Getter ktp
-   * @return {string }
-   */
-  public get ktp(): string {
-    return this._ktp
-  }
-
-  /**
-   * Setter ktp
-   * @param {string } value
-   */
-  public set ktp(value: string) {
-    this._ktp = value
-  }
+  private _name: string = ''
 
   /**
    * Getter name
@@ -59,28 +34,14 @@ export class EContact extends Entity {
     this._name = value
   }
 
+  private _phone: string = ''
+
   /**
    * Getter phone
    * @return {string }
    */
   public get phone(): string {
     return this._phone
-  }
-
-  /**
-   * Getter company
-   * @return {string }
-   */
-  public get company(): string {
-    return this._company
-  }
-
-  /**
-   * Getter tlp
-   * @return {string }
-   */
-  public get tlp(): string {
-    return this._tlp
   }
 
   /**
@@ -91,6 +52,16 @@ export class EContact extends Entity {
     this._phone = value
   }
 
+  private _company: string = ''
+
+  /**
+   * Getter company
+   * @return {string }
+   */
+  public get company(): string {
+    return this._company
+  }
+
   /**
    * Setter company
    * @param {string } value
@@ -99,11 +70,43 @@ export class EContact extends Entity {
     this._company = value
   }
 
+  private _tlp: string = ''
+
+  /**
+   * Getter tlp
+   * @return {string }
+   */
+  public get tlp(): string {
+    return this._tlp
+  }
+
   /**
    * Setter tlp
    * @param {string } value
    */
   public set tlp(value: string) {
     this._tlp = value
+  }
+
+  private _ktp: string = ''
+
+  /**
+   * Getter ktp
+   * @return {string }
+   */
+  public get ktp(): string {
+    return this._ktp
+  }
+
+  /**
+   * Setter ktp
+   * @param {string } value
+   */
+  public set ktp(value: string) {
+    this._ktp = value
+  }
+
+  public checkForm(): EAlert {
+    return null
   }
 }

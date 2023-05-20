@@ -1,46 +1,27 @@
-import { Entity } from "../@core/entity";
+import { Entity } from '../@core/entity'
 
 export class ECustomInvoice extends Entity {
-  private _code: string = "";
-  private _contact: string = "";
-  private _amount: number = 0;
-
   public readonly NAMES = {
     id: 0,
     code: 1,
     contact: 2,
-    amount: 3
-  };
-  
+    amount: 3,
+  }
   public objects: Array<any> = [
-    "id",
-    "code",
-    "contact",
-    "amount"
+    'id',
+    'code',
+    'contact',
+    'amount',
   ]
+
+  private _code: string = ''
 
   /**
    * Getter code
    * @return {string }
    */
   public get code(): string {
-    return this._code;
-  }
-
-  /**
-   * Getter contact
-   * @return {string }
-   */
-  public get contact(): string {
-    return this._contact;
-  }
-
-  /**
-   * Getter amount
-   * @return {number }
-   */
-  public get amount(): number {
-    return this._amount;
+    return this._code
   }
 
   /**
@@ -48,7 +29,17 @@ export class ECustomInvoice extends Entity {
    * @param {string } value
    */
   public set code(value: string) {
-    this._code = value;
+    this._code = value
+  }
+
+  private _contact: string = ''
+
+  /**
+   * Getter contact
+   * @return {string }
+   */
+  public get contact(): string {
+    return this._contact
   }
 
   /**
@@ -56,7 +47,17 @@ export class ECustomInvoice extends Entity {
    * @param {string } value
    */
   public set contact(value: string) {
-    this._contact = value;
+    this._contact = value
+  }
+
+  private _amount: number = 0
+
+  /**
+   * Getter amount
+   * @return {number }
+   */
+  public get amount(): number {
+    return this._amount
   }
 
   /**
@@ -64,7 +65,7 @@ export class ECustomInvoice extends Entity {
    * @param {number } value
    */
   public set amount(value: number) {
-    this._amount = value;
+    this._amount = value
   }
 
 }

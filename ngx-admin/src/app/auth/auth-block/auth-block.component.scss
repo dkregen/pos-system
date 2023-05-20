@@ -4,7 +4,8 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-:host /*deep*/{
+:host :host ::ng-deep
+{
   // TODO rewrite when develop responsive
   @media (max-width: 550px) {
     .accept-group {

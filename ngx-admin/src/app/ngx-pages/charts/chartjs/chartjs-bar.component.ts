@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { Component, OnDestroy } from '@angular/core'
+import { NbColorHelper, NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-chartjs-bar',
@@ -8,15 +8,15 @@ import { NbThemeService, NbColorHelper } from '@nebular/theme';
   `,
 })
 export class ChartjsBarComponent implements OnDestroy {
-  data: any;
-  options: any;
-  themeSubscription: any;
+  data: any
+  options: any
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
+      const colors: any = config.variables
+      const chartjs: any = config.variables.chartjs
 
       this.data = {
         labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
@@ -29,7 +29,7 @@ export class ChartjsBarComponent implements OnDestroy {
           label: 'Series B',
           backgroundColor: NbColorHelper.hexToRgbA(colors.infoLight, 0.8),
         }],
-      };
+      }
 
       this.options = {
         maintainAspectRatio: false,
@@ -63,11 +63,11 @@ export class ChartjsBarComponent implements OnDestroy {
             },
           ],
         },
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

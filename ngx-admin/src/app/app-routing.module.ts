@@ -18,6 +18,11 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'cashier',
+    loadChildren: () => import('./cashiering/cashiering.module').then(m => m.CashieringModule),
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ]

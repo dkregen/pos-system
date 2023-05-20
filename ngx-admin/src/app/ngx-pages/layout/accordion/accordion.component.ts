@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core'
 
 @Component({
   selector: 'ngx-accordion',
@@ -7,9 +7,9 @@ import { Component, ViewChild } from '@angular/core';
 })
 export class AccordionComponent {
 
-  @ViewChild('item', { static: true }) accordion;
+  @ViewChild('item', { static: true }) accordion
 
   toggle() {
-    this.accordion.toggle();
+    this.accordion.toggle()
   }
 }

@@ -4,7 +4,7 @@
       <nb-card-header>
         <div class="pull-left">Laporan Perubahan Stok</div>
         <div class="pull-right">
-          <button title="Cari" class="btn btn-header btn-icon" (click)="showSearch()">
+          <button (click)="showSearch()" class="btn btn-header btn-icon" title="Cari">
             <i class="ion-search"></i>
           </button>
         </div>
@@ -26,12 +26,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of result; let i = index;">
-                <td>{{ i+1 }}</td>
-                <td class="action-link" title="Buka Rincian" (click)="getDetail(item)"><i [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i></td>
+                <td>{{ i + 1 }}</td>
+                <td (click)="getDetail(item)" class="action-link" title="Buka Rincian"><i
+                  [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
+                </td>
                 <td>{{ item.name }}</td>
                 <td class="stock-data">
-                  <input-currency [model]="item.stock" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="item.stock">
                   </input-currency>
                 </td>
                 <td>{{ item.unit }}</td>
@@ -46,26 +48,27 @@
       <div class="form-group row">
         <label class="col-3">Tanggal</label>
         <div class="col-9">
-          <input nbInput placeholder="Tanggal" [nbDatepicker]="datepicker" [(ngModel)]="parameter.date" class="form-control">
+          <input [(ngModel)]="parameter.date" [nbDatepicker]="datepicker" class="form-control" nbInput
+            placeholder="Tanggal">
           <nb-datepicker #datepicker format="dd/MM/yyyy"></nb-datepicker>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-3">Nama Barang</label>
         <div class="col-9">
-          <input class="form-control" [(ngModel)]="parameter.name">
+          <input [(ngModel)]="parameter.name" class="form-control">
         </div>
       </div>
       <div class="form-group row">
         <label class="col-3"></label>
         <div class="col-9">
-          <button class="btn btn-success" (click)="submitSearch()">Cari</button>
+          <button (click)="submitSearch()" class="btn btn-success">Cari</button>
         </div>
       </div>
     </div>
   </ng-template>
   <div class="invoice-container">
-    <popup [show]="shownInvoice" (hidding)="shownInvoice =! shownInvoice">
+    <popup (hidding)="shownInvoice =! shownInvoice" [show]="shownInvoice">
       <div class="main-container">
         <invoice #invoice (onSave)="saveInvoice()">
           <invoice-receipt #invoiceReceipt [enabled]="false"></invoice-receipt>
@@ -75,7 +78,7 @@
     </popup>
   </div>
   <div class="invoice-container">
-    <popup [show]="shownInvoiceStock" (hidding)="shownInvoiceStock =! shownInvoiceStock">
+    <popup (hidding)="shownInvoiceStock =! shownInvoiceStock" [show]="shownInvoiceStock">
       <div class="main-container">
         <invoice #invoiceStock (onSave)="saveInvoice()" [readonly]="true">
           <invoice-stock #invoiceReceiptStock [enabled]="false"></invoice-stock>
@@ -85,7 +88,7 @@
   </div>
   <side-container [show]="show" [width]="640">
     <div class="row">
-      <h3 class="header-form with-close" (click)="show = false">Rincian Perubahan Stok</h3>
+      <h3 (click)="show = false" class="header-form with-close">Rincian Perubahan Stok</h3>
       <div class="col-12">
         <div *ngIf="result.length > 0" class="flexbox flexbox-column overflow-auto">
           <table id="table-detail-stock">
@@ -119,24 +122,27 @@
             <tbody *ngIf="details.length>0">
               <tr *ngFor="let item of details; let i = index;">
                 <td *ngIf="item.hasId()" class="txt-center">{{i}}</td>
-                <td *ngIf="item.hasId()" class="action-link" title="Buka Record" (click)="getDetailRecord(item)"><i
-                    [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i></td>
-                <td *ngIf="item.hasId()" class="action-link" title="Ganti Status" (click)="toggleVoid(item)"><i
-                    [innerHTML]="'flip-2' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i></td>
-                <td [attr.colspan]="item.hasId()?1:6" [class.txt-right]="!item.hasId()" [class.upcase]="!item.hasId()">{{item.invoice}}</td>
+                <td (click)="getDetailRecord(item)" *ngIf="item.hasId()" class="action-link" title="Buka Record"><i
+                  [innerHTML]="'code' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
+                </td>
+                <td (click)="toggleVoid(item)" *ngIf="item.hasId()" class="action-link" title="Ganti Status"><i
+                  [innerHTML]="'flip-2' | eva: { animationType: 'pulse', animationInfinite: true, width:'16px', fill: '#4CAF50' }"></i>
+                </td>
+                <td [attr.colspan]="item.hasId()?1:6" [class.txt-right]="!item.hasId()"
+                  [class.upcase]="!item.hasId()">{{item.invoice}}</td>
                 <td *ngIf="item.hasId()" class="tipe">{{ txtType(item.type) }}</td>
                 <td *ngIf="item.hasId()">{{ txtStatus(item.status) }}</td>
                 <td>
-                  <input-currency [model]="item.qty" [class]="'amount'" [fractionSizeDisplay]="2" [disabled]="true"
-                    [asInput]="false">
+                  <input-currency [asInput]="false" [class]="'amount'" [disabled]="true" [fractionSizeDisplay]="2"
+                    [model]="item.qty">
                   </input-currency>
                 </td>
               </tr>
               <tr id="total">
                 <td class="txt-total" colspan="6">TOTAL</td>
                 <td>
-                  <input-currency [model]="totalStockDetail()" [class]="'amount txt-total'" [fractionSizeDisplay]="2"
-                    [disabled]="true" [asInput]="false"></input-currency>
+                  <input-currency [asInput]="false" [class]="'amount txt-total'" [disabled]="true"
+                    [fractionSizeDisplay]="2" [model]="totalStockDetail()"></input-currency>
                 </td>
               </tr>
             </tbody>

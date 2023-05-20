@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'side-container',
@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from "@angular/core";
   templateUrl: './side-container.component.html',
 })
 export class SideContainerComponent implements OnInit {
-  @Input() public show: boolean = false;
-  @Input() public width: number = 350;
+  @Input() public show: boolean = false
+  @Input() public width: number = 350
 
   constructor() { }
 

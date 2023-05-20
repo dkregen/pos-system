@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { LoaderService } from './loader.service'
 import { Msg } from '../@config/toastr.config'
 import { EContact } from '../@entity/e-contact'
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class ContactService {
   insert(contact: EContact): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.post<any>('api/contact/insert', contact.objectToJson())
+      this.http.post<any>(environment.api + '/contact/insert', contact.objectToJson())
         .subscribe(
           data => {
             console.log(data)
@@ -36,7 +37,7 @@ export class ContactService {
   update(contact: EContact): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.post<any>('api/contact/update/' + contact.id, contact.objectToJson())
+      this.http.post<any>(environment.api + '/contact/update/' + contact.id, contact.objectToJson())
         .subscribe(
           data => {
             console.log(data)
@@ -56,7 +57,7 @@ export class ContactService {
   delete(unit: EContact): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.get<any>('api/unit/delete/' + unit.id)
+      this.http.get<any>(environment.api + '/unit/delete/' + unit.id)
         .subscribe(
           data => {
             resolve(data[ 'data' ][ 'message' ])
@@ -75,7 +76,7 @@ export class ContactService {
   list(limit: number, index: number, orderBy?: string, orderType?: string, query = ''): Promise<any> {
     this.loader.increase()
     return new Promise((resolve, reject) => {
-      this.http.get<any>('api/contact/list/' + limit + '/' + index + '/' + orderBy + '/' + orderType + '?where=' + query)
+      this.http.get<any>(environment.api + '/contact/list/' + limit + '/' + index + '/' + orderBy + '/' + orderType + '?where=' + query)
         .subscribe(
           data => {
             resolve(data[ 'data' ])

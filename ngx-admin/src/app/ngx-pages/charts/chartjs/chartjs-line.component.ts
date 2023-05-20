@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { Component, OnDestroy } from '@angular/core'
+import { NbColorHelper, NbThemeService } from '@nebular/theme'
 
 @Component({
   selector: 'ngx-chartjs-line',
@@ -8,15 +8,15 @@ import { NbThemeService, NbColorHelper } from '@nebular/theme';
   `,
 })
 export class ChartjsLineComponent implements OnDestroy {
-  data: any;
-  options: any;
-  themeSubscription: any;
+  data: any
+  options: any
+  themeSubscription: any
 
   constructor(private theme: NbThemeService) {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
 
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
+      const colors: any = config.variables
+      const chartjs: any = config.variables.chartjs
 
       this.data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -37,7 +37,7 @@ export class ChartjsLineComponent implements OnDestroy {
           borderColor: colors.info,
         },
         ],
-      };
+      }
 
       this.options = {
         responsive: true,
@@ -71,11 +71,11 @@ export class ChartjsLineComponent implements OnDestroy {
             fontColor: chartjs.textColor,
           },
         },
-      };
-    });
+      }
+    })
   }
 
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
+    this.themeSubscription.unsubscribe()
   }
 }

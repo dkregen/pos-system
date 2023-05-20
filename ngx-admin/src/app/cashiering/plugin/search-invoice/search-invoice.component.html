@@ -1,9 +1,10 @@
 <div [class.active]="isActive" class="search-invoice-container height-full">
-  <div class="cover" (click)="deactivate()"></div>
+  <div (click)="deactivate()" class="cover"></div>
   <div class="box">
     <div class="box-title">Cari Invoice</div>
     <div class="box-content flexbox flexbox-column height-full">
-      <input tabindex="-1" (focus)="activate()" [(ngModel)]="query" (keyup)="checkSubmition($event)" class="form-control-small shadowed">
+      <input (focus)="activate()" (keyup)="checkSubmition($event)" [(ngModel)]="query" class="form-control-small shadowed"
+        tabindex="-1">
       <div class="flexbox flexbox-column">
         <div class="scroll-container">
           <table class="table table-hover item-data table-search">
@@ -25,8 +26,8 @@
                 <td>{{item.contact}}</td>
                 <td>
                   <input-currency [(model)]="item.amount"
-                    [class]="'amount monospace'" [fractionSizeDisplay]="2"
-                    [disabled]="true" [asInput]="false" [strictFraction]="true"
+                    [asInput]="false" [class]="'amount monospace'"
+                    [disabled]="true" [fractionSizeDisplay]="2" [strictFraction]="true"
                     [tabindex]="5">
                   </input-currency>
                 </td>

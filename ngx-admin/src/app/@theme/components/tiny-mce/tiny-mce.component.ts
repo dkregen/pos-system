@@ -1,5 +1,5 @@
-import { Component, OnDestroy, AfterViewInit, Output, EventEmitter, ElementRef } from '@angular/core';
-import { LocationStrategy } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output } from '@angular/core'
+import { LocationStrategy } from '@angular/common'
 
 @Component({
   selector: 'ngx-tiny-mce',
@@ -7,9 +7,9 @@ import { LocationStrategy } from '@angular/common';
 })
 export class TinyMCEComponent implements OnDestroy, AfterViewInit {
 
-  @Output() editorKeyup = new EventEmitter<any>();
+  @Output() editorKeyup = new EventEmitter<any>()
 
-  editor: any;
+  editor: any
 
   constructor(
     private host: ElementRef,
@@ -20,18 +20,18 @@ export class TinyMCEComponent implements OnDestroy, AfterViewInit {
     tinymce.init({
       target: this.host.nativeElement,
       plugins: ['link', 'paste', 'table'],
-      skin_url: `${this.locationStrategy.getBaseHref()}assets/skins/lightgray`,
+      skin_url: `${ this.locationStrategy.getBaseHref() }assets/skins/lightgray`,
       setup: editor => {
-        this.editor = editor;
+        this.editor = editor
         editor.on('keyup', () => {
-          this.editorKeyup.emit(editor.getContent());
-        });
+          this.editorKeyup.emit(editor.getContent())
+        })
       },
       height: '320',
-    });
+    })
   }
 
   ngOnDestroy() {
-    tinymce.remove(this.editor);
+    tinymce.remove(this.editor)
   }
 }

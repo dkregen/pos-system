@@ -2,6 +2,7 @@ import * as Express from 'express'
 import * as bodyParser from 'body-parser'
 import { Routes } from './routes'
 
+
 export class App {
 
 	private e: any = Express()
@@ -9,6 +10,8 @@ export class App {
 
 	constructor() {
 		this.config()
+		const cors = require('cors');
+		this.e.use(cors({ origin: '*' }))
 		this.router.routes(this.e)
 	}
 

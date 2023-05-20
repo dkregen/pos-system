@@ -337,7 +337,7 @@ export class Model extends DB {
 			return new Promise((resolve, reject) => {
 				if (r instanceof Array) {
 					for (let i = 0; i < r.length; i++) {
-						var id: string = (('id' in r) ? (r[ 'id' ]) : (('_id' in r) ? (r[ '_id' ]) : null))
+						const id: any = (('id' in r) ? (r[ 'id' ]) : (('_id' in r) ? (r[ '_id' ]) : null))
 						if (id !== null) {
 							this.f(id).then((ent) => {
 								v[ i ] = this.populationProcess(r, fo, ent, toForm)
@@ -351,7 +351,7 @@ export class Model extends DB {
 					}
 					resolve(v)
 				} else {
-					var id: string = (('_id' in r) ? (r[ '_id' ]) : (('id' in r) ? (r[ 'id' ]) : null))
+					const id: string = (('_id' in r) ? (r[ '_id' ]) : (('id' in r) ? (r[ 'id' ]) : null))
 					if (id !== null) {
 						this.f(id).then((ent) => {
 							resolve(this.populationProcess(r, fo, ent, toForm))

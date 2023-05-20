@@ -172,7 +172,7 @@ export class MUser extends Model {
 
 					this.update(user)
 						.then(() => {
-							resolve()
+							resolve('')
 						})
 						.catch(reason => {
 							reject(reason)
